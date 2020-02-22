@@ -6,7 +6,7 @@ import Home from "./react-components/Home";
 import Login from "./react-components/Login";
 class App extends React.Component {
     state = {
-      login_status: true
+      login_status: false
     }
     
     render() {

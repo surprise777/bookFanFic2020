@@ -12,7 +12,7 @@ class NavigationBar extends React.Component {
     state = this.props.state;
 
     render(){
-        const login_status = this.props;
+        const {login_status} = this.props;
 
         return (
         <Navbar collapseOnSelect bg="light" expand="lg" sticky="top">
@@ -23,12 +23,10 @@ class NavigationBar extends React.Component {
                     <Nav.Link>
                         <Link to={'./../Home'}>Home</Link>
                     </Nav.Link>
-                    <Nav.Link>
-                        <SearchBar />
-                    </Nav.Link>
+                    <SearchBar />
                 </Nav>
                 <Nav>
-                    {
+                    {/* {
                     (() => {
                         if (!login_status){
                             return (
@@ -44,7 +42,8 @@ class NavigationBar extends React.Component {
                             )
                         }
                     })()
-                    }
+                    } */}
+                    {checkLogin(login_status)}
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

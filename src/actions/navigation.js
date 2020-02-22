@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const checkLogin = (login_status) => {
+export const checkLogin = function(login_status) {
     if (!login_status){
-        return (
-            <button type='submit'>
+        return (<button type='submit'>
                 Login
-            </button>
-        )
+            </button>)
+    }else {
+        return (<div>user</div>)
     }
 }
