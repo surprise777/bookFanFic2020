@@ -1,6 +1,17 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Before Start
+
+Our projcet will use `npm` as the test and development tool. You should install `npm` at first.
+
+After cloning this codebase, first run:
+
+### `npm install`
+
+Install the necessary versions of node and packages.
+
 ## Available Scripts
+
 
 In the project directory, you can run:
 
