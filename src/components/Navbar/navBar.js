@@ -5,7 +5,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
-import Button from '../../containers/mui/button'
+import Button from '../../containers/mui/button';
+import {Link} from 'react-router-dom';
 class NavigationBar extends React.Component {
     state = this.props.state;
 
@@ -24,7 +25,11 @@ class NavigationBar extends React.Component {
                         placeholder="Search…"
                         inputProps={{ 'aria-label': 'search' }}
                     />
-                    <Button>Login</Button>
+                    <Button>
+                        <Link to="./Login">
+                            Login
+                        </Link>
+                        </Button>
                 </Toolbar>
             </AppBar>
         )
