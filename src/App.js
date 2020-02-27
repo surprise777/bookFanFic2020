@@ -1,9 +1,10 @@
 import React from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import "./App.css";
-
+import { ThemeProvider } from '@material-ui/core/styles';
 import Home from "./components/Home/home";
 import Login from "./components/Login/login";
+import theme from './muiTheme';
 class App extends React.Component {
     state = {
       login_status: false
@@ -11,7 +12,7 @@ class App extends React.Component {
     
     render() {
         return (
-            <div>
+            <ThemeProvider theme={theme}>
             <BrowserRouter>
               <Switch>
                 <Route exact path='/' render={() => 
@@ -22,7 +23,7 @@ class App extends React.Component {
                             (<Login state={this.state}/>)}/>
               </Switch>
             </BrowserRouter>
-            </div>
+            </ThemeProvider>
         )
     }
 }
