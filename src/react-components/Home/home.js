@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./style.css"
-import Navigationbar from "../Navbar"
+//import Navigationbar from "../Navbar"
 
 class Home extends React.Component{
 
@@ -9,7 +9,7 @@ class Home extends React.Component{
         const {login_status} = this.props.state;
         return(
             <div>
-                <Navigationbar login_status={login_status}/>
+                {/* <Navigationbar login_status={login_status}/> */}
             </div>
         )
     }
