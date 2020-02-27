@@ -13,7 +13,7 @@ class Login extends React.Component{
             <Container>
                 <div className={styles.login_panel}>
                     <div className={styles.login_header}>
-        <Typography variant="h4">{LoginContent.title}</Typography>
+                    <Typography variant="h4">{LoginContent.title}</Typography>
                         <img alt="" src={LoginContent.image} className={styles.header_img} />
                     </div>
                     <div className={styles.login_form}>
