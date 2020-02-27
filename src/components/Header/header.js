@@ -8,7 +8,7 @@ import Button from '../../containers/mui/button';
 import { Link } from 'react-router-dom';
 import Container from '../../containers/mui/container';
 import Grid from '../../containers/mui/grid';
-import NavBar from '../../contents/navBar';
+import HeaderContent from '../../contents/header';
 import styles from './header.module.css';
 import TextField from '@material-ui/core/TextField';
 import Hidden from '@material-ui/core/Hidden';
@@ -21,8 +21,9 @@ class Header extends React.Component {
         // {login_status} = this.props;
 
         return (
+            <Container className={styles.head} >
             <AppBar>
-                <Container >
+              
                     <Toolbar>
                         <Grid
                             fullWidth
@@ -37,14 +38,14 @@ class Header extends React.Component {
                                     </Grid>
                                     <Grid container item xs={10} alignItems="center" justify="flex-start">
                                         <Typography variant="h6">
-                                            {NavBar.title}
+                                            {HeaderContent.title}
                                         </Typography>
                                     </Grid>
                                 </Grid>
                             </Hidden>
                             <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
                                 <Grid container item alignItems="center" justify="center">
-                                    <TextField id="search-field" className={styles.text} placeholder={NavBar.searchField} fullWidth
+                                    <TextField id="search-field" className={styles.text} placeholder={HeaderContent.searchField} fullWidth
                                         InputProps={{
                                             endAdornment: (
                                                 <InputAdornment position="end">
@@ -57,15 +58,15 @@ class Header extends React.Component {
                             <Grid container item xs={4} sm={2} alignItems="center" justify="flex-end">
                                 <Button >
                                     <Link className={styles.link} to="./Login">
-                                        {NavBar.login}
+                                        {HeaderContent.login}
                                     </Link>
                                 </Button></Grid>
 
 
                         </Grid>
                     </Toolbar>
-                </Container>
             </AppBar>
+            </Container>
         )
     }
 }

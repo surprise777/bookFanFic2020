@@ -1,0 +1,9 @@
+.cardLayout {
+	height: 100%;
+	background-color: #544F87;
+}
+
+.cardMedia {
+	width: 100%;
+	min-height: 200px;
+}

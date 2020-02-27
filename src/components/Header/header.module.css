@@ -1,6 +1,10 @@
+.head{
+    position: relative;
+    display: flex;
+}
 
 .text{
-    background-color: #8DABB6;
+    background-color: #E5DFE3;
     border-radius: 0.2rem;
 }
 
