@@ -7,6 +7,8 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '../../containers/mui/button';
 import {Link} from 'react-router-dom';
+import NavBar from '../../contents/navBar' 
+
 class NavigationBar extends React.Component {
     state = this.props.state;
 
@@ -18,16 +20,16 @@ class NavigationBar extends React.Component {
                 <Toolbar>
                     <MenuIcon />
                     <Typography variant="h6" noWrap>
-                        Readers Club
+                        {NavBar.title}
              </Typography>
                     <SearchIcon />
                     <InputBase
-                        placeholder="Search…"
+                        placeholder={NavBar.searchField}
                         inputProps={{ 'aria-label': 'search' }}
                     />
                     <Button>
                         <Link to="./Login">
-                            Login
+                            {NavBar.login}
                         </Link>
                         </Button>
                 </Toolbar>
