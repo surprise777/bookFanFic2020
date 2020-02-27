@@ -10,15 +10,17 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import styles from './bookCard.module.css';
+import {BookDialog} from '../../actions/viewBookDetails';
 
 const BookCard = ({
 	media,
-	title
+	title,
+	book
 }) => {
 	
 	return (
 			<Card className={styles.cardLayout}>
-			<CardActionArea>
+			<CardActionArea onClick={() => BookDialog(book)}>
 			    <CardHeader className={styles.cardLayout}> 
 					<Typography variant="h6" color="textSecondary">
 					{title}

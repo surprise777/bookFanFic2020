@@ -19,7 +19,7 @@ class Profile extends React.Component {
                     <img 
                       alt=''
                       className={styles.user_ProfilePic} 
-                      src={require('./static/my_icon.jpg')}
+                      src={require('../../static/Profile/my_icon.jpg')}
                     />
                     <Grid>
                     <Typography variant="h5">Name: {'Nick1225'}</Typography>
