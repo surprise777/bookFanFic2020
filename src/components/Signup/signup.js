@@ -3,33 +3,40 @@ import Container from "../../containers/mui/container";
 import Typography from '@material-ui/core/Typography';
 import {Link} from "react-router-dom";
 import NavBar from '../Navbar/navBar';
-import styles from "./login.module.css";
+import styles from "./signup.module.css";
 
 
-class Login extends React.Component{
+class Signup extends React.Component{
     render() {
         return(
             <div className={styles.page_content}>
             <Container>
                 <NavBar />
-                <div className={styles.login_panel}>
-                    <div className={styles.login_header}>
-                        <Typography variant="h4">Welcome back!</Typography>
+                <div className={styles.signup_panel}>
+                    <div className={styles.signup_header}>
+                        <Typography variant="h4">Sign up</Typography>
                         <img alt="" src={require('./static/book.png')} className={styles.header_img} />
                     </div>
-                    <div className={styles.login_form}>
-                        <form>
+                    <div className={styles.signup_form}>
+                        <form autoComplete="off" className={`${styles.signup_form}`}>
                             <input 
+                            placeholder='email'
+                            className={styles.form_input}>
+                            </input>
+                            <input
                             placeholder='username'
                             className={styles.form_input}>
                             </input>
-                            <input label='password'
+                            <input
                             placeholder='password'
-                             className={styles.form_input}>
+                            className={styles.form_input}>
                             </input>
-                            <br/>
-                            <button type='button' className={styles.login_button}>
-                                Login
+                            <input
+                            placeholder='confirm password'
+                            className={styles.form_input}>
+                            </input>
+                            <button type='button' className={styles.signup_button}>
+                                Sign up now!
                                 </button>
                         </form>
                     </div>
@@ -43,4 +50,4 @@ class Login extends React.Component{
     }
 }
 
-export default Login;
+export default Signup;

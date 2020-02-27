@@ -8,7 +8,7 @@
     text-decoration: None;
 }
 
-.login_header{
+.signup_header{
     text-align: center;
     margin-top: 10%;
     margin-bottom: 5%;
@@ -21,7 +21,7 @@
     border-radius: 50%;
 }
 
-.login_panel{
+.signup_panel{
     margin: 7vh auto;
     margin-top: 0;
     margin-bottom: 0;
@@ -46,7 +46,7 @@
     background-color: #f2f2f2;
 }
 
-.login_button{
+.signup_button{
     width: 100%;
     min-height: 50px;
     border: 0;
@@ -57,12 +57,12 @@
     background-color: #bfbfbf;
 }
 
-.login_button:hover{
+.signup_button:hover{
     background-color: antiquewhite;
     transition: 0.5s;
 }
 
-.login_button:focus{
+.signup_button:focus{
     outline: None;
 }
 
