@@ -2,16 +2,13 @@ import React from "react";
 import Container from "../../containers/mui/container";
 import Typography from '@material-ui/core/Typography';
 import {Link} from "react-router-dom";
-import NavBar from '../Navbar/navBar';
 import styles from "./signup.module.css";
 
 
 class Signup extends React.Component{
     render() {
         return(
-            <div className={styles.page_content}>
             <Container>
-                <NavBar />
                 <div className={styles.signup_panel}>
                     <div className={styles.signup_header}>
                         <Typography variant="h4">Sign up</Typography>
@@ -45,7 +42,6 @@ class Signup extends React.Component{
                     </Link>
                 </div>
             </Container>
-            </div>
         )
     }
 }

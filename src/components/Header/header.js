@@ -9,12 +9,12 @@ import { Link } from 'react-router-dom';
 import Container from '../../containers/mui/container';
 import Grid from '../../containers/mui/grid';
 import NavBar from '../../contents/navBar';
-import styles from './navBar.module.css';
+import styles from './header.module.css';
 import TextField from '@material-ui/core/TextField';
 import Hidden from '@material-ui/core/Hidden';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-class NavigationBar extends React.Component {
+class Header extends React.Component {
     state = this.props.state;
 
     render() {
@@ -70,4 +70,4 @@ class NavigationBar extends React.Component {
     }
 }
 
-export default NavigationBar;
+export default Header;
