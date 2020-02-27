@@ -1,54 +1,34 @@
-// import React from 'react';
-// import {Link} from 'react-router-dom';
-// import Navbar from 'react-bootstrap/Navbar';
-// import Nav from 'react-bootstrap/Nav';
-// import SearchBar from './../SearchBar';
+import React from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import MenuIcon from '@material-ui/icons/Menu';
+import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
+import SearchIcon from '@material-ui/icons/Search';
+import Button from '../../containers/mui/button'
+class NavigationBar extends React.Component {
+    state = this.props.state;
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import "./style.css";
-// import {checkLogin} from '../../actions/navigation';
+    render() {
+        // {login_status} = this.props;
 
-// class NavigationBar extends React.Component {
-//     state = this.props.state;
+        return (
+            <AppBar>
+                <Toolbar>
+                    <MenuIcon />
+                    <Typography variant="h6" noWrap>
+                        Readers Club
+             </Typography>
+                    <SearchIcon />
+                    <InputBase
+                        placeholder="Search…"
+                        inputProps={{ 'aria-label': 'search' }}
+                    />
+                    <Button>Login</Button>
+                </Toolbar>
+            </AppBar>
+        )
+    }
+}
 
-//     render(){
-//         const {login_status} = this.props;
-
-//         return (
-//         <Navbar collapseOnSelect bg="light" expand="lg" sticky="top">
-//             <Navbar.Brand>Readers Club</Navbar.Brand>
-//             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-//             <Navbar.Collapse id="responsive-navbar-nav">
-//                 <Nav className="mr-auto">
-//                     <Nav.Link>
-//                         <Link to={'./../Home'}>Home</Link>
-//                     </Nav.Link>
-//                     <SearchBar />
-//                 </Nav>
-//                 <Nav>
-//                     {/* {
-//                     (() => {
-//                         if (!login_status){
-//                             return (
-//                                 <button type='submit'>
-//                                     Login
-//                                 </button>
-//                                 )
-//                         }else {
-//                             return (
-//                                 <div>
-//                                     User
-//                                 </div>
-//                             )
-//                         }
-//                     })()
-//                     } */}
-//                     {checkLogin(login_status)}
-//                 </Nav>
-//             </Navbar.Collapse>
-//         </Navbar>
-//         )
-//     }
-// }
-
-// export default NavigationBar;
+export default NavigationBar;
