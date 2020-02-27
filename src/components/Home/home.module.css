@@ -17,13 +17,18 @@
 }
 
 .caption{
-
+    color: white;
+    background-color: rgba(134,88,45,0.85);
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 20px;
 }
 
 .home_bg {
     /* The image used */
     background-image: url("./../../static/spanner/home_bg.jpg");
-    filter: opacity(50%);
+    filter: opacity(45%);
     /* Full height */
     height: 100vh;
     width: 100%;

@@ -1,5 +1,6 @@
 export default{
     "title": "Readers Club",
     "searchField": "Search...",
-    "login": "login"
+    "login": "login",
+    "signup": "signup"
 }

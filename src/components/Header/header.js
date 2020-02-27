@@ -64,7 +64,13 @@ class Header extends React.Component {
                                     <Link className={styles.link} to={RoutesMap.Login.path}>
                                         {HeaderContent.login}
                                     </Link>
-                                </Button></Grid>
+                                </Button>
+                                <Button >
+                                    <Link className={styles.link} to={RoutesMap.Signup.path}>
+                                        {HeaderContent.signup}
+                                    </Link>
+                                </Button>
+                                </Grid>
 
 
                         </Grid>
