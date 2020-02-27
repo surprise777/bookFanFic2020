@@ -18,8 +18,6 @@
     width: 200px;
     border-radius: 50%;
 
-    margin-left: auto;
-    margin-right: auto;
     display: block;
 }
 
@@ -28,6 +26,7 @@
     width: 100%;
 
 }
+
 
 .recommended_books{
     margin-left: 500px;
@@ -38,14 +37,32 @@
     
 }
 
-.book{
-    height: 200px;
-    width: 100px;
-    display: inline-block;
-}
-
 .book_cover{
     height: 100px;
-    width: 50px;
+    width: 70px;
+
+    border-style: solid;
+    border-color: grey;
+    border-width: 2px;
 }
 
+
+
+.comment{
+    
+    
+    background-color: honeydew;
+
+    border-width: 5px;
+    border-color: black;
+    border-style: solid;
+}
+
+.comment_title{
+    color: greenyellow;
+    
+}
+
+.comment_content{
+    color: green;
+}
