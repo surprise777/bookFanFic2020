@@ -2,8 +2,8 @@ import React from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import "./App.css";
 
-import Home from "./react-components/Home";
-import Login from "./react-components/Login";
+import Home from "./components/Home/home";
+import Login from "./components/Login/login";
 class App extends React.Component {
     state = {
       login_status: false

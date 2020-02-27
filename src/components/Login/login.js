@@ -1,7 +1,7 @@
 import React from "react";
 //import NavigationBar from "../Navbar";
 
-import "./style.css";
+import "./login.module.css";
 
 
 class Login extends React.Component{
