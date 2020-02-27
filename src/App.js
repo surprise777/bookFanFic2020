@@ -5,7 +5,9 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import Home from "./components/Home/home";
 import Login from "./components/Login/login";
 import Signup from "./components/Signup/signup";
+import Profile from './components/Profile/profile';
 import theme from './muiTheme';
+
 class App extends React.Component {
     state = {
       login_status: false
@@ -24,6 +26,8 @@ class App extends React.Component {
                             (<Login state={this.state}/>)}/>
                 <Route exact path='/Signup' render={() =>
                             (<Signup state={this.state}/>)}/>
+                <Route exact path='/Profile' render={() =>
+                            (<Profile state={this.state}/>)}/>
               </Switch>
             </BrowserRouter>
             </ThemeProvider>
