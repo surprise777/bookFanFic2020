@@ -34,5 +34,10 @@ code {
 
 .Home{
   width: 100%;
-  background-color: white;
+  background-color: #CFD3D2;
+}
+
+.BookDetail{
+  padding-top: 100px;
+  width: 100%;
 }

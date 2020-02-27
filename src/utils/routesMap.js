@@ -15,6 +15,10 @@ const RoutesMap = {
         name: 'Profile',
         path: '/Profile',
     },
+    BookDetail: {
+        name: 'BookDetail',
+        path: '/BookDetail',
+    }
 
 
 
