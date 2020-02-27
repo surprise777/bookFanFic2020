@@ -9,13 +9,13 @@
     margin-top: 500px;
     margin-left: -100px;
     width: 250px;
-    background-color: #c6ecdd;
+    background-color: transparent;
     position: absolute;
 }
 
 .user_ProfilePic{
     height: 200px;
-    weight: 200px;
+    width: 200px;
     border-radius: 50%;
 
     margin-left: auto;
@@ -30,7 +30,8 @@
 }
 
 .recommended_books{
-    margin-left: 200px;
+    margin-left: 500px;
+    margin-right: 500px;
     
     border-color: honeydew;
     border-width: 20px;
@@ -38,6 +39,12 @@
 }
 
 .book{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+}
+
+.book_cover{
     height: 100px;
     width: 50px;
 }
