@@ -6,12 +6,14 @@ import Home from "./components/Home/home";
 import Login from "./components/Login/login";
 import Signup from "./components/Signup/signup";
 import Profile from './components/Profile/profile';
+import BookDetail from './components/BookDetails/bookDetails';
 
 
 
 class Routes extends React.Component {
     state = {
-      login_status: false
+      login_status: false,
+      book: '',
     }
     
     render() {
@@ -27,6 +29,8 @@ class Routes extends React.Component {
                             (<Layout pageName={RoutesMap.Signup.name}><Signup state={this.state}/></Layout>)}/>
                 <Route exact path={RoutesMap.Profile.path} render={() =>
                             (<Layout pageName={RoutesMap.Profile.name}><Profile state={this.state}/></Layout>)}/>
+                             <Route exact path={RoutesMap.BookDetail.path} render={() =>
+                            (<Layout pageName={RoutesMap.BookDetail.name}><BookDetail state={this.state} book={this.state.book}/></Layout>)}/>
               </Switch>
             </BrowserRouter>
         )

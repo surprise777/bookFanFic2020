@@ -21,12 +21,14 @@ const BookCard = ({
 	return (
 			<Card className={styles.cardLayout}>
 			<CardActionArea onClick={() => BookDialog(book)}>
-			    <CardHeader className={styles.cardLayout}> 
+				
+			    {<CardHeader className={styles.cardLayout}> 
 					<Typography variant="h6" color="textSecondary">
 					{title}
 				</Typography>
-				</CardHeader>
+				</CardHeader>}
 				<CardMedia image={media} className={styles.cardMedia} />
+	
 	  </CardActionArea>
 	  <CardActions disableSpacing className={styles.cardLayout}>
         <IconButton>

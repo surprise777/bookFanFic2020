@@ -1,0 +1,18 @@
+.paper {
+    padding: 2;
+    margin: auto;
+    max-width: 500;
+    background-color: #6F3D65;
+  }
+
+  .image {
+    width: 128;
+    height: 128;
+  }
+
+  .img {
+    margin: auto;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }

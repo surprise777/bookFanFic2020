@@ -1,13 +1,7 @@
-import React from 'react';
-import Dialog from '@material-ui/core/Dialog';
-import BookDetail from '../components/BookDetails/bookDetails';
 
-
+import {RoutesMap} from '../utils/routesMap';
 export const BookDialog = function(book){
-	console.log("dialog!");
-	return (
-			<Dialog fullWidth maxWidth="lg" open="true" >
-			<BookDetail/>
-			</Dialog>
-	);
+    console.log("dialog!");
+    console.log(book.title);
+    window.location=RoutesMap.BookDetail.path;
 };
