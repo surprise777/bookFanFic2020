@@ -12,7 +12,7 @@ class Signup extends React.Component{
                 <div className={styles.signup_panel}>
                     <div className={styles.signup_header}>
                         <Typography variant="h4">Sign up</Typography>
-                        <img alt="" src={require('./static/book.png')} className={styles.header_img} />
+                        <img alt="" src={require('../../static/Signup/book.png')} className={styles.header_img} />
                     </div>
                     <div className={styles.signup_form}>
                         <form autoComplete="off" className={`${styles.signup_form}`}>

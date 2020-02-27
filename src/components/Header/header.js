@@ -13,6 +13,7 @@ import styles from './header.module.css';
 import TextField from '@material-ui/core/TextField';
 import Hidden from '@material-ui/core/Hidden';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import {RoutesMap} from '../../utils/routesMap';
 
 class Header extends React.Component {
     state = this.props.state;
@@ -33,14 +34,17 @@ class Header extends React.Component {
                         >
                             <Hidden mdDown>
                                 <Grid container item xs={12} sm={2} alignItems="center" justify="center">
+                               
                                     <Grid container item xs={2} alignItems="center" justify="center">
                                         <MenuBookIcon />
                                     </Grid>
                                     <Grid container item xs={10} alignItems="center" justify="flex-start">
+                                    <Link className={styles.link} to={RoutesMap.Home.path}>
                                         <Typography variant="h6">
                                             {HeaderContent.title}
-                                        </Typography>
+                                        </Typography></Link>
                                     </Grid>
+                                    
                                 </Grid>
                             </Hidden>
                             <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
@@ -57,7 +61,7 @@ class Header extends React.Component {
                             </Grid>
                             <Grid container item xs={4} sm={2} alignItems="center" justify="flex-end">
                                 <Button >
-                                    <Link className={styles.link} to="./Login">
+                                    <Link className={styles.link} to={RoutesMap.Login.path}>
                                         {HeaderContent.login}
                                     </Link>
                                 </Button></Grid>

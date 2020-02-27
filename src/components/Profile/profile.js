@@ -29,21 +29,21 @@ class Profile extends React.Component {
                     <Typography variant="h5">FaceBook: {'N/A'}</Typography>
                     </Grid>
                 </div>
-                <img className={styles.user_banner} src={require('./static/uoft_banner.jpeg')} alt='' />
+                <img className={styles.user_banner} src={require('../../static/spanner/Essential-Books.jpg')} alt='' />
                 <div className={styles.recommended_books}>
                     <p>
-                        <img className={styles.book} src={require('./static/uoft_banner.jpeg')} alt='' />
+                        <img className={styles.book} src={require('../../static/spanner/Essential-Books.jpg')} alt='' />
                     </p>
 
 
                 </div>
-                <img alt='' className={styles.user_banner} src={require('./static/uoft_banner.jpeg')}/>
+                <img alt='' className={styles.user_banner} src={require('../../static/spanner/Essential-Books.jpg')}/>
             
             </Container>
             <Grid className={styles.recommended_books}>
                 <Grid  className={styles.book}>
                     <Button to='placeholder'>
-                        <img alt='' src={require('./static/my_icon.jpg')} className={styles.book_cover}/>
+                        <img alt='' src={require('../../static/Profile/my_icon.jpg')} className={styles.book_cover}/>
                     </Button>
                     <Typography variant="p">
                         "Harrypotter"
@@ -52,7 +52,7 @@ class Profile extends React.Component {
 
                 <Grid  className={styles.book}>
                     <Button to='placeholder'>
-                        <img alt='' src={require('./static/uoft_banner.jpeg')} className={styles.book_cover}/>
+                        <img alt='' src={require('../../static/spanner/Essential-Books.jpg')} className={styles.book_cover}/>
                     </Button>
                     <Typography variant="p">
                         "NotHarrypotter"
