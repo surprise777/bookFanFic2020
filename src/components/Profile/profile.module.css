@@ -1,0 +1,44 @@
+.page_content{
+    height: 100vh;
+    width: 100%;
+    background-color: #ecd7c6;
+}
+
+
+.user_info{
+    margin-top: 500px;
+    margin-left: -100px;
+    width: 250px;
+    background-color: #c6ecdd;
+    position: absolute;
+}
+
+.user_ProfilePic{
+    height: 200px;
+    weight: 200px;
+    border-radius: 50%;
+
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.user_banner{
+    height: auto;
+    width: 100%;
+
+}
+
+.recommended_books{
+    margin-left: 200px;
+    
+    border-color: honeydew;
+    border-width: 20px;
+    
+}
+
+.book{
+    height: 100px;
+    width: 50px;
+}
+
