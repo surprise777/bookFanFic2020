@@ -10,38 +10,38 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import styles from './bookCard.module.css';
-import {BookDialog} from '../../actions/viewBookDetails';
+import { BookDialog } from '../../actions/viewBookDetails';
 
 const BookCard = ({
 	media,
 	title,
 	book
 }) => {
-	
+
 	return (
-			<Card className={styles.cardLayout}>
+		<Card className={styles.cardLayout}>
 			<CardActionArea onClick={() => BookDialog(book)}>
-				
-			    {<CardHeader className={styles.cardLayout}> 
+
+				{<CardHeader className={styles.cardLayout}>
 					<Typography variant="h6" color="textSecondary">
-					{title}
-				</Typography>
+						{title}
+					</Typography>
 				</CardHeader>}
 				<CardMedia image={media} className={styles.cardMedia} />
-	
-	  </CardActionArea>
-	  <CardActions disableSpacing className={styles.cardLayout}>
-        <IconButton>
-          <AddBoxIcon />
-        </IconButton>
-		<IconButton>
-          <RemoveCircleIcon />
-        </IconButton>
-		<IconButton>
-          <MoreVertIcon />
-        </IconButton>
-      </CardActions>
-			</Card>
+
+			</CardActionArea>
+			<CardActions disableSpacing className={styles.cardLayout}>
+				<IconButton>
+					<AddBoxIcon />
+				</IconButton>
+				<IconButton>
+					<RemoveCircleIcon />
+				</IconButton>
+				<IconButton>
+					<MoreVertIcon />
+				</IconButton>
+			</CardActions>
+		</Card>
 	);
 };
 
