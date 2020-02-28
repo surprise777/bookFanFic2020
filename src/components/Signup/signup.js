@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "../../containers/mui/container";
 import Typography from '@material-ui/core/Typography';
+import Button from '../../containers/mui/button';
 import {Link} from "react-router-dom";
 import styles from "./signup.module.css";
 
@@ -11,7 +12,7 @@ class Signup extends React.Component{
             <Container>
                 <div className={styles.signup_panel}>
                     <div className={styles.signup_header}>
-                        <Typography variant="h4">Sign up</Typography>
+                        <Typography variant="h4">Be nerd today!</Typography>
                         <img alt="" src={require('../../static/Signup/book.png')} className={styles.header_img} />
                     </div>
                     <div className={styles.signup_form}>
@@ -32,9 +33,9 @@ class Signup extends React.Component{
                             placeholder='confirm password'
                             className={styles.form_input}>
                             </input>
-                            <button type='button' className={styles.signup_button}>
+                            <Button type='button' className={styles.signup_button}>
                                 Sign up now!
-                                </button>
+                                </Button>
                         </form>
                     </div>
                     <Link to="/Signup" className={styles.no_decor}>
