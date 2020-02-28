@@ -36,6 +36,9 @@ code {
   width: 100%;
   background-color: rgba(255, 255, 230, 0.3);
 }
+.Profile{
+  width:100%;
+}
 
 .BookDetail{
   padding-top: 100px;

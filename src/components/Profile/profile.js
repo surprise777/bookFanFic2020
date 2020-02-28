@@ -1,10 +1,15 @@
 import React from "react"
-import Container from "../../containers/mui/container"
 import styles from "./profile.module.css"
 import Typography from '@material-ui/core/Typography'
 import Grid from '../../containers/mui/grid'
-import Button from '../../containers/mui/button'
 import Link from '@material-ui/core/Link'
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import ProfileContent from '../../contents/profile';
 
 class Profile extends React.Component {
     state = {
@@ -14,84 +19,90 @@ class Profile extends React.Component {
     render() {
         return (
             <React.Fragment>
-            <Container className={styles.page_content}>
-                <Container>
-                    <Container className={styles.user_info}>
-
-                        <img 
-                        alt=''
-                        className={styles.user_ProfilePic} 
-                        src={require('../../static/Profile/my_icon.jpg')}
-                        />
-                        <Grid>
-                        <Typography variant="h5">Name: {'Nick1225'}</Typography>
-                        <Typography variant="h5">Address: {'50 Charles St E'}</Typography>
-                        <Typography variant="h5">Email: {'N/A'}</Typography>
-                        <Typography variant="h5">Phone: {'N/A'}</Typography>
-                        <Typography variant="h5">FaceBook: {'N/A'}</Typography>
-                        </Grid>
-                    </Container>
-                    <img 
-                    className={styles.user_banner} 
-                    src={require('../../static/spanner/Essential-Books.jpg')} 
+                <img
+                    className={styles.user_banner}
+                    src={ProfileContent.spanner}
                     alt='' />
-                    
-                
-                </Container>
+                <Grid container className={styles.profile}>
+                    <Grid container item xs={12} sm={4} direction="column" className={styles.user}>
+                        <Grid container item xs={12} alignItems="center" justify="center" className={styles.list_padding}>
+                            <img
+                                alt=''
+                                className={styles.user_ProfilePic}
+                                src={ProfileContent.user.photo}
+                            />
+                        </Grid>
+                        <Grid container item xs={12} direction="column" alignItems="center" >
+                            {ProfileContent.user.profile.map((item, index) => (<Grid item key={index} >
+                                <Typography variant="h5">{item.tag}: {item.u}</Typography>
+                            </Grid>))}
+                        </Grid>
+                    </Grid>
+                    <Grid container item xs={12} sm={8} direction="column" justify="flex-start" >
+                        <div className={styles.comments}>
+                            <Grid container item xs={12} direction="column" alignItems="center" >
+                                <div className={styles.title}>
+                                    <Typography variant='h3' align="center"> My comments </Typography>
+                                </div>
+                            </Grid>
+                            <Grid container item xs={12}>
+                                {/* <Grid container item xs={4}>
+                                    <Grid container item xs={12} direction="column">
+                                        <Grid item>
+                                            <img
+                                                className={styles.book_cover}
+                                                src={require('../../static/spanner/Essential-Books.jpg')}
+                                                alt=''
+                                            />
+                                        </Grid>
+                                        <Grid item>
+                                            <Link className={styles.comment_title}>
+                                                <Typography variant='h4' className={styles.comment_title}> Harry Potter </Typography>
+                                            </Link>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                                <Grid container item xs={8}>
+                                    <Typography variant='h5' className={styles.comment_content}> Hmmmm... </Typography>
+                                </Grid> */}
+                                <List className={styles.list}>
+                                    {ProfileContent.user.comments.map((c, key) => (
+                                        <React.Fragment key={key}>
+                                            <Divider variant="fullWidth" component="li" />
+                                            <ListItem alignItems="flex-start">
+                                                <ListItemAvatar>
+                                                    <Avatar alt={c.book} src={c.src} />
+                                                </ListItemAvatar>
+                                                <ListItemText
+                                                    primary={
+                                                        <React.Fragment>
+                                                            <Link className={styles.comment_title}>
+                                                                <Typography variant='h4' component="span" className={styles.comment_title}> {c.book} </Typography>
+                                                            </Link>
+                                                        </React.Fragment>
+                                                    }
+                                                    secondary={
+                                                        <React.Fragment>
+                                                            <Typography
+                                                                component="span"
+                                                                variant='h5' className={styles.comment_content}
+                                                                gutterBottom
+                                                            >{c.comment}</Typography>
+                                                        </React.Fragment>
+                                                    }
+                                                />
+                                            </ListItem>
+                                        </React.Fragment>
 
-        
-                <Grid className={styles.comments} container spacing={1}>
-                    <Typography variant='h3'> My comments </Typography>
-                    <Grid container item xs={12} spacing={3}>
-                        <Container className={styles.comment}>            
-                            <Container>
-                                <img 
-                                className={styles.book_cover} 
-                                src={require('../../static/spanner/Essential-Books.jpg')}
-                                alt=''
-                                />                        
-                                <Link className={styles.comment_title}>
-                                    <Typography variant='h4' className={styles.comment_title}> Harry Potter </Typography>
-                                </Link>
-                                <Typography variant='h5' className={styles.comment_content}> Hmmmm... </Typography>   
-                            </Container>
-                        </Container>
-                    </Grid>
-                    <Grid container item xs={12} spacing={3}>
-                        <Container className={styles.comment}>            
-                            <Container>
-                                <img 
-                                className={styles.book_cover} 
-                                src={require('../../static/spanner/Essential-Books.jpg')}
-                                alt=''
-                                />
-                                <Link className={styles.comment_title}>
-                                    <Typography variant='h4' className={styles.comment_title}> Harry Potter 2 </Typography>
-                                </Link>
-                                <Typography variant='h5' className={styles.comment_content}> Harry Potter 2 is so good! </Typography>   
-                            </Container>
-                        </Container>
-                    </Grid>
-                    <Grid container item xs={12} spacing={3}>
-                        <Container className={styles.comment}>            
-                            <Container>
-                                <img 
-                                className={styles.book_cover} 
-                                src={require('../../static/spanner/Essential-Books.jpg')}
-                                alt=''
-                                />
-                                <Link className={styles.comment_title}>
-                                    <Typography variant='h4' className={styles.comment_title}> Harry Potter 3 </Typography>
-                                </Link>
-                                <Typography variant='h5' className={styles.comment_content}> I think Harry Potter 3 is the best! </Typography>
-                            </Container>
-                        </Container>
-                    </Grid>
-                
-                    
-                
+                                    ))}
+
+
+                                </List>
+                            </Grid>
+                        </div>
+                    </Grid >
                 </Grid>
-            </Container>
+
             </React.Fragment>
         )
     }
