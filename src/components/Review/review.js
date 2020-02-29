@@ -3,7 +3,7 @@ import styles from './review.module.css';
 import Grid from '../../containers/mui/grid';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import StarRatingComponent from 'react-star-rating-component';
+import Rating from '@material-ui/lab/Rating';
 import {Box} from "@material-ui/core";
 
 class Review extends React.Component {
@@ -11,12 +11,12 @@ class Review extends React.Component {
         const {src, title, author, rating} = this.props;
         console.log(src);
         return (
-            <Box pt={1} className={styles.outline_bottom}>
+            <Box pt={1} pb={1} className={styles.outline_bottom}>
             <Grid container className={styles.review} spacing={1}>
                 <Grid item xs={12} sm={2}>
                     <Box display='flex' justifyContent='center' justifyItems='center'>
                     <CardMedia>
-                        <img alt="" src={require("../../static/book-cover/harrypotter.jpg")} className={styles.cardMedia}></img>
+                        <img alt="" src={src} className={styles.cardMedia}></img>
                     </CardMedia>
                     </Box>
                 </Grid>
@@ -26,11 +26,11 @@ class Review extends React.Component {
                     <div className={styles.author}>
                         {author}
                     </div>
-                    <StarRatingComponent 
-                    name="rate1" 
-                    starCount={5}
-                    editing={false}
-                    value={rating}
+                    <Rating
+                        value={rating}
+                        precision={0.5}
+                        readOnly={true}
+                        size={"small"}
                     />
                     </Box>
                     <div>

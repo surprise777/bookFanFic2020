@@ -1,14 +1,13 @@
-.homeLayout{
-    border-radius: 20px;
-    /* padding-right: 30% !important; */
-}
-
 .padding_bottom{
     padding-bottom: 5%;
 }
 
 .bold{
     font-weight: bold;
+}
+
+.overWidth{
+    width: 110%;
 }
 
 .cardLayout{

@@ -21,7 +21,7 @@ class Home extends React.Component{
                 <Container maxWidth='lg'>
                 <Grid container>
                     <Grid item xs={12} md={8}>
-                        <Box px={6} pt={4} className={styles.homeLayout}>
+                        <Box px={6} pt={4}>
                             <div className={styles.section_header}>
                                     <strong>Books of the month</strong>
                             </div>
@@ -35,7 +35,7 @@ class Home extends React.Component{
                             </Grid>
                         </Box>
 
-                        <Box px={6} pt={4} className={styles.homeLayout}>
+                        <Box px={6} pt={4}>
                             <div className={styles.section_header}>
                                     <strong>You may like</strong>
                             </div>
@@ -49,12 +49,12 @@ class Home extends React.Component{
                             </Grid>
                         </Box>
 
-                        <Box px={6} pt={4} className={styles.homeLayout}>
+                        <Box px={6} pt={4} className={styles.overWidth}>
                             <div className={styles.section_header}>
                                     <strong>Popular review</strong>
                             </div>
-                            <Review src={"../../static/book-cover/harrypotter.jpg"} title='The rise of a legend - Arthur' author='chasing star' rating={5}/>
-                            <Review src={"../../static/book-cover/harrypotter.jpg"} title='Welcome to Hogwarts' author='Beyond the sky' rating={4}/>
+                            <Review src={require("../../static/book-cover/wheel_of_time.jpg")} title='The rise of a legend - Arthur' author='chasing star' rating={5}/>
+                            <Review src={require("../../static/book-cover/harrypotter.jpg")} title='Welcome to Hogwarts' author='Beyond the sky' rating={4}/>
                         </Box>
                     </Grid>
                     <Grid item xs>
