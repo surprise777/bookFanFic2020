@@ -1,0 +1,24 @@
+.review {
+    width: 100%;
+    min-height: 150px;
+    padding-bottom: 5px;
+}
+
+.outline_bottom {
+    border-bottom: 1px solid rgba(175, 175, 175, 0.712);
+}
+
+.cardMedia {
+    height: 130px;
+    width: auto;
+}
+
+.fullLink {
+    color: #2aa2a2;
+}
+
+.author {
+    display: inline-block;
+    color: #bfbfbf;
+    padding-right: 10px;
+}
