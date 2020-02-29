@@ -18,8 +18,11 @@ const RoutesMap = {
     BookDetail: {
         name: 'BookDetail',
         path: '/BookDetail',
+    },
+    ReviewPage: {
+        name: 'ReviewPage',
+        path: '/ReviewPage',
     }
-
 
 
 };

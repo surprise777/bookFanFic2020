@@ -1,0 +1,16 @@
+.padding_bottom{
+    padding-bottom: 5%;
+}
+
+.banner {
+    /* The image used */
+    background-image: url("./../../static/spanner/home_bg.jpg");
+    filter: opacity(45%);
+    /* Full height */
+    height: 25vh;
+    width: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

@@ -4,6 +4,8 @@ import Grid from '../../containers/mui/grid';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
+import {Link} from 'react-router-dom';
+import {RoutesMap} from '../../utils/routesMap';
 import {Box} from "@material-ui/core";
 
 class Review extends React.Component {
@@ -21,7 +23,9 @@ class Review extends React.Component {
                     </Box>
                 </Grid>
                 <Grid item xs={12} sm={10}>
+                    <Link to={RoutesMap.ReviewPage.path} className={styles.no_decor}>
                     <Typography variant="h6" className={styles.fullLink}>{title}</Typography>
+                    </Link>
                     <Box display='flex' justifyContent='flex-start' justifyItems='center'>
                     <div className={styles.author}>
                         {author}
@@ -35,7 +39,7 @@ class Review extends React.Component {
                     </Box>
                     <div>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu....<span className={styles.fullLink}>full</span>
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu....<Link to={RoutesMap.ReviewPage.path}className={styles.fullLink}>full</Link>
                     </div>
                 </Grid>
             </Grid>

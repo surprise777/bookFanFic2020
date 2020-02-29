@@ -7,7 +7,7 @@ import Login from "./components/Login/login";
 import Signup from "./components/Signup/signup";
 import Profile from './components/Profile/profile';
 import BookDetail from './components/BookDetails/bookDetails';
-
+import ReviewPage from './components/ReviewPage/reviewPage';
 
 
 class Routes extends React.Component {
@@ -31,6 +31,8 @@ class Routes extends React.Component {
                             (<Layout pageName={RoutesMap.Profile.name}><Profile state={this.state}/></Layout>)}/>
                              <Route exact path={RoutesMap.BookDetail.path} render={() =>
                             (<Layout pageName={RoutesMap.BookDetail.name}><BookDetail state={this.state} book={this.state.book}/></Layout>)}/>
+                <Route exact path={RoutesMap.ReviewPage.path} render={() =>
+                            (<Layout pageName={RoutesMap.ReviewPage.name}><ReviewPage state={this.state}/></Layout>)}/>
               </Switch>
             </BrowserRouter>
         )

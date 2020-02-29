@@ -8,6 +8,10 @@
     border-bottom: 1px solid rgba(175, 175, 175, 0.712);
 }
 
+.no_decor{
+    text-decoration: None;
+}
+
 .cardMedia {
     height: 130px;
     width: auto;

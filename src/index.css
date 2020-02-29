@@ -44,3 +44,8 @@ code {
   padding-top: 100px;
   width: 100%;
 }
+
+.ReviewPage{
+  width: 100%;
+  background-color: rgba(255, 255, 230, 0.3);
+}
