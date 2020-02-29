@@ -6,6 +6,8 @@ import BookCard from '../BookCard/bookCard';
 import Grid from '../../containers/mui/grid';
 import { Typography, Box } from "@material-ui/core";
 import Review from '../Review/review';
+import Tags from '../Tags/tags';
+import Trending from '../Trending/trending';
 class Home extends React.Component{
 
     render(){
@@ -62,12 +64,22 @@ class Home extends React.Component{
                             <div className={styles.section_header}>
                                     <strong>Popular tags</strong>
                             </div>
-                            
+                            <Tags />
                         </Box>
-                        <Box px={6} pt={8}>
+                        <Box px={6} pt={8} className={styles.overWidth}>
                             <div className={styles.section_header}>
                                     <strong>Trending</strong>
                             </div>
+                            <Trending />
+                        </Box>
+                        <Box px={6} pt={8}>
+                            <div className={styles.section_header}>
+                                    <strong>Contact us</strong>
+                            </div>
+                            <Container maxWidth='md'>
+                                <div className={styles.contact}><strong>Email:</strong> readersclub@gmail.com</div>
+                                <div className={styles.contact}><strong>Phone:</strong> 3285974683</div>
+                            </Container>
                         </Box>
                     </Grid>
                 </Grid>

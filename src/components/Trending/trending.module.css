@@ -1,0 +1,19 @@
+.rank {
+    font-size: 1.1em;
+    padding-right: 5px;
+}
+
+.trending{
+    font-size: 1.1em;
+    padding-bottom: 5px;
+    width: 100%;
+    border-bottom: 1px grey dotted;
+}
+
+.bookTitle{
+    color: #2aa2a2;
+}
+
+.author {
+    color: #bfbfbf;
+}
