@@ -31,18 +31,18 @@ export default {
             "src": require('../static/spanner/Essential-Books.jpg'),
         },
         {
-            "book": "Harry Potter",
+            "book": "Harry Potter 2",
             "comment": "Hmmmm...",
             "src": require('../static/spanner/Essential-Books.jpg'),
         },
         {
-            "book": "Harry Potter",
-            "comment": "Hmmmm...",
+            "book": "Harry Potter 4",
+            "comment": "okay.",
             "src": require('../static/spanner/Essential-Books.jpg'),
         },
         {
-            "book": "Harry Potter",
-            "comment": "Hmmmm...",
+            "book": "Harry Potter 7",
+            "comment": "This is nice ending!",
             "src": require('../static/spanner/Essential-Books.jpg'),
         },]
     }

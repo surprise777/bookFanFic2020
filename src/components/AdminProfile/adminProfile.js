@@ -1,5 +1,5 @@
 import React from "react"
-import styles from "./profile.module.css"
+import styles from "./adminProfile.module.css"
 import Typography from '@material-ui/core/Typography'
 import Grid from '../../containers/mui/grid'
 import Link from '@material-ui/core/Link'
@@ -12,7 +12,7 @@ import Avatar from '@material-ui/core/Avatar';
 import ProfileContent from '../../contents/profile';
 import { BookDialog } from '../../actions/viewBookDetails';
 
-class Profile extends React.Component {
+class AdminProfile extends React.Component {
     state = {
         login_status: false
     }
@@ -90,4 +90,4 @@ class Profile extends React.Component {
     }
 }
 
-export default Profile;
+export default AdminProfile;

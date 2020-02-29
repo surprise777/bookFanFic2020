@@ -6,6 +6,7 @@ import Home from "./components/Home/home";
 import Login from "./components/Login/login";
 import Signup from "./components/Signup/signup";
 import Profile from './components/Profile/profile';
+import AdminProfile from './components/AdminProfile/adminProfile';
 import BookDetail from './components/BookDetails/bookDetails';
 import ReviewPage from './components/ReviewPage/reviewPage';
 
@@ -29,7 +30,9 @@ class Routes extends React.Component {
                             (<Layout pageName={RoutesMap.Signup.name}><Signup state={this.state}/></Layout>)}/>
                 <Route exact path={RoutesMap.Profile.path} render={() =>
                             (<Layout pageName={RoutesMap.Profile.name}><Profile state={this.state}/></Layout>)}/>
-                             <Route exact path={RoutesMap.BookDetail.path} render={() =>
+                <Route exact path={RoutesMap.AdminProfile.path} render={() =>
+                            (<Layout pageName={RoutesMap.AdminProfile.name}><AdminProfile state={this.state}/></Layout>)}/>
+                <Route exact path={RoutesMap.BookDetail.path} render={() =>
                             (<Layout pageName={RoutesMap.BookDetail.name}><BookDetail state={this.state} book={this.state.book}/></Layout>)}/>
                 <Route exact path={RoutesMap.ReviewPage.path} render={() =>
                             (<Layout pageName={RoutesMap.ReviewPage.name}><ReviewPage state={this.state}/></Layout>)}/>

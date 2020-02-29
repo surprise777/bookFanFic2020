@@ -15,6 +15,10 @@ const RoutesMap = {
         name: 'Profile',
         path: '/Profile',
     },
+    AdminProfile: {
+        name: 'AdminProfile',
+        path: '/AdminProfile',
+    },
     BookDetail: {
         name: 'BookDetail',
         path: '/BookDetail',
