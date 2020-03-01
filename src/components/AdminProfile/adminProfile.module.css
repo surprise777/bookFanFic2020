@@ -72,7 +72,7 @@
 
 .comment_title{
     text-decoration: none;
-    color: greenyellow;
+    color: lightblue;
     
 }
 
@@ -80,9 +80,13 @@
     width:100%;
 }
 .comment_content{
-    color: green;
+    color: purple;
 }
 
 .list_padding{
     padding: 10px;
+}
+
+.category{
+    padding-right: 20px;
 }

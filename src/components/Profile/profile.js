@@ -75,10 +75,7 @@ class Profile extends React.Component {
                                                 />
                                             </ListItem>
                                         </React.Fragment>
-
                                     ))}
-
-
                                 </List>
                             </Grid>
                         </div>
