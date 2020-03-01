@@ -8,7 +8,7 @@ import Signup from "./components/Signup/signup";
 import Profile from './components/Profile/profile';
 import AdminProfile from './components/AdminProfile/adminProfile';
 import BookDetail from './components/BookDetails/bookDetails';
-import ReviewPage from './components/ReviewPage/reviewPage';
+import BookReview from './components/BookReview/bookReview';
 
 
 class Routes extends React.Component {
@@ -34,8 +34,8 @@ class Routes extends React.Component {
                             (<Layout pageName={RoutesMap.AdminProfile.name}><AdminProfile state={this.state}/></Layout>)}/>
                 <Route exact path={RoutesMap.BookDetail.path} render={() =>
                             (<Layout pageName={RoutesMap.BookDetail.name}><BookDetail state={this.state} book={this.state.book}/></Layout>)}/>
-                <Route exact path={RoutesMap.ReviewPage.path} render={() =>
-                            (<Layout pageName={RoutesMap.ReviewPage.name}><ReviewPage state={this.state}/></Layout>)}/>
+                <Route exact path={RoutesMap.BookReview.path} render={() =>
+                            (<Layout pageName={RoutesMap.BookReview.name}><BookReview state={this.state}/></Layout>)}/>
               </Switch>
             </BrowserRouter>
         )

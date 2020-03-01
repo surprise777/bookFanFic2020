@@ -23,9 +23,9 @@ const RoutesMap = {
         name: 'BookDetail',
         path: '/BookDetail',
     },
-    ReviewPage: {
-        name: 'ReviewPage',
-        path: '/ReviewPage',
+    BookReview: {
+        name: 'BookReview',
+        path: '/BookReview',
     }
 
 
