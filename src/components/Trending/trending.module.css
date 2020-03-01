@@ -12,6 +12,7 @@
 
 .bookTitle{
     color: #2aa2a2;
+    cursor: pointer;
 }
 
 .author {

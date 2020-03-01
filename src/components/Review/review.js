@@ -26,7 +26,7 @@ class Review extends React.Component {
                     <Link to={RoutesMap.BookReview.path} className={styles.no_decor}>
                     <Typography variant="h6" className={styles.fullLink}>{title}</Typography>
                     </Link>
-                    <Box display='flex' justifyContent='flex-start' justifyItems='center'>
+                    <Box display='flex' justifyContent='flex-start' alignContent='center'>
                     <div className={styles.author}>
                         {author}
                     </div>

@@ -19,7 +19,9 @@ const BookCard = ({
 				<Card className={styles.cardLayout} style={style}>
 				</Card>
 			</CardActionArea>
-				<div>{title}</div>
+				<div className={styles.bookTitle}
+					 onClick={() => BookDialog()}
+				>{title}</div>
 			</Box>
 		</Box>
 	);

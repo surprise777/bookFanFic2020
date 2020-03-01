@@ -14,14 +14,6 @@
     padding: 20px;
 }
 
-.section_header{
-    font-size: 1.5em;    
-    border-bottom: 1px solid rgba(175, 175, 175, 0.712);
-    font-style: italic;
-    width: 100%;
-    padding-left: 12px;
-}
-
 .caption{
     color: black;
     padding: 10px;

@@ -1,18 +1,52 @@
-.paper {
-    padding: 2;
-    margin: auto;
-    max-width: 500;
-    background-color: #544F87;
-  }
+.cardLayout {
+	height: 100%;
+	background-color: rgba(199, 197, 218, 0);
+  min-height: 200px;
+  max-height: 200px;
+	min-width: 150px;
+	max-width: 150px;
+	background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 0 !important;
+}
 
-  .image {
-    width: 128;
-    height: 128;
-  }
+.cardMedia {
+	width: 100%;
+	min-height: 200px;
+}
 
-  .img {
-    margin: auto;
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-  }
+.padding_left {
+  padding-left: 12px;
+}
+
+.shrink {
+  width: 70%;
+}
+
+.rank {
+  font-size: 1.1em;
+  padding-right: 5px;
+}
+
+.trending{
+  font-size: 1.1em;
+  padding-bottom: 5px;
+  width: 100%;
+  border-bottom: 1px grey dotted;
+}
+
+.bookTitle{
+  color: #2aa2a2;
+  cursor: pointer;
+}
+
+.author {
+  color: #bfbfbf;
+}
+
+
+.rating {
+  font-size: 1.6em;
+  padding-left: 3px;
+  padding-right: 5px;
+}

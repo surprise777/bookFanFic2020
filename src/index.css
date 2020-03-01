@@ -39,12 +39,13 @@ code {
 .Profile{
   width:95%;
 }
+
 .AdminProfile{
   width: 95%;
 }
 
 .BookDetail{
-  padding-top: 100px;
+  background-color: rgba(255, 255, 230, 0.3);
   width: 100%;
 }
 
