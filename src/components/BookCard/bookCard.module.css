@@ -2,11 +2,18 @@
 	height: 100%;
 	background-color: rgba(199, 197, 218, 0);
 	min-height: 200px;
-	min-width: 150px;
-	margin-right: 10%;
+	min-width: 135px;
+	max-width: 135px;
+    max-height: 200px;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .cardMedia {
 	width: 100%;
 	min-height: 200px;
+}
+
+.bookCard {
+    text-align: center;
 }

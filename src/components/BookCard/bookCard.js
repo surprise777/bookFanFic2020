@@ -1,42 +1,27 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardActions from '@material-ui/core/CardActions';
-import IconButton from '@material-ui/core/IconButton';
-import AddBoxIcon from '@material-ui/icons/AddBox';
-import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Box from '@material-ui/core/Box';
 import styles from './bookCard.module.css';
 import { BookDialog } from '../../actions/viewBookDetails';
 
 const BookCard = ({
 	media,
 	title,
-	book
 }) => {
-
+	const style = {
+		backgroundImage: `url(${media})`
+	}
 	return (
-		<Card className={styles.cardLayout}>
-			<CardActionArea onClick={() => BookDialog(book)}>
-
-				<CardMedia image={media} className={styles.cardMedia} >
-					
-					</CardMedia>
-
+		<Box display="flex" justifyContent="center" alignItems="center">
+			<Box className={styles.bookCard}>
+			<CardActionArea onClick={() => BookDialog()}>
+				<Card className={styles.cardLayout} style={style}>
+				</Card>
 			</CardActionArea>
-			<CardActions disableSpacing>
-				<IconButton>
-					<AddBoxIcon />
-				</IconButton>
-				<IconButton>
-					<RemoveCircleIcon />
-				</IconButton>
-				<IconButton>
-					<MoreVertIcon />
-				</IconButton>
-			</CardActions>
-		</Card>
+				<div>{title}</div>
+			</Box>
+		</Box>
 	);
 };
 
