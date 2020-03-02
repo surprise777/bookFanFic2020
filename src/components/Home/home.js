@@ -10,12 +10,15 @@ import Tags from '../Tags/tags';
 import {tags} from '../../contents/tag_collection';
 import Trending from '../Trending/trending';
 import SectionHeader from '../SectionHeader/sectionHeader';
+import Footer from '../Footer/footer';
+
 class Home extends React.Component{
 
     render(){
 
         return(
-            <Container maxWidth={false} className={styles.padding_bottom} disableGutters={true}>
+            <Container maxWidth={false} disableGutters={true}>
+                <Box className={styles.padding_bottom}>
                 <Box className={styles.home_bg} display="flex" justifyContent="center" alignItems="center">
                     <div className={styles.caption}>
                         <Typography variant='h3'>Books,</Typography>
@@ -74,6 +77,8 @@ class Home extends React.Component{
                     </Grid>
                 </Grid>
                 </Container>
+                </Box>
+                <Footer/>
             </Container>
         )
     }

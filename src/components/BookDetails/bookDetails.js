@@ -8,15 +8,9 @@ import Rating from '@material-ui/lab/Rating';
 import Banner from '../Banner/banner';
 import Card from '@material-ui/core/Card';
 import SectionHeader from '../SectionHeader/sectionHeader';
-import Tags from '../Tags/tags';
-// const BookDetail = ({
-//     book
-// }) => {
-//     console.log(book.title);
-//     return (
+import CommentSection from '../CommentSection/commentSection';
 
-//     );
-// };
+import Tags from '../Tags/tags';
 
 
 class BookDetail extends React.Component {
@@ -67,8 +61,9 @@ class BookDetail extends React.Component {
                                     </Box>
                                 </Container>
                                 </Box>
-                                <Box pt={6}>
-                                <SectionHeader headerText="Comments" />
+                                <Box pt={6} className={styles.sshrink}>
+                                    <SectionHeader headerText="Comments"/>
+                                    <CommentSection/>
                                 </Box>
                             </Container>
                         </Grid>

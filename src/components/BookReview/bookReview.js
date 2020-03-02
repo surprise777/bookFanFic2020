@@ -6,7 +6,9 @@ import Grid from '../../containers/mui/grid';
 import Banner from '../Banner/banner';
 import Rating from '@material-ui/lab/Rating';
 import BookCard from '../BookCard/bookCard';
-import { Typography} from '@material-ui/core';
+import SectionHeader from '../SectionHeader/sectionHeader';
+import CommentSection from '../CommentSection/commentSection';
+import {Typography} from '@material-ui/core';
 
 class BookReview extends React.Component {
     render() {
@@ -48,6 +50,10 @@ class BookReview extends React.Component {
                                 Integer eget aliquet nibh praesent tristique magna. Sit amet aliquam id diam maecenas ultricies mi. Lectus arcu bibendum at varius vel pharetra. Et malesuada fames ac turpis egestas maecenas pharetra 
                                 convallis posuere. Tellus in metus vulputate eu scelerisque. Sed vulputate odio ut enim blandit volutpat maecenas volutpat. Habitant morbi tristique senectus et netus et malesuada. Adipiscing elit duis
                                  tristique sollicitudin nibh sit amet. Cum sociis natoque penatibus et magnis. Fringilla ut morbi tincidunt augue. Aliquet bibendum enim facilisis gravida neque convallis a cras. Placerat in egestas erat imperdiet sed.
+                                </Box>
+                                <Box pt={5}>
+                                <SectionHeader headerText="Comments"/>
+                                <CommentSection/>
                                 </Box>
                             </Grid>
                             <Grid item xs={12} sm={4}>
