@@ -32,7 +32,7 @@ class AdminProfile extends React.Component {
                             </Grid>))}
                         </Grid>
                     </Grid>
-
+                    
                     <Grid container item xs={12} sm={8} direction="column" justify="flex-start" >
                         <div className={styles.comments}>
                             <Grid container item xs={12}>

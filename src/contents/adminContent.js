@@ -16,49 +16,49 @@ export default {
     },
 
     "comments": [{
-        "book": "Harry Potter",
+        "book": "Harry Potter: The Philosopher's Stone",
         "comment": "Hmmmm...",
         "src": require('../static/book-cover/harrypotter.jpg'),
-        "commenter": "nick",
+        "commenter": "Nick J",
     },
     {
-        "book": "Harry Potter 2",
+        "book": "Harry Potter: The Chamber of Secrets",
         "comment": "Hmmmm...",
         "src": require('../static/book-cover/harrypotter.jpg'),
     },
     {
-        "book": "Harry Potter 4",
+        "book": "Harry Potter: The Prisoner of Azkaban",
         "comment": "okay.",
         "src": require('../static/spanner/Essential-Books.jpg'),
     },
     {
-        "book": "Harry Potter 7",
+        "book": "Harry Potter: The Deathly Hallows",
         "comment": "This is nice ending!",
         "src": require('../static/spanner/Essential-Books.jpg'),
     },],
     
     "books": [{
-        "book": "Harry Potter",
+        "book": "Harry Potter: The Philosopher's Stone",
         "src": require('../static/book-cover/harrypotter.jpg'),
     },
     {
-        "book": "Harry Potter 2",
+        "book": "Harry Potter: The Chamber of Secrets",
         "src": require('../static/spanner/Essential-Books.jpg'),
     },
     {
-        "book": "Harry Potter 3",
+        "book": "Harry Potter: The Prisoner of Azkaban",
         "src": require('../static/book-cover/harrypotter.jpg'),
     },
     {
-        "book": "Harry Potter 4",
+        "book": "Harry Potter: The Goblet of Fire",
         "src": require('../static/spanner/Essential-Books.jpg'),
     },
     {
-        "book": "Harry Potter 5",
+        "book": "Harry Potter: The Order of the Phoenix",
         "src": require('../static/book-cover/harrypotter.jpg'),
     },
     {
-        "book": "Harry Potter 7",
+        "book": "Harry Potter: The Deathly Hallows",
         "src": require('../static/spanner/Essential-Books.jpg'),
     },],
 

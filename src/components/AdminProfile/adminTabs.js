@@ -16,7 +16,12 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import AdminContent from '../../contents/adminContent';
 import { BookDialog } from '../../actions/viewBookDetails';
-import Button from '../../containers/mui/button'
+import Button from '../../containers/mui/button';
+import SearchIcon from '@material-ui/icons/Search';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Grid from '../../containers/mui/grid';
+import HeaderContent from '../../contents/header';
+import TextField from '@material-ui/core/TextField';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -63,6 +68,11 @@ export default function SimpleTabs() {
         setValue(newValue);
     };
 
+    const handleDelete = (event) => {
+        console.log(event)
+        
+    }
+
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -73,6 +83,18 @@ export default function SimpleTabs() {
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
+                <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
+                    <Grid container item alignItems="center" justify="center">
+                        <TextField id="search-field" placeholder={'Book Name'} fullWidth
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <Button> <SearchIcon /></Button>
+                                    </InputAdornment>
+                                ),
+                            }} />
+                    </Grid>
+                </Grid>
                 <List className={styles.list}>
                     {AdminContent.books.map((c, key) => (
                         <React.Fragment key={key}>
@@ -96,7 +118,10 @@ export default function SimpleTabs() {
                                     component="span"
                                     variant='h6'
                                     gutterBottom
-                                    onClick={() => BookDialog(c)}     // TODO: change it to Delete()
+                                    onClick={() => (
+                                        
+                                        console.log(AdminContent.books)
+                                    )}     // TODO: change it to Delete()
                                     >
                                     Delete</Button>
                                 </React.Fragment>
@@ -107,6 +132,18 @@ export default function SimpleTabs() {
             </TabPanel>
       
             <TabPanel value={value} index={1}>
+                <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
+                    <Grid container item alignItems="center" justify="center">
+                        <TextField id="search-field" placeholder={'Book Name'} fullWidth
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <Button> <SearchIcon /></Button>
+                                    </InputAdornment>
+                                ),
+                            }} />
+                    </Grid>
+                </Grid>
                 <List className={styles.list}>
                     {AdminContent.comments.map((c, key) => (
                         <React.Fragment key={key}>
@@ -119,7 +156,9 @@ export default function SimpleTabs() {
                                     primary={
                                         <React.Fragment>
                                             <Link onClick={() => BookDialog(c)}>
-                                                <Typography variant='h5' component="span" className={styles.comment_title}> {c.book} >> {c.commenter ? c.commenter : 'Unknown'} </Typography>
+                                                <Typography variant='h5' component="span" className={styles.comment_title}> {c.book} >>
+                                                    <Typography variant='h5' className={styles.commenter}> {"  " + (c.commenter ? c.commenter : 'Unknown')} </Typography>
+                                                </Typography>
                                             </Link>
                                         </React.Fragment>
                                     }
@@ -149,6 +188,18 @@ export default function SimpleTabs() {
             </TabPanel>
 
             <TabPanel value={value} index={2}>
+                <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
+                    <Grid container item alignItems="center" justify="center">
+                        <TextField id="search-field" placeholder={'User Name'} fullWidth
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <Button> <SearchIcon /></Button>
+                                    </InputAdornment>
+                                ),
+                            }} />
+                    </Grid>
+                </Grid>
                 <List className={styles.list}>
                     {AdminContent.users.map((c, key) => (
                         <React.Fragment key={key}>
