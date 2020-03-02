@@ -37,11 +37,13 @@ code {
   background-color: rgba(255, 255, 230, 0.3);
 }
 .Profile{
-  width:95%;
+  width: 100%;
+  background-color: rgba(255, 255, 230, 0.3);
 }
 
 .AdminProfile{
-  width: 95%;
+  width: 100%;
+  background-color: rgba(255, 255, 230, 0.3)
 }
 
 .BookDetail{

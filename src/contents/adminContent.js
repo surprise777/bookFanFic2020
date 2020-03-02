@@ -5,12 +5,8 @@ export default {
         "photo": require('../static/Profile/my_icon.jpg'),
         "profile": [
             {
-                "tag": "Id",
+                "tag": "id",
                 "u": 'admin001'
-            },
-            {
-                "tag": "Email",
-                "u": 'nick@gmail.com'
             },
         ],
     },

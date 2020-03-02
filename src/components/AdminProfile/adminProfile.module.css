@@ -3,60 +3,30 @@
     width: 100%;
 }
 
-.profile{
-    align-items: center;
-    width: 100%;
-    display: flex;
-    background-color: honeydew;
-
-}
-
-.user{
+.list_padding{
     padding: 10px;
-    background-color: #FEECBC;
-
 }
+
 .user_ProfilePic{
     border-radius: 50%;
     display: block;
     background-size: cover;
 	background-repeat: no-repeat;
     background-position: center;
-    margin-top: -120px;
-    border-color: #fff;
-    border-width: 1px;
-    border-style: solid;
-
-}
-
-.user_banner{
-    max-height: 400px;
-    width: 100%;
-
-}
-
-
-.recommended_books{
-    margin-left: 500px;
-    margin-right: 500px;
-    
-    border-color: honeydew;
-    border-width: 20px;
-    
-}
-
-.book_cover{
-    height: 100px;
-    width: 70px;
-
-    border-style: solid;
-    border-color: grey;
     border-width: 2px;
+    border-style: solid;
+
 }
 
+.profile{
+    align-items: center;
+    width: 100%;
+    display: flex;
+
+}
 
 .comments{
-    background-color: honeydew;
+    background-color: rgb(211, 243, 211);
     background-size: contain;
 	background-repeat: no-repeat;
     background-position: center;
@@ -64,29 +34,4 @@
     border-radius: 2px;
     border-style: solid;
     border-color: grey;
-}
-
-.title{
-    width: 100%;
-}
-
-.comment_title{
-    text-decoration: none;
-    color: rgb(82, 171, 201);
-    
-}
-
-.list{
-    width:100%;
-}
-.comment_content{
-    color: purple;
-}
-
-.list_padding{
-    padding: 10px;
-}
-
-.category{
-    padding-right: 20px;
 }
