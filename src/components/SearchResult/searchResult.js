@@ -10,11 +10,8 @@ import SectionHeader from '../SectionHeader/sectionHeader';
 import Footer from '../Footer/footer';
 import comments from '../../contents/commentCollection';
 import SideBar from '../SideBar/sideBar';
-<<<<<<< HEAD
 import SearchResultContent from '../../contents/searchResult';
-=======
 import UserCard from '../UserCard/userCard';
->>>>>>> 7f6e611aa2199143e35bcdfb86b073fe02b200bd
 
 class Search extends React.Component{
     constructor(props){
