@@ -7,24 +7,26 @@ import Tags from '../Tags/tags';
 import {tags} from '../../contents/tag_collection';
 import Trending from '../Trending/trending';
 import SectionHeader from '../SectionHeader/sectionHeader';
+import SiedBarContent from '../../contents/sideBar';
 
 class SideBar extends React.Component{
    render(){
 
     return ( <Grid item xs>
         <Box px={6} pt={10}>
-            <SectionHeader headerText="Popular tags" />
+            <SectionHeader headerText={SiedBarContent.titles.popular_tags} />
             <Tags tags={tags}/>
         </Box>
         <Box px={6} pt={8} className={styles.overWidth}>
-            <SectionHeader headerText="Trending" />
+            <SectionHeader headerText={SiedBarContent.titles.trending} />
             <Trending />
         </Box>
         <Box px={6} pt={8}>
-            <SectionHeader headerText="Contact us" />
+            <SectionHeader headerText={SiedBarContent.titles.contact_us} />
             <Container maxWidth='md'>
-                <div className={styles.contact}><strong>Email:</strong> readersclub@gmail.com</div>
-                <div className={styles.contact}><strong>Phone:</strong> 3285974683</div>
+                {SiedBarContent.info.map(
+                    (item) => (<div className={styles.contact}><strong>{item.tag}</strong>{item.u}</div>)
+                )}
             </Container>
         </Box>
     </Grid>)

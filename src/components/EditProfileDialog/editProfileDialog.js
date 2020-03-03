@@ -8,6 +8,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Edit from '@material-ui/icons/Edit';
 import { Input } from '@material-ui/core';
 import Grid from '../../containers/mui/grid';
+import EditProfileDialogContent from '../../contents/editProfileDialog';
 
 const informations = ['Name', 'Address', 'Email', 'Phone'];
 
@@ -31,13 +32,13 @@ function SimpleDialog(props) {
           <Grid xs={2}/> 
           <Grid xs={2}>
             <Button variant='outlined' component='span' color='secondary'>
-              Confirm
+              {EditProfileDialogContent.confirm}
             </Button>
           </Grid>
           <Grid xs={3}/>
           <Grid xs={2}>
             <Button variant='outlined' component='span' color='primary'>
-              Cancel
+              {EditProfileDialogContent.cancel}
             </Button>
           </Grid>
         </Grid>
@@ -70,7 +71,7 @@ export default function SimpleDialogDemo() {
       <br />
       <Button variant="outlined" color="black" onClick={handleClickOpen}>
         <Edit/>
-        Edit Profile
+        {EditProfileDialogContent.edit}
       </Button>
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
     </div>

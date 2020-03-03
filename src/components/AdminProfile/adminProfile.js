@@ -31,7 +31,8 @@ class AdminProfile extends React.Component {
                             />
                         </Grid>
                         <Grid container item xs={3} >
-                            {AdminContent.user.profile.map((item, index) => (<Grid item key={index} >
+                            {AdminContent.user.profile.map(
+                                (item, index) => (<Grid item key={index} >
                                 <Typography variant="h6">{item.id}</Typography>
                             </Grid>))}
                         </Grid>

@@ -10,6 +10,7 @@ import SectionHeader from '../SectionHeader/sectionHeader';
 import Footer from '../Footer/footer';
 import comments from '../../contents/commentCollection';
 import SideBar from '../SideBar/sideBar';
+import SearchTagResultContent from '../../contents/searchTagResult';
 
 class SearchTag extends React.Component{
     constructor(props){
@@ -59,7 +60,9 @@ class SearchTag extends React.Component{
 
                         <Box px={6} pt={4} className={styles.overWidth}>
                             <SectionHeader headerText={"Reviews with '"+ this.state.searchTitle+ "'"} />
-                            <Review src={require("../../static/book-cover/harrypotter.jpg")} title='Welcome to Hogwarts' author='Beyond the sky' rating={4}/>
+                            {SearchTagResultContent.books.map(
+                                (book) => (<Review src={book.image} title={book.title} author={book.author} rating={book.rating}/>)
+                            )}
                         </Box>
                     </Grid>
                     <SideBar/>

@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Container from '../../containers/mui/container';
 import Rating from '@material-ui/lab/Rating';
 import { TextField } from '@material-ui/core';
+import CommentSectionContent from '../../contents/commentSection';
 
 function ClickRating({rating_handler, rating}) {
     const [value, setValue] = React.useState(0);
@@ -76,7 +77,7 @@ class CommentSection extends React.Component {
                     <Grid container>
                         <Grid item sm={12} md={1}>
                             <Box display='flex' justifyContent='flex-start' flexWrap='wrap' alignItems='flex-start' pt={3}>
-                                <img src={require("../../static/Profile/icon.jpg")} className={styles.icon}/>
+                                <img src={CommentSectionContent.icon} className={styles.icon}/>
                             </Box>
                         </Grid>
                         <Grid item sm={12} md={11}>
@@ -96,9 +97,9 @@ class CommentSection extends React.Component {
                                     <ClickRating rating_handler={this.ratinghandler.bind(this)} rating={this.state.rating}/>
                                     <Button
                                     onClick={this.cancelhandler.bind(this)}
-                                    >cancel
+                                    >{CommentSectionContent.cancel}
                                     </Button>
-                                    <Button color='primary'>comment</Button>
+                                    <Button color='primary'>{CommentSectionContent.comment}</Button>
                                 </Box>
                             </Box>
                         </Grid>

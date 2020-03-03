@@ -9,6 +9,7 @@ import Review from '../Review/review';
 import SectionHeader from '../SectionHeader/sectionHeader';
 import Footer from '../Footer/footer';
 import SideBar from '../SideBar/sideBar';
+import HomeContent from '../../contents/home';
 
 class Home extends React.Component{
 
@@ -19,8 +20,8 @@ class Home extends React.Component{
                 <Box className={styles.padding_bottom}>
                 <Box className={styles.home_bg} display="flex" justifyContent="center" alignItems="center">
                     <div className={styles.caption}>
-                        <Typography variant='h3'>Books,</Typography>
-                        <Typography variant='h4'>Bring to a Journey you have never experienced before</Typography>
+                        <Typography variant='h3'>{HomeContent.banner_title}</Typography>
+                        <Typography variant='h4'>{HomeContent.banner_subtitle}</Typography>
                     </div>
                 </Box>
                 <Container maxWidth='lg'>
@@ -51,9 +52,12 @@ class Home extends React.Component{
                         </Box>
 
                         <Box px={6} pt={4} className={styles.overWidth}>
-                            <SectionHeader headerText="Popular review" />
-                            <Review src={require("../../static/book-cover/wheel_of_time.jpg")} title='The rise of a legend - Arthur' author='chasing star' rating={5}/>
-                            <Review src={require("../../static/book-cover/harrypotter.jpg")} title='Welcome to Hogwarts' author='Beyond the sky' rating={4}/>
+                            <SectionHeader headerText={HomeContent.popular_review} />
+                            {HomeContent.books.map(
+                                (book) => (
+                                    <Review src={book.image} title={book.title} author={book.author} rating={book.rating}/>
+                                )
+                            )}
                         </Box>
                     </Grid>
                     <SideBar/>

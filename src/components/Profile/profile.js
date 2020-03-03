@@ -51,7 +51,7 @@ class Profile extends React.Component {
                                 <div className={styles.comments}>
                                     <Grid container item xs={12} direction="column" alignItems="center" >
                                         <div className={styles.title}>
-                                            <Typography variant='h3' align="center"> My comments </Typography>
+                                            <Typography variant='h3' align="center"> {ProfileContent.title} </Typography>
                                         </div>
                                     </Grid>
                                     <Grid container item xs={12}>

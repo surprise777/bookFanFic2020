@@ -22,22 +22,22 @@ export default {
             },
         ],
         "comments": [{
-            "book": "Harry Potter",
+            "book": "Harry Potter: The Philosopher's Stone",
             "comment": "Hmmmm...",
             "src": require('../static/spanner/Essential-Books.jpg'),
         },
         {
-            "book": "Harry Potter 2",
+            "book": "Harry Potter: The Chamber of Secrets",
             "comment": "Hmmmm...",
             "src": require('../static/spanner/Essential-Books.jpg'),
         },
         {
-            "book": "Harry Potter 4",
+            "book": "Harry Potter: The Goblet of Fire",
             "comment": "okay.",
             "src": require('../static/spanner/Essential-Books.jpg'),
         },
         {
-            "book": "Harry Potter 7",
+            "book": "Harry Potter: The Deathly Hallows",
             "comment": "This is nice ending!",
             "src": require('../static/spanner/Essential-Books.jpg'),
         },]
