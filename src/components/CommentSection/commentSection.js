@@ -6,10 +6,43 @@ import Box from '@material-ui/core/Box';
 import Grid from '../../containers/mui/grid';
 import Button from '@material-ui/core/Button';
 import Container from '../../containers/mui/container';
+import Rating from '@material-ui/lab/Rating';
 import { TextField } from '@material-ui/core';
 
+function ClickRating({rating_handler}) {
+    const [value, setValue] = React.useState(2);
+    
+    return (
+      <div className={styles.mr2}>
+        <Box component="fieldset" borderColor="transparent">
+          <Rating
+            name="book_rating"
+            value={value}
+            size='medium'
+            onChange={(event, newValue) => {
+              setValue(newValue);
+              rating_handler(newValue);
+            }}
+          />
+        </Box>
+      </div>
+    )
+}
 
 class CommentSection extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            rating: 0
+        }
+    }
+
+    ratinghandler(val) {
+        this.setState({
+            "rating": val
+        })
+    }
+
     render() {
         return (
             <Box>
@@ -33,9 +66,10 @@ class CommentSection extends React.Component {
                     </Grid>
                 </Grid>
                 <Box>
-                    <Box display='flex' justifyContent='flex-end' >
+                    <Box display='flex' justifyContent='flex-end'>
+                        <ClickRating rating_handler={this.ratinghandler.bind(this)}/>
                         <Button>cancel</Button>
-                        <Button  color='primary'>comment</Button>
+                        <Button color='primary'>comment</Button>
                     </Box>
                 </Box>
                 </Box>
