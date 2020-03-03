@@ -10,7 +10,11 @@ import SectionHeader from '../SectionHeader/sectionHeader';
 import Footer from '../Footer/footer';
 import comments from '../../contents/commentCollection';
 import SideBar from '../SideBar/sideBar';
+<<<<<<< HEAD
 import SearchResultContent from '../../contents/searchResult';
+=======
+import UserCard from '../UserCard/userCard';
+>>>>>>> 7f6e611aa2199143e35bcdfb86b073fe02b200bd
 
 class Search extends React.Component{
     constructor(props){
@@ -27,6 +31,11 @@ class Search extends React.Component{
 
     }
     render(){
+        const user = {
+            icon_url: require("../../static/Profile/icon.jpg"),
+            name: "Hina",
+            signature: "This guy is lazy, he haven't write anything yet."
+        }
         const reg = new RegExp(this.state.searchTitle)
         return(
             <Container maxWidth={false} disableGutters={true}>
@@ -60,9 +69,9 @@ class Search extends React.Component{
 
                         <Box px={6} pt={4} className={styles.overWidth}>
                             <SectionHeader headerText={"Reviews with '"+ this.state.searchTitle+ "'"} />
-                            {SearchResultContent.books.map(
-                                (book) => (<Review src={book.image} title={book.title} author={book.author} rating={book.rating}/>)
-                            )}
+                            <Review src={require("../../static/book-cover/harrypotter.jpg")} title='Welcome to Hogwarts' author='Beyond the sky' rating={4}/>
+                            <UserCard user={user}/>
+                            <UserCard user={user}/>
                         </Box>
                     </Grid>
                     <SideBar/>

@@ -87,7 +87,7 @@ class BookDetail extends React.Component {
                                 <Tags tags={["western", "magic", "fantasy", "children"]} />
                             </Box>
                             <Box pt={6} className={styles.shrink}>
-                                <SectionHeader headerText="Related" />
+                                <SectionHeader headerText="Recent" />
                                 <Box className={styles.trending} pb={2} pt={2}>
                                     <Box className={styles.padding_left}>
                                         <div className={styles.bookTitle}>{BookDetailsContent.relatedBook.title}</div>
