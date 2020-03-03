@@ -25,18 +25,18 @@ function SimpleDialog(props) {
         {informations.map((info) => (
           <ListItem  key={info}>
             <ListItemText primary={info + '：'}/>
-            <Input disableUnderline={'true'} placeholder={'Your ' + info}/>
+            <Input disableUnderline placeholder={'Your ' + info}/>
           </ListItem>
         ))}
         <Grid container>
-          <Grid xs={2}/> 
-          <Grid xs={2}>
+          <Grid item xs={2}/> 
+          <Grid item xs={2}>
             <Button variant='outlined' component='span' color='secondary'>
               {EditProfileDialogContent.confirm}
             </Button>
           </Grid>
-          <Grid xs={3}/>
-          <Grid xs={2}>
+          <Grid item xs={3}/>
+          <Grid item xs={2}>
             <Button variant='outlined' component='span' color='primary'>
               {EditProfileDialogContent.cancel}
             </Button>
@@ -69,7 +69,7 @@ export default function SimpleDialogDemo() {
   return (
     <div>
       <br />
-      <Button variant="outlined" color="black" onClick={handleClickOpen}>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         <Edit/>
         {EditProfileDialogContent.edit}
       </Button>

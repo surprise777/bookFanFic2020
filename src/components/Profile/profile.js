@@ -37,7 +37,7 @@ class Profile extends React.Component {
                                     src={ProfileContent.user.photo}
                                 />
                             </Grid>
-                            <Grid container item xs={3} direction="column" alignItems="left" >
+                            <Grid container item xs={3} direction="column" alignItems="flex-start" >
                                 {ProfileContent.user.profile.map((item, index) => (<Grid item key={index} >
                                     <Typography variant="h6">{item.tag}: {item.u}</Typography>
                                 </Grid>))}

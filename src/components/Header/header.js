@@ -39,6 +39,9 @@ class Header extends React.Component {
         let tempState = this.props.state
         await this.setState({status: false})
         tempState.login_status = this.state.status
+        tempState.current.userName = ""
+        tempState.current.email=""
+        tempState.current.userType=""
         this.props.handler(tempState)
 
     }
@@ -64,11 +67,18 @@ class Header extends React.Component {
             </React.Fragment>
             )
         }else{
-           
-            return (
+            let next = RoutesMap.Profile.path
+            if(tempState.current.userType === 'a'){
+                next = RoutesMap.AdminProfile.path
+            }
+            else{
+                next = RoutesMap.Profile.path
+            }
+            console.log(next)
+            return ( 
                 <React.Fragment>
                 <Button >
-                <Link className={styles.link} to={RoutesMap.Profile.path}>
+                <Link className={styles.link} to={next}>
                     {tempState.current.userName}
                 </Link>
             </Button>

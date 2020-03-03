@@ -169,8 +169,6 @@ export default function SimpleTabs() {
                                 <React.Fragment>
                                     <Button
                                     component="span"
-                                    variant='h6'
-                                    gutterBottom
                                     onClick={() => BookDialog(c)}     // TODO: change it to Delete()
                                     >
                                     Delete</Button>
