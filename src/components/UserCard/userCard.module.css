@@ -1,0 +1,22 @@
+.icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-top: -7px;
+}
+
+.userName {
+    font-size: 1.2em;
+    padding-bottom: 2px;
+    cursor: pointer;
+    color: #e67300;
+}
+
+.outline_bottom {
+    border-bottom: 1px solid rgba(175, 175, 175, 0.712);
+}
+
+.signature {
+    font-size: 0.9em;
+    color: #a3a3c2;
+}
