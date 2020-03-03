@@ -28,7 +28,7 @@ class Routes extends React.Component {
                 <Route exact path={RoutesMap.AdminProfile.path} render={() =>
                             (<Layout pageName={RoutesMap.AdminProfile.name} handler={this.props.handler}  state={this.props.state}><AdminProfile handler={this.props.handler} state={this.props.state}/></Layout>)}/>
                 <Route exact path={RoutesMap.BookDetail.path} render={() =>
-                            (<Layout pageName={RoutesMap.BookDetail.name} handler={this.props.handler}  state={this.props.state}><BookDetail handler={this.props.handler} state={this.props.state} book={this.state.book}/></Layout>)}/>
+                            (<Layout pageName={RoutesMap.BookDetail.name} handler={this.props.handler}  state={this.props.state}><BookDetail handler={this.props.handler} state={this.props.state}/></Layout>)}/>
                 <Route exact path={RoutesMap.BookReview.path} render={() =>
                             (<Layout pageName={RoutesMap.BookReview.name} handler={this.props.handler}  state={this.props.state}><BookReview handler={this.props.handlerr} state={this.props.state}/></Layout>)}/>
                 <Route exact path={RoutesMap.SearchResult.path} render={() =>
