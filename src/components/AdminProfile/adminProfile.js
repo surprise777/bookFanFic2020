@@ -2,23 +2,17 @@ import React from "react"
 import styles from "./adminProfile.module.css"
 import Typography from '@material-ui/core/Typography'
 import Grid from '../../containers/mui/grid'
-import AdminContent from '../../contents/adminContent';
-import AdminTabs from './adminTabs';
+import AdminContent from '../../contents/adminProfile';
+import AdminTabs from '../AdminTabs/adminTabs';
 import Banner from '../Banner/banner';
 import Container from '../../containers/mui/container';
 import Button from '../../containers/mui/button';
 import Add from '@material-ui/icons/Add';
+import AdminProfileContent from '../../contents/adminProfile';
 
 class AdminProfile extends React.Component {
     state = {
         login_status: false
-    }
-
-    onMouseOver(node) {
-        return(
-            <div> 111
-                </div>
-        )
     }
 
     render() {
@@ -38,13 +32,13 @@ class AdminProfile extends React.Component {
                         </Grid>
                         <Grid container item xs={3} >
                             {AdminContent.user.profile.map((item, index) => (<Grid item key={index} >
-                                <Typography variant="h6" onMouseOver={this.onMouseOver.bind(this)}>{item.id}</Typography>
+                                <Typography variant="h6">{item.id}</Typography>
                             </Grid>))}
                         </Grid>
                         <Grid container item xs={3}>
                             <Button>
                                 <Add/>
-                                <Typography variant='h6'> Add a book </Typography>
+                            <Typography variant='h6'> {AdminProfileContent.addBook} </Typography>
                             </Button>
                         </Grid>
                     </Grid>

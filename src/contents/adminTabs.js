@@ -1,14 +1,7 @@
 export default {
-    "spanner": require('../static/spanner/Essential-Books.jpg'),
-    "title": "My comments",
-    "user": {
-        "photo": require('../static/Profile/my_icon.jpg'),
-        "profile": [
-            {
-                "id": 'admin001'
-            },
-        ],
-    },
+    'booksLabel': '- Books',
+    'commentsLabel': '- Comments',
+    'usersLabel': '- Users',
 
     "comments": [{
         "book": "Harry Potter: The Philosopher's Stone",
@@ -81,4 +74,5 @@ export default {
         "id": "Mark Kazakevich",
         "src": require('../static/spanner/Essential-Books.jpg'),
     },]
+
 }

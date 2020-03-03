@@ -14,13 +14,12 @@ import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import AdminContent from '../../contents/adminContent';
+import AdminTabsContent from '../../contents/adminTabs';
 import { BookDialog } from '../../actions/viewBookDetails';
 import Button from '../../containers/mui/button';
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Grid from '../../containers/mui/grid';
-import HeaderContent from '../../contents/header';
 import TextField from '@material-ui/core/TextField';
 
 function TabPanel(props) {
@@ -68,18 +67,13 @@ export default function SimpleTabs() {
         setValue(newValue);
     };
 
-    const handleDelete = (event) => {
-        console.log(event)
-        
-    }
-
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="- Books" {...a11yProps(0)} />
-                    <Tab label="- Comments" {...a11yProps(1)} />
-                    <Tab label="- Users" {...a11yProps(2)} />
+                    <Tab label={AdminTabsContent.booksLabel} {...a11yProps(0)} />
+                    <Tab label={AdminTabsContent.commentsLabel} {...a11yProps(1)} />
+                    <Tab label={AdminTabsContent.usersLabel} {...a11yProps(2)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
@@ -96,7 +90,7 @@ export default function SimpleTabs() {
                     </Grid>
                 </Grid>
                 <List className={styles.list}>
-                    {AdminContent.books.map((c, key) => (
+                    {AdminTabsContent.books.map((c, key) => (
                         <React.Fragment key={key}>
                             <Divider variant="fullWidth" component="li" />
                             <ListItem alignItems="flex-start">
@@ -120,7 +114,7 @@ export default function SimpleTabs() {
                                     gutterBottom
                                     onClick={() => (
                                         
-                                        console.log(AdminContent.books)
+                                        console.log(AdminTabsContent.books)
                                     )}     // TODO: change it to Delete()
                                     >
                                     Delete</Button>
@@ -145,7 +139,7 @@ export default function SimpleTabs() {
                     </Grid>
                 </Grid>
                 <List className={styles.list}>
-                    {AdminContent.comments.map((c, key) => (
+                    {AdminTabsContent.comments.map((c, key) => (
                         <React.Fragment key={key}>
                             <Divider variant="fullWidth" component="li" />
                             <ListItem alignItems="flex-start">
@@ -201,7 +195,7 @@ export default function SimpleTabs() {
                     </Grid>
                 </Grid>
                 <List className={styles.list}>
-                    {AdminContent.users.map((c, key) => (
+                    {AdminTabsContent.users.map((c, key) => (
                         <React.Fragment key={key}>
                             <Divider variant="fullWidth" component="li" />
                             <ListItem alignItems="flex-start">
