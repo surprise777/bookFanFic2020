@@ -69,7 +69,9 @@ class Search extends React.Component{
 
                         <Box px={6} pt={4} className={styles.overWidth}>
                             <SectionHeader headerText={"Reviews with '"+ this.state.searchTitle+ "'"} />
-                            <Review src={require("../../static/book-cover/harrypotter.jpg")} title='Welcome to Hogwarts' author='Beyond the sky' rating={4}/>
+                            {SearchResultContent.books.map(
+                                (book) => (<Review src={book.image} title={book.title} author={book.author} rating={book.rating}/>)
+                            )}
                             <UserCard user={user}/>
                             <UserCard user={user}/>
                         </Box>
