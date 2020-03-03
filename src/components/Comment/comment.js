@@ -9,6 +9,43 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 
 class Comment extends React.Component{
+    constructor(props){
+        super(props);
+        const {counter} = this.props;
+        this.state = {
+            click: false,
+            counter: counter
+        }
+    }
+
+    createThumbUpButton(){
+        if (this.state.click)
+        {
+            return (
+                <ThumbUpIcon fontSize='small' color='primary'/>
+            )
+        }else{
+            return (
+                <ThumbUpIcon fontSize='small'/>
+            )
+        }
+    }
+
+    clickhandler(){
+        const clicked = this.state.click ? false : true;
+        if (clicked){
+            this.setState({
+                "click": clicked,
+                "counter": this.state.counter + 1
+            })
+        }else{
+            this.setState({
+                "click": clicked,
+                "counter": this.state.counter - 1
+            })
+        }
+    }
+
     render() {
         const {userName, icon_url, content} = this.props;
         return(
@@ -32,10 +69,10 @@ class Comment extends React.Component{
                     />
                     <div>{content}</div>
                     <Box pt={2} display='flex' alignItems='center'>
-                    <IconButton edge='start'>
-                        <ThumbUpIcon fontSize='small'/>
+                    <IconButton edge='start' onClick={this.clickhandler.bind(this)}>
+                        {this.createThumbUpButton()}
                     </IconButton>
-                    <span className={styles.likeCount}>56</span>
+                        <span className={styles.likeCount}>{this.state.counter}</span>
                     </Box>
                     </Box>
                 </Grid>
