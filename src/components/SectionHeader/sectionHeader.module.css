@@ -1,6 +1,6 @@
 .section_header{
     font-size: 1.5em;    
-    border-bottom: 1px solid rgba(175, 175, 175, 0.712);
+    border-bottom: 3px groove rgba(175, 175, 175, 0.712);
     font-style: italic;
     width: 100%;
     padding-left: 12px;

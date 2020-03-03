@@ -61,7 +61,7 @@ class BookDetail extends React.Component {
                                     </Box>
                                 </Container>
                                 </Box>
-                                <Box pt={6} className={styles.sshrink}>
+                                <Box pt={10}>
                                     <SectionHeader headerText="Comments"/>
                                     <CommentSection/>
                                 </Box>
