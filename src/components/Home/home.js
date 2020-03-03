@@ -6,11 +6,9 @@ import BookCard from '../BookCard/bookCard';
 import Grid from '../../containers/mui/grid';
 import { Typography, Box } from "@material-ui/core";
 import Review from '../Review/review';
-import Tags from '../Tags/tags';
-import {tags} from '../../contents/tag_collection';
-import Trending from '../Trending/trending';
 import SectionHeader from '../SectionHeader/sectionHeader';
 import Footer from '../Footer/footer';
+import SideBar from '../SideBar/sideBar';
 
 class Home extends React.Component{
 
@@ -58,23 +56,7 @@ class Home extends React.Component{
                             <Review src={require("../../static/book-cover/harrypotter.jpg")} title='Welcome to Hogwarts' author='Beyond the sky' rating={4}/>
                         </Box>
                     </Grid>
-                    <Grid item xs>
-                        <Box px={6} pt={10}>
-                            <SectionHeader headerText="Popular tags" />
-                            <Tags tags={tags}/>
-                        </Box>
-                        <Box px={6} pt={8} className={styles.overWidth}>
-                            <SectionHeader headerText="Trending" />
-                            <Trending />
-                        </Box>
-                        <Box px={6} pt={8}>
-                            <SectionHeader headerText="Contact us" />
-                            <Container maxWidth='md'>
-                                <div className={styles.contact}><strong>Email:</strong> readersclub@gmail.com</div>
-                                <div className={styles.contact}><strong>Phone:</strong> 3285974683</div>
-                            </Container>
-                        </Box>
-                    </Grid>
+                    <SideBar/>
                 </Grid>
                 </Container>
                 </Box>
