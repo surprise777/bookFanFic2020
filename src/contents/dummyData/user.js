@@ -19,10 +19,18 @@ const users = [
         userName: "Hina",
         email: "h@h.cn",
         password: "123456",
-        acctType: "a",
+        acctType: "u",
         icon_url: require("../../static/Profile/icon.jpg"),
         signature: "This guy is lazy, he haven't write anything yet."
     },
+    {
+        userName: "admin001",
+        email: "a@a.cn",
+        password: "123456",
+        acctType: "a",
+        icon_url: require("../../static/Profile/icon.jpg"),
+        signature: "This guy is lazy, he haven't write anything yet."
+    }
 ]
 
 export default users;
