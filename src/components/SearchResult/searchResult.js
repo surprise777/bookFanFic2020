@@ -14,8 +14,9 @@ import SideBar from '../SideBar/sideBar';
 class Search extends React.Component{
     constructor(props){
         super(props)
+        console.log(this.props.state.header.input)
         this.state = {
-            searchTitle: "Harry Potter",
+            searchTitle: this.props.state.header.input,
             searchBook: BookList,
             searchReview: Review,
             searchComment: comments,

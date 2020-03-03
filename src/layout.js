@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from './components/Header/header';
 
-const Layout = ({ children, pageName, ...props }) => {
+const Layout = ({ children, pageName, handler, state, ...props }) => {
 	return (
 		<div className="main">
 			<React.Fragment>
-				<Header/>
+				<Header handler={handler}  state={state}/>
 				<div className="main-content">
 						<div className={pageName} >{children}</div>
 				</div>

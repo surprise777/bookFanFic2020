@@ -16,7 +16,23 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import {RoutesMap} from '../../utils/routesMap';
 
 class Header extends React.Component {
-    state = this.props.state;
+    
+    constructor(props){
+        super(props)
+        this.state = {
+            input: this.props.state.header.input,
+        }
+        this.searchingChange.bind(this)
+    }
+    
+    async searchingChange(e){
+        await this.setState({input: e.target.value})
+        let tempState = this.props.state
+        tempState.header.input = this.state.input
+        console.log(tempState)
+        this.props.handler(tempState)
+
+    }
 
     render() {
         // {login_status} = this.props;
@@ -49,11 +65,11 @@ class Header extends React.Component {
                             </Hidden>
                             <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
                                 <Grid container item alignItems="center" justify="center">
-                                    <TextField id="search-field" className={styles.text} placeholder={HeaderContent.searchField} fullWidth
+                                    <TextField id="search-field" className={styles.text} placeholder={HeaderContent.searchField} fullWidth onChange={(value)=>{this.searchingChange(value)}}
                                         InputProps={{
                                             endAdornment: (
                                                 <InputAdornment position="end">
-                                                    <Button onClick={() => {window.location = RoutesMap.SearchResult.path}}> <SearchIcon /></Button>
+                                                    <Button> <Link className={styles.link} to={RoutesMap.SearchResult.path}><SearchIcon /></Link></Button>
                                                 </InputAdornment>
                                             ),
                                         }} />
