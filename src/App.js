@@ -12,8 +12,17 @@ class App extends React.Component {
     }
     state = {
       login_status: false,
+      "current":{
+        "userName": "",
+        "userType": "",
+      },
       "header": {
         "input": ""
+      },
+      "login": {
+        "userName": "",
+        "password": "",
+        "acctType": "",
       }
     }
     
