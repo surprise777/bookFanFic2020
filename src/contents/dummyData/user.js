@@ -28,7 +28,7 @@ const users = [
         email: "a@a.cn",
         password: "123456",
         acctType: "a",
-        icon_url: require("../../static/Profile/icon.jpg"),
+        icon_url: require("../../static/Profile/my_icon.jpg"),
         signature: "This guy is lazy, he haven't write anything yet."
     }
 ]

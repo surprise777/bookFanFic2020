@@ -54,7 +54,7 @@ class Search extends React.Component{
                                         container
                                         justify="space-between"
                                         alignItems="center">
-                                {User.filter(u => reg.test(u.userName)).map((us, index) => (<Grid container item xs={12} sm={6} key={index}>
+                                {User.filter(u => (reg.test(u.userName) && u.acctType !== 'a')).map((us, index) => (<Grid container item xs={12} sm={6} key={index}>
                                 <UserCard icon_url={us.icon_url} name={us.userName} signature={us.signature}/>
                                 </Grid>) )}
                             </Grid>

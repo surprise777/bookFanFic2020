@@ -6,7 +6,7 @@ import styles from "./login.module.css";
 import LoginContent from '../../contents/login';
 import Button from '../../containers/mui/button';
 import {RoutesMap} from '../../utils/routesMap';
-import user from '../../contents/dummyData/user';
+
 
 class Login extends React.Component{
     constructor(props){
@@ -39,8 +39,8 @@ class Login extends React.Component{
     }
 
     handleMatch(event){
-        const matchU = user.filter(u => u.email === this.state.email)
         let tempProps = this.props.state
+        const matchU = tempProps.global.filter(u => u.email === this.state.email)
         if (matchU.length === 0 || this.state.email === '') {
             alert("Email does not exist");
             event.preventDefault();
