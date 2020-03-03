@@ -50,12 +50,12 @@ class Comment extends React.Component{
         const {userName, icon_url, content, date} = this.props;
         return(
             <Grid container>
-                <Grid item xs={12} sm={1}>
+                <Grid item sm={12} md={1}>
                     <Box display='flex' justifyContent='flex-start' flexWrap='wrap' alignItems='flex-start' pb={1}>
                         <img src={icon_url} className={styles.icon}/>
                     </Box>
                 </Grid>
-                <Grid item xs={12} sm={11} className={styles.comment}>
+                <Grid item sm={12} md={11} className={styles.comment}>
                     <Box pl={2} pb={1}>
                     <div className={styles.userName}>
                         {userName}

@@ -71,38 +71,40 @@ class CommentSection extends React.Component {
     render() {
         return (
             <Box>
+                <Container maxwidth='xl' disableGutters={true}>
                 <Box pb={2}>
-                <Grid container>
-                    <Grid item xs={12} sm={1}>
-                        <Box display='flex' justifyContent='flex-start' flexWrap='wrap' alignItems='flex-start' pt={3}>
-                            <img src={require("../../static/Profile/icon.jpg")} className={styles.icon}/>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={12} sm={11}>
-                        <Box pl={2} pt={3}>
-                            <Box pb={2}>
-                                <TextField
-                                fullWidth
-                                multiline
-                                placeholder="comments..."
-                                value={this.state.comment}
-                                onChange={this.commenthandler.bind(this)}
-                                />
+                    <Grid container>
+                        <Grid item sm={12} md={1}>
+                            <Box display='flex' justifyContent='flex-start' flexWrap='wrap' alignItems='flex-start' pt={3}>
+                                <img src={require("../../static/Profile/icon.jpg")} className={styles.icon}/>
                             </Box>
-                        </Box>
+                        </Grid>
+                        <Grid item sm={12} md={11}>
+                            <Box pl={2} pt={3}>
+                                <Box pb={2}>
+                                    <TextField
+                                    fullWidth
+                                    multiline
+                                    placeholder="comments..."
+                                    value={this.state.comment}
+                                    onChange={this.commenthandler.bind(this)}
+                                    />
+                                </Box>
+                            </Box>
+                            <Box>
+                                <Box display='flex' justifyContent='flex-end'>
+                                    <ClickRating rating_handler={this.ratinghandler.bind(this)} rating={this.state.rating}/>
+                                    <Button
+                                    onClick={this.cancelhandler.bind(this)}
+                                    >cancel
+                                    </Button>
+                                    <Button color='primary'>comment</Button>
+                                </Box>
+                            </Box>
+                        </Grid>
                     </Grid>
-                </Grid>
-                <Box>
-                    <Box display='flex' justifyContent='flex-end'>
-                        <ClickRating rating_handler={this.ratinghandler.bind(this)} rating={this.state.rating}/>
-                        <Button
-                        onClick={this.cancelhandler.bind(this)}
-                        >cancel
-                        </Button>
-                        <Button color='primary'>comment</Button>
-                    </Box>
                 </Box>
-                </Box>
+                </Container>
                 <Box>
                 {comments.map((comment, index) => {
                     const {userName, img_url, content} = comment;
