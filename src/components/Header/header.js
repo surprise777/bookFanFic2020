@@ -21,6 +21,7 @@ class Header extends React.Component {
         super(props)
         this.state = {
             input: this.props.state.header.input,
+            status: this.props.state.login_status,
         }
         this.searchingChange.bind(this)
     }
@@ -32,6 +33,53 @@ class Header extends React.Component {
         console.log(tempState)
         this.props.handler(tempState)
 
+    }
+
+    async handleLogout(e){
+        let tempState = this.props.state
+        await this.setState({status: false})
+        tempState.login_status = this.state.status
+        this.props.handler(tempState)
+
+    }
+
+    loginU(){
+        let tempState = this.props.state
+        console.log(tempState.login_status)
+        console.log(tempState.current.userName)
+        if (!tempState.login_status)
+        {
+            return (
+                <React.Fragment>
+                <Button >
+                <Link className={styles.link} to={RoutesMap.Login.path}>
+                    {HeaderContent.login}
+                </Link>
+            </Button>
+            <Button >
+                <Link className={styles.link} to={RoutesMap.Signup.path}>
+                    {HeaderContent.signup}
+                </Link>
+            </Button>
+            </React.Fragment>
+            )
+        }else{
+           
+            return (
+                <React.Fragment>
+                <Button >
+                <Link className={styles.link} to={RoutesMap.Profile.path}>
+                    {tempState.current.userName}
+                </Link>
+            </Button>
+            <Button  onClick={(e) => this.handleLogout(e)}>
+                <Link className={styles.link} to={RoutesMap.Home.path}>
+                    {HeaderContent.logout}
+                </Link>
+            </Button>
+            </React.Fragment>
+            )
+        }
     }
 
     render() {
@@ -76,18 +124,9 @@ class Header extends React.Component {
                                 </Grid>
                             </Grid>
                             <Grid container item xs={4} sm={2} alignItems="center" justify="flex-end">
-                                <Button >
-                                    <Link className={styles.link} to={RoutesMap.Login.path}>
-                                        {HeaderContent.login}
-                                    </Link>
-                                </Button>
-                                <Button >
-                                    <Link className={styles.link} to={RoutesMap.Signup.path}>
-                                        {HeaderContent.signup}
-                                    </Link>
-                                </Button>
+                               {this.loginU()}
                                 </Grid>
-
+        
 
                         </Grid>
                     </Toolbar>

@@ -1,6 +1,6 @@
 export default{
     "title": "Welcome back!",
-    "username": "username",
+    "email": "email",
     "password": "password",
     "login": "login",
     "signup": "Not a member yet? Join Now!",

@@ -13,6 +13,7 @@ class App extends React.Component {
     state = {
       login_status: false,
       "current":{
+        "email": "",
         "userName": "",
         "userType": "",
       },
@@ -20,6 +21,7 @@ class App extends React.Component {
         "input": ""
       },
       "login": {
+        "email": "",
         "userName": "",
         "password": "",
         "acctType": "",

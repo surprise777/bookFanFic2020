@@ -12,10 +12,11 @@ class Login extends React.Component{
     constructor(props){
         super(props)
         this.state = {
+            email: "",
             userName: "",
             password: "",
             acctType: "",
-            match: false,
+            match: this.props.state.login_status,
         }
         console.log(this.props.state.header.input)
         this.handleUser = this.handleUser.bind(this)
@@ -24,9 +25,9 @@ class Login extends React.Component{
     }
     
     async handleUser(event){
-        await this.setState({userName: event.target.value})
+        await this.setState({email: event.target.value})
         let tempProps = this.props.state
-        tempProps.login.userName = this.state.userName
+        tempProps.login.email = this.state.email
         this.props.handler(tempProps)
     }
 
@@ -37,8 +38,8 @@ class Login extends React.Component{
         this.props.handler(tempProps)
     }
 
-    async handleMatch(event){
-        const matchU = user.filter(u => u.userName === this.state.userName)
+    handleMatch(event){
+        const matchU = user.filter(u => u.email === this.state.email)
         let tempProps = this.props.state
         if (matchU.length === 0 || this.state.email === '') {
             alert("Email does not exist");
@@ -48,11 +49,16 @@ class Login extends React.Component{
                     alert("Password is incorrect");
                     event.preventDefault();
                 }else{
-                    await this.setState({match: true})
-                    tempProps.current.userName = this.state.userName
+                    tempProps.current.email = matchU[0].email
+                    tempProps.current.userName = matchU[0].userName
                     tempProps.current.userType = matchU[0].acctType
+                    tempProps.login_status = true
                 }
         }
+        console.log(tempProps.current.email)
+        console.log(tempProps.current.userName)
+        console.log(this.state.match)
+        console.log(tempProps.login_status)
         tempProps.login = this.state
         this.props.handler(tempProps)
     }
@@ -68,7 +74,7 @@ class Login extends React.Component{
                     <div className={styles.login_form}>
                         <form>
                             <input 
-                            placeholder={LoginContent.username}
+                            placeholder={LoginContent.email}
                             className={styles.form_input}
                             onChange={(e)=>this.handleUser(e)}>
                             </input>
