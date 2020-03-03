@@ -9,15 +9,14 @@ import Container from '../../containers/mui/container';
 import Rating from '@material-ui/lab/Rating';
 import { TextField } from '@material-ui/core';
 
-function ClickRating({rating_handler}) {
-    const [value, setValue] = React.useState(2);
-    
+function ClickRating({rating_handler, rating}) {
+    const [value, setValue] = React.useState(0);
     return (
       <div className={styles.mr2}>
         <Box component="fieldset" borderColor="transparent">
           <Rating
             name="book_rating"
-            value={value}
+            value={rating}
             size='medium'
             onChange={(event, newValue) => {
               setValue(newValue);
@@ -33,7 +32,8 @@ class CommentSection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rating: 0
+            rating: 0,
+            comment: ''
         }
     }
 
@@ -41,7 +41,20 @@ class CommentSection extends React.Component {
         this.setState({
             "rating": val
         })
-    }
+    };
+
+    commenthandler(event) {
+        this.setState({
+            "comment": event.target.value.split("\n")
+        })
+    };
+
+    cancelhandler() {
+        this.setState({
+            "comment": "",
+            "rating": 0
+        })
+    };
 
     render() {
         return (
@@ -60,6 +73,8 @@ class CommentSection extends React.Component {
                                 fullWidth
                                 multiline
                                 placeholder="comments..."
+                                value={this.state.comment}
+                                onChange={this.commenthandler.bind(this)}
                                 />
                             </Box>
                         </Box>
@@ -67,8 +82,11 @@ class CommentSection extends React.Component {
                 </Grid>
                 <Box>
                     <Box display='flex' justifyContent='flex-end'>
-                        <ClickRating rating_handler={this.ratinghandler.bind(this)}/>
-                        <Button>cancel</Button>
+                        <ClickRating rating_handler={this.ratinghandler.bind(this)} rating={this.state.rating}/>
+                        <Button
+                        onClick={this.cancelhandler.bind(this)}
+                        >cancel
+                        </Button>
                         <Button color='primary'>comment</Button>
                     </Box>
                 </Box>
@@ -81,6 +99,7 @@ class CommentSection extends React.Component {
                     )
                 })}
                 </Box>
+                {this.state.comment}
             </Box>
         )
     }

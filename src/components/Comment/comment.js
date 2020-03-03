@@ -36,9 +36,6 @@ class Comment extends React.Component{
                         <ThumbUpIcon fontSize='small'/>
                     </IconButton>
                     <span className={styles.likeCount}>56</span>
-                    <IconButton edge='start'>
-                        <ThumbDownIcon fontSize='small'/>
-                    </IconButton>
                     </Box>
                     </Box>
                 </Grid>
