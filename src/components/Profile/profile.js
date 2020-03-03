@@ -12,8 +12,7 @@ import Avatar from '@material-ui/core/Avatar';
 import ProfileContent from '../../contents/profile';
 import { BookDialog } from '../../actions/viewBookDetails';
 import Container from '../../containers/mui/container';
-import Button from '../../containers/mui/button';
-import Edit from '@material-ui/icons/Edit';
+import Dialog from '../EditProfileDialog/editProfileDialog';
 
 class Profile extends React.Component {
     state = {
@@ -42,13 +41,9 @@ class Profile extends React.Component {
                                 {ProfileContent.user.profile.map((item, index) => (<Grid item key={index} >
                                     <Typography variant="h6">{item.tag}: {item.u}</Typography>
                                 </Grid>))}
+                                <Dialog/>
                             </Grid>
-                            <Grid container item xs={3}>
-                            <Button>
-                                <Edit/>
-                                <Typography variant='h6' className={styles.editProfileButton}> edit profile </Typography>
-                            </Button>
-                            </Grid>
+                            
                         </Grid>
 
                         <Container className={styles.profile}>    

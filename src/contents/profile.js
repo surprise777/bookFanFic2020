@@ -20,10 +20,6 @@ export default {
                 "tag": "Phone",
                 "u": 'N/A'
             },
-            {
-                "tag": "FaceBook",
-                "u": 'N/A'
-            },
         ],
         "comments": [{
             "book": "Harry Potter",
