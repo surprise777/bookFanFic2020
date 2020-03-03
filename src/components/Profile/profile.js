@@ -11,7 +11,9 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ProfileContent from '../../contents/profile';
 import { BookDialog } from '../../actions/viewBookDetails';
-import Container from '../../containers/mui/container'
+import Container from '../../containers/mui/container';
+import Button from '../../containers/mui/button';
+import Edit from '@material-ui/icons/Edit';
 
 class Profile extends React.Component {
     state = {
@@ -36,10 +38,16 @@ class Profile extends React.Component {
                                     src={ProfileContent.user.photo}
                                 />
                             </Grid>
-                            <Grid container item xs={6} direction="column" alignItems="left" >
+                            <Grid container item xs={3} direction="column" alignItems="left" >
                                 {ProfileContent.user.profile.map((item, index) => (<Grid item key={index} >
                                     <Typography variant="h6">{item.tag}: {item.u}</Typography>
                                 </Grid>))}
+                            </Grid>
+                            <Grid container item xs={3}>
+                            <Button>
+                                <Edit/>
+                                <Typography variant='h6' className={styles.editProfileButton}> edit profile </Typography>
+                            </Button>
                             </Grid>
                         </Grid>
 

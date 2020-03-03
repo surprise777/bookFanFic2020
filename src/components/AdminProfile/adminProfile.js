@@ -6,6 +6,8 @@ import AdminContent from '../../contents/adminContent';
 import AdminTabs from './adminTabs';
 import Banner from '../Banner/banner';
 import Container from '../../containers/mui/container';
+import Button from '../../containers/mui/button';
+import Add from '@material-ui/icons/Add';
 
 class AdminProfile extends React.Component {
     state = {
@@ -27,10 +29,16 @@ class AdminProfile extends React.Component {
                                 src={AdminContent.user.photo}
                             />
                         </Grid>
-                        <Grid container item xs={6} >
+                        <Grid container item xs={3} >
                             {AdminContent.user.profile.map((item, index) => (<Grid item key={index} >
-                                <Typography variant="h6">{item.tag}: {item.u}</Typography>
+                                <Typography variant="h6">{item.id}</Typography>
                             </Grid>))}
+                        </Grid>
+                        <Grid container item xs={3}>
+                            <Button>
+                                <Add/>
+                                <Typography variant='h6'> Add a book </Typography>
+                            </Button>
                         </Grid>
                     </Grid>
                     <Container className={styles.profile}>                        

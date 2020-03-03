@@ -5,8 +5,7 @@ export default {
         "photo": require('../static/Profile/my_icon.jpg'),
         "profile": [
             {
-                "tag": "id",
-                "u": 'admin001'
+                "id": 'admin001'
             },
         ],
     },
