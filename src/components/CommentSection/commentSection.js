@@ -107,7 +107,13 @@ class CommentSection extends React.Component {
                 {comments.map((comment, index) => {
                     const {userName, img_url, content} = comment;
                     return (                       
-                            <Comment userName={userName} icon_url={img_url} content={content} key={index} counter={55}/>
+                            <Comment userName={userName} 
+                            icon_url={img_url}
+                            content={content}
+                            key={index}
+                            counter={55}
+                            date="8 months ago"
+                            click={false}/>
                     )
                 })}
                 </Box>

@@ -11,9 +11,9 @@ import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 class Comment extends React.Component{
     constructor(props){
         super(props);
-        const {counter} = this.props;
+        const {counter, click} = this.props;
         this.state = {
-            click: false,
+            click: click,
             counter: counter
         }
     }
@@ -47,7 +47,7 @@ class Comment extends React.Component{
     }
 
     render() {
-        const {userName, icon_url, content} = this.props;
+        const {userName, icon_url, content, date} = this.props;
         return(
             <Grid container>
                 <Grid item xs={12} sm={1}>
@@ -59,7 +59,7 @@ class Comment extends React.Component{
                     <Box pl={2} pb={1}>
                     <div className={styles.userName}>
                         {userName}
-                        <span className={styles.date}>8 months ago</span>
+                        <span className={styles.date}>{date}</span>
                     </div>
                     <Rating
                                     value={4.53}
