@@ -1,0 +1,34 @@
+.padding_bottom{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.cardLayout{
+    padding: 20px;
+}
+
+.caption{
+    color: black;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.home_bg {
+    /* The image used */
+    background-image: url("./../../static/spanner/home_bg.jpg");
+    filter: opacity(45%);
+    /* Full height */
+    height: 50vh;
+    width: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

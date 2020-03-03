@@ -26,8 +26,12 @@ const RoutesMap = {
     BookReview: {
         name: 'BookReview',
         path: '/BookReview',
+    },
+    SearchResult: {
+        name: 'SearchResult',
+        path: '/SearchResult',
     }
-
+    
 
 };
 

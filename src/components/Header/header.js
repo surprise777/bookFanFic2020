@@ -53,7 +53,7 @@ class Header extends React.Component {
                                         InputProps={{
                                             endAdornment: (
                                                 <InputAdornment position="end">
-                                                    <Button> <SearchIcon /></Button>
+                                                    <Button onClick={() => {window.location = RoutesMap.SearchResult.path}}> <SearchIcon /></Button>
                                                 </InputAdornment>
                                             ),
                                         }} />
