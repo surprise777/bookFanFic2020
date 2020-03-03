@@ -45,7 +45,7 @@ class CommentSection extends React.Component {
 
     commenthandler(event) {
         this.setState({
-            "comment": event.target.value.split("\n")
+            "comment": event.target.value
         })
     };
 
@@ -55,6 +55,18 @@ class CommentSection extends React.Component {
             "rating": 0
         })
     };
+
+    print_comment() {
+        const comments = this.state.comment.split('\n');
+        console.log(comments);
+        return (
+            comments.map(c=> {
+                return (
+                    <div>{c}</div>
+                )
+            })
+            )
+    }
 
     render() {
         return (
@@ -99,7 +111,6 @@ class CommentSection extends React.Component {
                     )
                 })}
                 </Box>
-                {this.state.comment}
             </Box>
         )
     }
