@@ -30,6 +30,10 @@ const RoutesMap = {
     SearchResult: {
         name: 'SearchResult',
         path: '/SearchResult',
+    },
+    SearchTagResult: {
+        name: 'SearchTagResult',
+        path: '/SearchTagResult',
     }
     
 

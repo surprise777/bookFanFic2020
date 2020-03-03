@@ -10,6 +10,7 @@ import AdminProfile from './components/AdminProfile/adminProfile';
 import BookDetail from './components/BookDetails/bookDetails';
 import BookReview from './components/BookReview/bookReview';
 import Search from './components/SearchResult/searchResult';
+import SearchTag from './components/SearchTagResult/searchTagResult';
 
 class Routes extends React.Component {
     render() {
@@ -33,6 +34,8 @@ class Routes extends React.Component {
                             (<Layout pageName={RoutesMap.BookReview.name} handler={this.props.handler}  state={this.props.state}><BookReview handler={this.props.handlerr} state={this.props.state}/></Layout>)}/>
                 <Route exact path={RoutesMap.SearchResult.path} render={() =>
                             (<Layout pageName={RoutesMap.SearchResult.name} handler={this.props.handler}  state={this.props.state}><Search handler={this.props.handler} state={this.props.state}/></Layout>)}/>
+                 <Route exact path={RoutesMap.SearchTagResult.path} render={() =>
+                            (<Layout pageName={RoutesMap.SearchTagResult.name} handler={this.props.handler}  state={this.props.state}><SearchTag handler={this.props.handler} state={this.props.state}/></Layout>)}/>
               </Switch>
             </BrowserRouter>
         )

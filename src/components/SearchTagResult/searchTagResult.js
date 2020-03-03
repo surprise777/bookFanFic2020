@@ -1,6 +1,6 @@
 import React from "react";
 import Container from '../../containers/mui/container';
-import styles from "./searchResult.module.css"
+import styles from "./searchTagResult.module.css"
 import {BookList} from '../../contents/recommendBooks';
 import BookCard from '../BookCard/bookCard';
 import Grid from '../../containers/mui/grid';
@@ -11,7 +11,7 @@ import Footer from '../Footer/footer';
 import comments from '../../contents/commentCollection';
 import SideBar from '../SideBar/sideBar';
 
-class Search extends React.Component{
+class SearchTag extends React.Component{
     constructor(props){
         super(props)
         console.log(this.props.state.header.input)
@@ -72,4 +72,4 @@ class Search extends React.Component{
     }
 }
 
-export default Search;
+export default SearchTag;

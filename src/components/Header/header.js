@@ -36,7 +36,7 @@ class Header extends React.Component {
 
     render() {
         // {login_status} = this.props;
-
+        const searchLink = window.location.pathname === RoutesMap.SearchResult.path ? RoutesMap.SearchTagResult.path : RoutesMap.SearchResult.path
         return (
             <Container className={styles.head} >
             <AppBar>
@@ -69,7 +69,7 @@ class Header extends React.Component {
                                         InputProps={{
                                             endAdornment: (
                                                 <InputAdornment position="end">
-                                                    <Button> <Link className={styles.link} to={RoutesMap.SearchResult.path}><SearchIcon /></Link></Button>
+                                                    <Button> <Link className={styles.link} to={searchLink}><SearchIcon /></Link></Button>
                                                 </InputAdornment>
                                             ),
                                         }} />
