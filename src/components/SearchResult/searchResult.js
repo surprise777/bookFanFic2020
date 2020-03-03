@@ -8,10 +8,11 @@ import { Box } from "@material-ui/core";
 import Review from '../Review/review';
 import SectionHeader from '../SectionHeader/sectionHeader';
 import Footer from '../Footer/footer';
-import comments from '../../contents/commentCollection';
+import User from '../../contents/dummyData/user';
 import SideBar from '../SideBar/sideBar';
 import SearchResultContent from '../../contents/searchResult';
 import UserCard from '../UserCard/userCard';
+import Books from '../../contents/dummyData/book';
 
 class Search extends React.Component{
     constructor(props){
@@ -20,19 +21,14 @@ class Search extends React.Component{
         this.state = {
             searchTitle: this.props.state.header.input,
             searchBook: BookList,
-            searchReview: Review,
-            searchComment: comments,
+            searchReview: Books,
+            searchComment: User,
         }
         console.log(this.props.state.header.input)
     
 
     }
     render(){
-        const user = {
-            icon_url: require("../../static/Profile/icon.jpg"),
-            name: "Hina",
-            signature: "This guy is lazy, he haven't write anything yet."
-        }
         const reg = new RegExp(this.state.searchTitle)
         return(
             <Container maxWidth={false} disableGutters={true}>
@@ -41,7 +37,7 @@ class Search extends React.Component{
                 <Grid container>
                     <Grid item xs={12} md={8}>
                         <Box px={6} pt={4}>
-                            <SectionHeader headerText={"Books with '"+ this.state.searchTitle+ "'"} />
+                            <SectionHeader headerText={SearchResultContent.tag1+ this.state.searchTitle+ SearchResultContent.endComa} />
                             <Grid  fullWidth
                                         container
                                         justify="space-between"
@@ -53,24 +49,22 @@ class Search extends React.Component{
                         </Box>
 
                         <Box px={6} pt={4}>
-                            <SectionHeader headerText={"Comments with '" + this.state.searchTitle+ "'" } />
+                            <SectionHeader headerText={SearchResultContent.tag2 + this.state.searchTitle+ SearchResultContent.endComa } />
                             <Grid  fullWidth
                                         container
                                         justify="space-between"
                                         alignItems="center">
-                                {BookList.filter(bk => reg.test(bk.title)).map((book, index) => (<Grid container item xs={12} sm={6} md={4} lg={3} className={styles.cardLayout} key={index} justify="center">
-                                    <BookCard media={book.image} title={book.title} book={book} />
+                                {User.filter(u => reg.test(u.userName)).map((us, index) => (<Grid container item xs={12} sm={6} key={index}>
+                                <UserCard icon_url={us.icon_url} name={us.userName} signature={us.signature}/>
                                 </Grid>) )}
                             </Grid>
                         </Box>
 
                         <Box px={6} pt={4} className={styles.overWidth}>
-                            <SectionHeader headerText={"Reviews with '"+ this.state.searchTitle+ "'"} />
-                            {SearchResultContent.books.map(
-                                (book) => (<Review src={book.image} title={book.title} author={book.author} rating={book.rating}/>)
-                            )}
-                            <UserCard user={user}/>
-                            <UserCard user={user}/>
+                            <SectionHeader headerText={SearchResultContent.tag3+ this.state.searchTitle+ SearchResultContent.endComa} />
+                            {Books.filter(b => reg.test(b.title)).map(
+                                (book, index) => (<Review key={index} src={book.image} title={book.title} author={book.author} rating={book.rating}/>)
+                            )}                           
                         </Box>
                     </Grid>
                     <SideBar/>

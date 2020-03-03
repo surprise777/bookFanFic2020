@@ -6,18 +6,17 @@ import styles from './userCard.module.css';
 
 class UserCard extends React.Component{
     render() {
-        const {user} = this.props;
-        const {icon_url, name, signature} = user; 
+        const {icon_url, name, signature} = this.props; 
         return (
-            <Box pt={2} pb={1} pl={2} className={styles.outline_bottom}>
+            <Box pt={2} pb={1} pl={2} >
                 <Container maxWidth='xl' disableGutters={true}>
                     <Grid container>
-                        <Grid item xs={12} md={1}>
+                        <Grid item xs={12} md={2}>
                             <Box display='flex' justifyContent='flex-start' flexWrap='wrap' alignItems='flex-start' pb={1}>
-                                <img src={icon_url} className={styles.icon}/>
+                                <img alt='' src={icon_url} className={styles.icon}/>
                             </Box>
                         </Grid>
-                        <Grid item xs={12} md={11}>
+                        <Grid item xs={12} md={10}>
                             <Box pl={3}>
                                 <div className={styles.userName}>
                                     {name}

@@ -54,8 +54,8 @@ class Home extends React.Component{
                         <Box px={6} pt={4} className={styles.overWidth}>
                             <SectionHeader headerText={HomeContent.popular_review} />
                             {HomeContent.books.map(
-                                (book) => (
-                                    <Review src={book.image} title={book.title} author={book.author} rating={book.rating}/>
+                                (book, index) => (
+                                    <Review key={index} src={book.image} title={book.title} author={book.author} rating={(book.rating)}/>
                                 )
                             )}
                         </Box>

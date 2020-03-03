@@ -38,7 +38,7 @@ class BookReview extends React.Component {
                                 </Box>
                                 <Box pt={3}>
                                     {BookReviewContent.review.content.map(
-                                        (paragraph) => <div>{paragraph}<br/><br/></div>
+                                        (paragraph, index) => <div key={index}>{paragraph}<br/><br/></div>
                                     )}
                                 </Box>
                                 <Box pt={5}>

@@ -25,7 +25,7 @@ class SideBar extends React.Component{
             <SectionHeader headerText={SiedBarContent.titles.contact_us} />
             <Container maxWidth='md'>
                 {SiedBarContent.info.map(
-                    (item) => (<div className={styles.contact}><strong>{item.tag}</strong>{item.u}</div>)
+                    (item, index) => (<div className={styles.contact} key={index}><strong>{item.tag}</strong>{item.u}</div>)
                 )}
             </Container>
         </Box>
