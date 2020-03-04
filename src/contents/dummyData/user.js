@@ -5,6 +5,7 @@ const users = [
         password: "123456",
         acctType: "u",
         icon_url: require("../../static/Profile/icon.jpg"),
+        preference: "Novel",
         signature: "This guy is lazy, he haven't write anything yet."
     },
     {
@@ -12,6 +13,7 @@ const users = [
         email: "def@123.com",
         password: "123456",
         acctType: "u",
+        preference: "Novel",
         icon_url: require("../../static/Profile/icon.jpg"),
         signature: "This guy is lazy, he haven't write anything yet."
     },
@@ -20,6 +22,7 @@ const users = [
         email: "h@h.cn",
         password: "123456",
         acctType: "u",
+        preference: "Novel",
         icon_url: require("../../static/Profile/icon.jpg"),
         signature: "This guy is lazy, he haven't write anything yet."
     },
@@ -28,6 +31,7 @@ const users = [
         email: "a@a.cn",
         password: "123456",
         acctType: "a",
+        preference: "Novel",
         icon_url: require("../../static/Profile/my_icon.jpg"),
         signature: "This guy is lazy, he haven't write anything yet."
     }

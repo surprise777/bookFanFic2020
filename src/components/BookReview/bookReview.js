@@ -9,9 +9,22 @@ import BookCard from '../BookCard/bookCard';
 import SectionHeader from '../SectionHeader/sectionHeader';
 import CommentSection from '../CommentSection/commentSection';
 import {Typography} from '@material-ui/core';
-import BookReviewContent from '../../contents/bookReview';
 
 class BookReview extends React.Component {
+    constructor(props){
+        super(props)
+        console.log(this.props.state.login_status)
+        this.state = {
+            allUser: this.props.state.user,
+            targetBook:this.props.state.book.filter(b => b.brefTitle === this.props.state.selectedReview.book),
+            targetUser: this.props.state.user.filter(u => u.email === this.props.state.selectedReview.email),
+            targetReview: this.props.state.selectedReview,
+        }
+        console.log(this.props.state.selectedReview)
+        console.log(this.props.state.selectedReview.email)
+
+    }
+
     render() {
         console.log(this.props.match);
         return (
@@ -22,14 +35,14 @@ class BookReview extends React.Component {
                         <Grid container>
                             <Grid item xs={12} sm={8}>
                                 <Box>
-                                    <Typography variant="h4" className={styles.title}>{BookReviewContent.review.title}</Typography>
+                                    <Typography variant="h4" className={styles.title}>{this.state.targetReview.title}</Typography>
                                    
                                     <Box display='flex' justifyContent='flex-start' justifyItems='flex-end'>
                                     <div className={styles.author}>
-                                        {BookReviewContent.review.author}
+                                        {this.state.targetUser[0].userName}
                                     </div>
                                     <Rating
-                                        value={4}
+                                        value={this.state.targetReview.rating}
                                         precision={0.5}
                                         readOnly={true}
                                         size={"small"}
@@ -37,7 +50,7 @@ class BookReview extends React.Component {
                                     </Box>
                                 </Box>
                                 <Box pt={3}>
-                                    {BookReviewContent.review.content.map(
+                                    {this.state.targetReview.content.map(
                                         (paragraph, index) => <div key={index}>{paragraph}<br/><br/></div>
                                     )}
                                 </Box>
@@ -48,10 +61,10 @@ class BookReview extends React.Component {
                             </Grid>
                             <Grid item xs={12} sm={4}>
                                 <Box pt={12} className={styles.center_text}>
-                                <BookCard media={BookReviewContent.book.photo} title={BookReviewContent.book.title} />
-                                    <div>Author: {BookReviewContent.book.author}</div>
-                                    <div>Genres: {BookReviewContent.book.genres}</div>
-                                    <div>Published: {BookReviewContent.book.published}</div>
+                                <BookCard media={this.state.targetBook[0].image} title={this.state.targetBook[0].title} />
+                                    <div>Author: {this.state.targetBook[0].author}</div>
+                                    <div>Genres: {this.state.targetBook[0].genres}</div>
+                                    <div>Published: {this.state.targetBook[0].published}</div>
                                 </Box>
                             </Grid>
                         </Grid>

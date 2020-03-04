@@ -56,7 +56,7 @@ class Signup extends React.Component{
         let tempProps = this.props.state
         const passwordCheck = new RegExp('[0-9]+')
         const emailCheck = new RegExp(".+@.+\\.[A-Za-z0-9_]+")
-        const matchU = tempProps.global.filter(u => u.email === this.state.email)
+        const matchU = tempProps.user.filter(u => u.email === this.state.email)
         if (this.state.email === '' || this.state.userName === '' || this.state.password === '' || this.state.confirm === '') {
             alert("all input values cannot be empty");
             event.preventDefault();
@@ -91,12 +91,12 @@ class Signup extends React.Component{
                     tempProps.current.userName = newUser.userName
                     tempProps.current.userType = newUser.acctType
                     tempProps.login_status = true
-                    tempProps.global.push(newUser)
+                    tempProps.user.push(newUser)
                 }
         }
         console.log(tempProps.current.email)
         console.log(tempProps.current.userName)
-        console.log(tempProps.global.length)
+        console.log(tempProps.user.length)
         console.log(tempProps.login_status)
         tempProps.signup = this.state
         this.props.handler(tempProps)

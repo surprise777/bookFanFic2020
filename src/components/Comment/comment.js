@@ -2,11 +2,9 @@ import React from 'react';
 import styles from './comment.module.css';
 import Box from '@material-ui/core/Box';
 import Grid from '../../containers/mui/grid';
-import Container from '../../containers/mui/container';
 import Rating from '@material-ui/lab/Rating';
 import IconButton from '@material-ui/core/IconButton';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 
 class Comment extends React.Component{
     constructor(props){

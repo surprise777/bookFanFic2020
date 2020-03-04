@@ -1,27 +1,25 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Box from '@material-ui/core/Box';
 import styles from './bookCard.module.css';
-import { BookDialog } from '../../actions/viewBookDetails';
+import {Link} from "react-router-dom";
+import {RoutesMap} from '../../utils/routesMap';
 
 const BookCard = ({
 	media,
 	title,
+	book,
+	handleSelectedBook,
 }) => {
-	const style = {
-		backgroundImage: `url(${media})`
-	}
 	return (
 		<Box display="flex" justifyContent="center" alignItems="center">
-			<Box className={styles.bookCard}>
-			<CardActionArea onClick={() => BookDialog()}>
-				<Card className={styles.cardLayout} style={style}>
-				</Card>
+			<Box className={styles.bookCard} onClick={handleSelectedBook}>
+			<CardActionArea >
+			<Link to={RoutesMap.BookDetail.path} className={styles.no_decor}>
+				<img  alt='' className={styles.cardLayout} src={media}></img>
+				<div className={styles.bookTitle}>{title}</div></Link>
 			</CardActionArea>
-				<div className={styles.bookTitle}
-					 onClick={() => BookDialog()}
-				>{title}</div>
+				
 			</Box>
 		</Box>
 	);

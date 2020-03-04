@@ -33,7 +33,7 @@ const RoutesMap = {
     },
     SearchTagResult: {
         name: 'SearchTagResult',
-        path: '/SearchTagResult',
+        path: '/SearchResult2',
     }
     
 

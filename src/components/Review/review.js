@@ -7,11 +7,11 @@ import Rating from '@material-ui/lab/Rating';
 import {Link} from 'react-router-dom';
 import {RoutesMap} from '../../utils/routesMap';
 import {Box} from "@material-ui/core";
-import ReviewContent from '../../contents/review';
 
 class Review extends React.Component {
+  
     render() {
-        const {src, title, author, rating} = this.props;
+        const {src, title, author, rating, reviewItem, handleSelectedReview} = this.props;
         console.log(src);
         return (
             <Box pt={1} pb={1} className={styles.outline_bottom}>
@@ -24,9 +24,9 @@ class Review extends React.Component {
                     </Box>
                 </Grid>
                 <Grid item xs={12} sm={10}>
-                    <Link to={RoutesMap.BookReview.path} className={styles.no_decor}>
-                    <Typography variant="h6" className={styles.fullLink}>{title}</Typography>
-                    </Link>
+                <Link onClick={handleSelectedReview} id={reviewItem.title}  to={RoutesMap.BookReview.path} className={styles.no_decor}> <Typography variant="h6" className={styles.fullLink}> {title}</Typography></Link>
+                    
+                   
                     <Box display='flex' justifyContent='flex-start' alignContent='center'>
                     <div className={styles.author}>
                         {author}
@@ -39,7 +39,7 @@ class Review extends React.Component {
                     />
                     </Box>
                     <div>
-                        {ReviewContent.review}<Link to={RoutesMap.BookReview.path}className={styles.fullLink}>{ReviewContent.full}</Link>
+                        {reviewItem.content[0]}<span className={styles.fullLink}>full</span>
                     </div>
                 </Grid>
             </Grid>

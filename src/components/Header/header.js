@@ -23,7 +23,7 @@ class Header extends React.Component {
             input: this.props.state.header.input,
             status: this.props.state.login_status,
         }
-        this.searchingChange.bind(this)
+        this.searchingChange = this.searchingChange.bind(this)
     }
     
     async searchingChange(e){
@@ -123,7 +123,7 @@ class Header extends React.Component {
                             </Hidden>
                             <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
                                 <Grid container item alignItems="center" justify="center">
-                                    <TextField id="search-field" className={styles.text} placeholder={HeaderContent.searchField} fullWidth onChange={(value)=>{this.searchingChange(value)}}
+                                    <TextField id="search-field" className={styles.text} placeholder={HeaderContent.searchField} fullWidth onChange={this.searchingChange}
                                         InputProps={{
                                             endAdornment: (
                                                 <InputAdornment position="end">

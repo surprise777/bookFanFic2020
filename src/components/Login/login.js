@@ -40,7 +40,7 @@ class Login extends React.Component{
 
     handleMatch(event){
         let tempProps = this.props.state
-        const matchU = tempProps.global.filter(u => u.email === this.state.email)
+        const matchU = tempProps.user.filter(u => u.email === this.state.email)
         if (matchU.length === 0 || this.state.email === '') {
             alert("Email does not exist");
             event.preventDefault();

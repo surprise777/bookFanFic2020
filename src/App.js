@@ -4,6 +4,9 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './muiTheme';
 import users from './contents/dummyData/user';
+import books from './contents/dummyData/book';
+import reviews from './contents/dummyData/review';
+import comments from './contents/dummyData/comment';
 
 class App extends React.Component {
   constructor() {
@@ -13,7 +16,10 @@ class App extends React.Component {
     }
     state = {
       login_status: false,
-      global: users,
+      user: users,
+      book: books,
+      review: reviews,
+      comment: comments,
       "current":{
         "email": "",
         "userName": "",
@@ -35,6 +41,9 @@ class App extends React.Component {
         "confirm": "",
         "acctType": "",
       },
+      selectedReview: reviews[0],
+      selectedBook: books[0],
+      selectedUser: users[0],
     }
     
     // You pass the handler the full state to update each time. This means the child needs to call the current state as an object into a temporary variable, make changes, and then pass in the variable as the update here. See an example in pages/concerns.js:14 for what that looks like. For us, here. it just means we pass the state as a property down the component tree.

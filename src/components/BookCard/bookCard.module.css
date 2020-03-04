@@ -24,3 +24,7 @@
 	color: #ff8c1a;
 	cursor: pointer;
 }
+
+.no_decor{
+    text-decoration: None;
+}
