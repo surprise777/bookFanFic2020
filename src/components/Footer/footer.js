@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './footer.module.css';
-import Container from '../../containers/mui/container';
 import Box from '@material-ui/core/Box';
 import FooterContent from '../../contents/footer';
 

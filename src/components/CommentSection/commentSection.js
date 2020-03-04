@@ -77,7 +77,7 @@ class CommentSection extends React.Component {
                     <Grid container>
                         <Grid item sm={12} md={1}>
                             <Box display='flex' justifyContent='flex-start' flexWrap='wrap' alignItems='flex-start' pt={3}>
-                                <img src={CommentSectionContent.icon} className={styles.icon}/>
+                                <img src={CommentSectionContent.icon} className={styles.icon} alt=''/>
                             </Box>
                         </Grid>
                         <Grid item sm={12} md={11}>

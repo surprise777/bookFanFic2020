@@ -6,10 +6,8 @@ import Grid from '../../containers/mui/grid';
 import Box from '@material-ui/core/Box';
 import Rating from '@material-ui/lab/Rating';
 import Banner from '../Banner/banner';
-import Card from '@material-ui/core/Card';
 import SectionHeader from '../SectionHeader/sectionHeader';
 import CommentSection from '../CommentSection/commentSection';
-//import BookDetailsContent from '../../contents/bookDetails';
 
 
 import Tags from '../Tags/tags';
