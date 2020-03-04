@@ -9,18 +9,45 @@ import Banner from '../Banner/banner';
 import Card from '@material-ui/core/Card';
 import SectionHeader from '../SectionHeader/sectionHeader';
 import CommentSection from '../CommentSection/commentSection';
-import BookDetailsContent from '../../contents/bookDetails';
+//import BookDetailsContent from '../../contents/bookDetails';
+
 
 import Tags from '../Tags/tags';
 
 
 class BookDetail extends React.Component {
-    render() {
-        const url = BookDetailsContent.url;
-        const style = {
-            backgroundImage: `url(${url})`
+    constructor(props){
+        super(props)
+        console.log(this.props.state.login_status)
+        this.state = {
+            allUser: this.props.state.user,
+            targetBook:this.props.state.selectedBook,
         }
-        const rating = BookDetailsContent.book.rating;
+        this.handleSelectedBook = this.handleSelectedBook.bind(this)
+        this.searchingTagChange = this.searchingTagChange.bind(this)
+
+
+    }
+
+    async searchingTagChange(e){
+        e.persist()
+        this.setState({input: e.target.innerText})
+        let tempState = this.props.state
+        tempState.header.input = e.target.innerText
+        console.log(tempState.header.input)
+        this.props.handler(tempState)
+
+    }
+
+    async handleSelectedBook(e){
+        let tempState = this.props.state
+        tempState.selectedBook = this.props.state.book.filter(b => b.brefTitle === e.target.innerText)[0]
+        console.log(tempState)
+        await this.props.handler(tempState)
+
+    }
+
+    render() {
         return (
             <Container maxWidth={false} disableGutters={true}>
                 <Banner />
@@ -32,21 +59,21 @@ class BookDetail extends React.Component {
                                 <Grid item xs={12} md={3}>
                                     <Box display="flex" justifyContent="center" alignItems="center">
                                         <Box>
-                                            <Card className={styles.cardLayout} style={style}>
-                                            </Card>
+                                            <img className={styles.cardLayout} alt='' src={this.state.targetBook.image}>
+                                            </img>
                                         </Box>
                                     </Box>
                                 </Grid>
                                 <Grid item xs={12} md={9}>
                                     <Container maxWidth='lg'>
                                     <Box pt={1}>
-                                    <Typography variant="h4">{BookDetailsContent.book.title}</Typography>
+                                    <Typography variant="h4">{this.state.targetBook.title}</Typography>
                                     </Box>
                                     <Box pt={2}>
-                                        <div>Author: {BookDetailsContent.book.author}</div>
-                                        <div>Published: {BookDetailsContent.book.published}</div>
-                                        <div>Gneres: {BookDetailsContent.book.genres}</div>
-                                        <div>Id: {BookDetailsContent.book.id}</div>
+                                        <div>Author: {this.state.targetBook.author}</div>
+                                        <div>Published: {this.state.targetBook.published}</div>
+        <div>Gneres: {this.state.targetBook.genres.map((g, index) => <span key={index}>{g}</span>)}</div>
+                                        <div>Id: {this.state.targetBook.id}</div>
                                     </Box>
                                     </Container>
                                 </Grid>
@@ -56,7 +83,7 @@ class BookDetail extends React.Component {
                                 <SectionHeader headerText="Description" />
                                 <Container maxWidth='lg'>
                                     <Box pt={1}>
-                                        {BookDetailsContent.book.description}
+                                        {this.state.targetBook.description}
                                     </Box>
                                 </Container>
                                 </Box>
@@ -77,21 +104,21 @@ class BookDetail extends React.Component {
                                         size={"medium"}
                                     />
                                     
-                                    <Typography variant='h4' className={styles.rating}>{rating}</Typography>
-                                    <div>{BookDetailsContent.book.numOfRating}</div>
+                                    <Typography variant='h4' className={styles.rating}>{this.state.targetBook.rating}</Typography>
+                                    <div>{this.state.targetBook.numOfRating}</div>
                                     
                                 </Box>
                             </Box>
                             <Box pt={4} className={styles.shrink}>
                                 <SectionHeader headerText="Tags" />
-                                <Tags tags={["western", "magic", "fantasy", "children"]} />
+                                <Tags tags={this.state.targetBook.genres} handle={this.searchingTagChange}/>
                             </Box>
                             <Box pt={6} className={styles.shrink}>
                                 <SectionHeader headerText="Recent" />
                                 <Box className={styles.trending} pb={2} pt={2}>
                                     <Box className={styles.padding_left}>
-                                        <div className={styles.bookTitle}>{BookDetailsContent.relatedBook.title}</div>
-                                        <div className={styles.author}>{BookDetailsContent.relatedBook.author}}</div>
+                                        {this.state.targetBook.relatedBook.map((b, index) => <React.Fragment key={index}><div className={styles.bookTitle} onClick={this.handleSelectedBook} >{b.title}</div>
+                                        <div className={styles.author}>{b.author}}</div></React.Fragment>)}
                                     </Box>
                                 </Box>
                             </Box>

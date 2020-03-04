@@ -33,7 +33,7 @@ class Home extends React.Component{
     async handleSelectedBook(e){
         let tempState = this.props.state
         tempState.selectedBook = this.props.state.book.filter(b => b.brefTitle === e.target.innerText)[0]
-        console.log(tempState)
+        console.log(e.target)
         await this.props.handler(tempState)
 
     }
