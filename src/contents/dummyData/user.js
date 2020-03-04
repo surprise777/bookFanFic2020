@@ -1,8 +1,8 @@
 const users = [
     {
         userName: "A penguin",
-        email: "abc@123.com",
-        password: "123456",
+        email: "user",
+        password: "user",
         acctType: "u",
         icon_url: require("../../static/Profile/icon.jpg"),
         preference: "Novel",
@@ -28,8 +28,8 @@ const users = [
     },
     {
         userName: "admin001",
-        email: "a@a.cn",
-        password: "123456",
+        email: "admin",
+        password: "admin",
         acctType: "a",
         preference: "Novel",
         icon_url: require("../../static/Profile/my_icon.jpg"),

@@ -85,7 +85,7 @@ class Home extends React.Component{
                             <SectionHeader headerText={HomeContent.sec_header1} />
                             <Grid  fullWidth
                                         container
-                                        justify="space-between"
+                                        justify="flex-start"
                                         alignItems="center">
                                 {this.state.monthlyBook.map((book, index) => (<Grid container item xs={12} sm={6} md={4} lg={3} className={styles.cardLayout} key={index} justify="center">
                                     <BookCard media={book.image} title={book.brefTitle} book={book} handleSelectedBook={this.handleSelectedBook}/>
@@ -97,7 +97,7 @@ class Home extends React.Component{
                             <SectionHeader headerText={HomeContent.sec_header2} />
                             <Grid  fullWidth
                                         container
-                                        justify="space-between"
+                                        justify="flex-start"
                                         alignItems="center">
                                 {this.state.likeBook.map((book, index) => (<Grid container item xs={12} sm={6} md={4} lg={3} className={styles.cardLayout} key={index} justify="center">
                                     <BookCard media={book.image} title={book.title} book={book} handleSelectedBook={this.handleSelectedBook}/>

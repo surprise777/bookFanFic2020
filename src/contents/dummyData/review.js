@@ -1,7 +1,7 @@
  const reviews = [
     {
         'title': 'The rise of a legend - Arthur',
-        'email': "abc@123.com",
+        'email': "user",
         'rating': 5,
         'date': "1",
         'book': "Wheel of time",
