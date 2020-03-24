@@ -50,7 +50,7 @@ class Comment extends React.Component{
             <Grid container>
                 <Grid item sm={12} md={1}>
                     <Box display='flex' justifyContent='flex-start' flexWrap='wrap' alignItems='flex-start' pb={1}>
-                        <img src={icon_url} className={styles.icon}/>
+                        <img src={icon_url} className={styles.icon} alt=''/>
                     </Box>
                 </Grid>
                 <Grid item sm={12} md={11} className={styles.comment}>
