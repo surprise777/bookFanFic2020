@@ -14,11 +14,12 @@ const BookCard = ({
 	return (
 		<Box display="flex" justifyContent="center" alignItems="center">
 			<Box className={styles.bookCard}>
+			<Link to={RoutesMap.BookDetail.path} className={styles.no_decor}>
 			<Card >
 				<img  alt='' className={styles.cardLayout} src={media}></img>
-				<Link to={RoutesMap.BookDetail.path} className={styles.no_decor}><div className={styles.bookTitle} onClick={handleSelectedBook}>{title}</div></Link>
+				<div className={styles.bookTitle}>{title}</div>
 			</Card>
-				
+			</Link>
 			</Box>
 		</Box>
 	);
