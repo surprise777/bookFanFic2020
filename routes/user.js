@@ -5,6 +5,7 @@ const express = require("express");
 const { ObjectID } = require("mongodb");
 const router = express.Router();
 
+// Sign up for an account
 router.post("/signup", (req, res) => {
     const user = new User({
         email: req.body.email,
@@ -20,6 +21,7 @@ router.post("/signup", (req, res) => {
     })
 })
 
+// Login and send cookies to the user
 router.post("/login", (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -32,10 +34,11 @@ router.post("/login", (req, res) => {
         res.send({ currentUser: user });
     }).catch(error => {
         console.log(error);
-        res.status(400).send()
+        res.status(400).send("Wrong email or password")
     })
 })
 
+// Log out the current user
 router.post("/logout", (req, res) => {
     req.session.destroy(error => {
         if (error){
@@ -46,6 +49,7 @@ router.post("/logout", (req, res) => {
     })
 })
 
+// Check if user is logged in by checking the cookies
 router.get("/check-session", (req, res) => {
     if (req.session.user) {
         res.send({ loggedIn: true});
@@ -53,5 +57,54 @@ router.get("/check-session", (req, res) => {
         res.status(401).send();
     } 
 })
+
+//Find the user id, will return userName, email, icon_id, icon_url and signature
+router.get("/:id", (req, res) => {
+    const id = req.params.id;
+    if (!ObjectID.isValid(id)){
+        res.status(400).send();
+        return;
+    }
+
+    User.findById(id).then((user) => {
+        if (!user){
+            res.status(404).send()
+        }else{
+            res.send({
+                email: user.email,
+                userName: user.userName,
+                icon_id: user.icon_id,
+                icon_url: user.icon_url,
+                signature: user.signature 
+            })
+        }
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+})
+
+//Turn a user into Admin
+router.patch("/makeAdmin", (req, res) => {
+    const userId = req.body.userId;
+    if (!ObjectID.isValid(userId)){
+        res.status(400).send();
+        return;
+    }
+
+    User.findById(userId).then((user) => {
+        if (!user){
+            res.status(404).send(); // Can not find the user
+        }
+        user.acctType = "a";
+        return user.save()
+    }).then((result) => {
+        res.send("successfully added as admin");
+    }).catch(error => {
+        console.log(error);
+        res.status(400).send();
+    })
+})
+
 
 module.exports = router;
