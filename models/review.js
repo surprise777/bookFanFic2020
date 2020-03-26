@@ -29,7 +29,7 @@ const ReviewSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
-    fan_list: {
+    fanList: {
         type: [String],
         required: true,
         default: []
