@@ -33,6 +33,18 @@ app.use(
     })
 );
 
+// multipart middleware: allows you to access uploaded file from req.file
+const multipart = require('connect-multiparty');
+const multipartMiddleware = multipart();
+
+// cloudinary: configure using credentials found on your Cloudinary Dashboard
+const cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: 'project309',
+    api_key: '566185589847321',
+    api_secret: 'IEQi9LiO3jdJ2LuiYonVvbHKbEM'
+});
+
 // import the mongoose models
 const {User} = require("./models/user");
 const {Review} = require("./models/review");
