@@ -36,6 +36,16 @@ router.post("/login", (req, res) => {
     })
 })
 
+router.post("/logout", (req, res) => {
+    req.session.destroy(error => {
+        if (error){
+            res.status(500).send()
+        }else{
+            res.send()
+        }
+    })
+})
+
 router.get("/check-session", (req, res) => {
     if (req.session.user) {
         res.send({ loggedIn: true});
