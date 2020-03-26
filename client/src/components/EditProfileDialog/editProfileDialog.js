@@ -37,7 +37,7 @@ function SimpleDialog(props) {
           </Grid>
           <Grid item xs={3}/>
           <Grid item xs={2}>
-            <Button variant='outlined' component='span' color='primary'>
+            <Button variant='outlined' component='span' color='primary' onClick={handleClose}>
               {EditProfileDialogContent.cancel}
             </Button>
           </Grid>
