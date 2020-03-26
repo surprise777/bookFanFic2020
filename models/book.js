@@ -8,7 +8,7 @@ const BookSchema = mongoose.Schema({
         minlength: 1,
         required: true
     },
-    Title: {
+    title: {
         type: String,
         minlength: 1,
         required: true
@@ -47,6 +47,16 @@ const BookSchema = mongoose.Schema({
         type: String,
         minlength: 1,
         required: true
+    },
+    cover_id: {
+        type: String,
+        required: true,
+        default: "null"
+    },
+    cover_url: { //Url to the resource in cloudinary file storage
+        type: String,
+        required: true,
+        default: "null"
     }
 })
 
