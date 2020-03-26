@@ -31,6 +31,8 @@ const CommentSchema = {
     },
     rating: {
         type: Number,
+        min: 0,
+        max: 5,
         required: true
     },
     date: {
