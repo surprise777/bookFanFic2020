@@ -25,9 +25,14 @@ const CommentSchema = {
     },
     likes: {
         type: Number,
-        required: true,
         min: 0,
+        required: true,
         default: 0
+    },
+    fan_list: {
+        type: [ObjectId],
+        required: true,
+        default: []
     },
     rating: {
         type: Number,
