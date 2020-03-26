@@ -49,7 +49,7 @@ router.post("/addBook", authenticateAdmin, (req, res) => {
     })
 })
 
-router.post("/deleteBook", authenticateAdmin, (req, res) => {
+router.delete("/deleteBook", authenticateAdmin, (req, res) => {
     //TODO: when deleting books, also deletes all relevant comments and reviews
     const id = req.body.bookId;
 
