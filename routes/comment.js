@@ -128,5 +128,38 @@ router.get("/byUser/:id", (req, res) => {
     })
 })
 
+// Like/unlike comments, need to provide the commentId
+router.patch("/like", check_login, (req, res) => {
+    const userId = req.session.user;
+    const commentId = req.body.commentId;
+
+    if (!ObjectID.isValid(commentId)){
+        res.status(400).send();
+        return
+    }
+
+    Comment.findById(commentId).then(comment => {
+        if (!comment){
+            res.status(404).send()
+        }else{
+            const liked = comment.fanList.some(id => id.equals(userId));
+            if (liked){
+                comment.fanList = comment.fanList.filter(id => !id.equals(userId));
+                comment.likes -= 1;
+            }else{
+                comment.fanList.push(userId);
+                comment.likes += 1
+            }
+            return comment.save()
+        }
+    }).then(result => {
+        res.send(result)
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+})
+
+
 
 module.exports = router;
