@@ -29,7 +29,8 @@ const UserSchema = new mongoose.Schema({
     acctType: {
         type: String,
         maxlength: 1,
-        required: true
+        required: true,
+        default: "u"
     },
     icon_id: { // Default will be empty string
         type: String,
