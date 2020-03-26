@@ -17,7 +17,7 @@ class Home extends React.Component{
         this.state = {
             monthlyBook: this.props.state.book.filter((b) => b.monthRec),
             likeBook: this.props.state.book.filter((b) => !b.monthRec),
-            pupReview: this.props.state.review.filter((r) => r.popularity < 10),
+            pupReview: this.props.state.review.filter((r) => r.popularity > 10),
             allBook:  this.props.state.book,
             allUser: this.props.state.user,
             selectedBook:this.props.state.selectedBook,
