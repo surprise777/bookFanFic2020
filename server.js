@@ -8,12 +8,6 @@ const app = express();
 const { mongoose } = require("./db/mongoose");
 mongoose.set('useFindAndModify', false);
 
-// import the mongoose models
-const {User} = require("./models/user");
-const {Review} = require("./models/review");
-const {Comment} = require("./models/comment");
-const {Book} = require("./models/book");
-
 // to validate object IDs
 const { ObjectID } = require("mongodb");
 
@@ -39,26 +33,23 @@ app.use(
     })
 );
 
-// // A route to login and create a session
-// app.post("/users/login", (req, res) => {
-//     const email = req.body.email;
-//     const password = req.body.password;
+// import the mongoose models
+const {User} = require("./models/user");
+const {Review} = require("./models/review");
+const {Comment} = require("./models/comment");
+const {Book} = require("./models/book");
 
-//     log(email, password);
-//     // Use the static method on the User model to find a user
-//     // by their email and password
-//     User.findByEmailPassword(email, password)
-//         .then(user => {
-//             // Add the user's id to the session cookie.
-//             // We can check later if this exists to ensure we are logged in.
-//             req.session.user = user._id;
-//             req.session.email = user.email;
-//             res.send({ currentUser: user.email });
-//         })
-//         .catch(error => {
-//             res.status(400).send()
-//         });
-// });
+// import the router
+const user = require("./routes/user");
+const comment = require("./routes/comment");
+const review = require("./routes/review");
+const book = require("./routes/book");
+
+// Link the router (This is the api routes)
+app.use("/user", user)
+app.use("/comment", comment)
+app.use("/review", review)
+app.use("/book", book)
 
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));
