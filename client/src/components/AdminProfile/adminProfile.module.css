@@ -1,0 +1,36 @@
+.page_content{
+    height: 100vh;
+    width: 100%;
+}
+
+.list_padding{
+    padding: 10px;
+}
+
+.user_ProfilePic{
+    border-radius: 50%;
+    display: block;
+    background-size: cover;
+	background-repeat: no-repeat;
+    background-position: center;
+    border-width: 2px;
+    border-style: solid;
+
+}
+
+.profile{
+    align-items: center;
+    width: 100%;
+    display: flex;
+
+}
+
+.comments{
+    background-color: rgb(211, 243, 211);
+    background-size: contain;
+	background-repeat: no-repeat;
+    background-position: center;
+    
+    border-style: solid;
+    border-color: grey;
+}

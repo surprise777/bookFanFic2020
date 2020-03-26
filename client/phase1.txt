@@ -1,0 +1,122 @@
+﻿Project name: Readers Club
+
+
+Setup
+Open the terminal, use “cd” command get to the directory you want to clone the project.
+> git clone https://github.com/csc309-winter-2020/team19.git
+> cd team19
+> npm install
+> npm start
+Make sure all the packages are installed before running, i.e. 
+> sudo npm install -g npm
+
+
+
+
+Existing Accounts
+        Regular user: 
+                email: user
+                password: user
+        Admin:
+                email: admin
+                password: admin
+
+
+
+
+Brief Walkthrough
+Home Page - This is the first page the user will see after running the program. On this page, there are many components on this page: 
+
+
+* A header: A header with logo, website title, search bar, search button, login and signup button
+Users can click “Readers Club” to be redirected to home page anytime the user sees this header.
+Users can type in the search box and click the button on the right to search a book, a user or even a comment.
+Users can login/signup/logout(more details below) by clicking login/signup button, again, anytime the user sees this header.
+* A banner: with text at the middle of it, just to make it look neat
+* “Books of the month”: A section that shows some top rated books of the month
+* “Popular tags”: A section that shows some tags of top rated books of all the time
+* “Trending”: A section that shows books that reviewed by dramatically increasing number of people
+* “You may like”: A section that shows books that the user might also likes based on the search history
+* “Contact Us”: A section where we put our information on it(it is fake by the way, don’t call that number)
+* “Popular review”: A section that shows some top “liked” reviews of all books
+* A footer: a footer with text “2020 Copyright @ ReaderClubs” on it
+
+
+More on next page:
+  
+
+  
+
+  
+
+Signup- Every user needs an account to use the website and be able to start book exchanging.Here is the signup page:
+  
+
+
+
+Login - When the user has an account, they can login anytime. It is not required to login in able to use our website, but it is required if users want to manage profile, leave comments or rate a book.
+The user will be redirected to home page after clicking login.
+  
+
+
+
+Search Result - This is the page after the user enters something to search on the header, as you can see, the program will search books, users and reviews that containing the search word.
+  
+
+
+
+BookDetail - When you click on a book(to view details of a book), this will be what the users see. This page contains some basic informations of the book such as title, author and published date, and a paragraph of description. Also it contains the average rating of the book and the tags the book belongs to. Below is a comment section that users can rate and post some of their feelings. Moreover, users can like others’ comments.
+
+
+  
+
+
+
+
+
+Comment Section - This is the comment section. As i mentioned above, Users can rate and post some of their feelings. Moreover, users can like others’ comments.
+  
+
+
+
+BookReview - Below is an example of review of a book. This page contains the information of what book is reviewed and who “the commenter” is. On the right side, the user will see what book it is with extra information such as author and published date. There is also a comment section on this page.
+  
+
+  
+
+
+
+
+
+Profile page(user) - Users can access this page by clicking the button next to “logout”(circled below). This page contains basic information of the user such as name and email, and a button allows the user to edit his/her profile. Also there is a huge section contains every comment the user had posted.(All of these are dummy datas for now)
+
+
+  
+
+  
+
+
+
+Profile page(admin) - Admin can add a new book into the system, or delete a book/comment/user on this page. (Not implemented yet, just using some dummy datas for now) Login as admin: email: admin password: admin
+
+
+  
+
+
+
+
+
+Required Feature Specification
+User profiling - Every user has his own profile, including profile pictures and a set of status records, including the books he has currently posted. The user can update any relevant information about his account if he has logged in.
+
+
+User Authentication and Authorization - An authenticated user will be able to post a book to be exchanged on the website or cancel an already existing one posted by himself, send an exchange request if he has posted at least one book. The user can also visit other users’ profile, but can not alter their profile data.
+
+
+Data - The main data comes from the user, i.e., users post the book information to be exchanged or initiate a request for a particular book. The website itself also provides a set of recommended books information. Other data includes the user’s profile status and his comments. 
+Note: in phase 1, we only used dummy datas stored in “src/contents/dummyData”. There are also some contents for each page stored in “src/contents”, they are different.
+
+
+Views - There will be 4 main views: The main page which displays recommend books, and possible books users will be interested in exchange with based on their interests; the search page displaying the searched results; the page that displays a particular book’s information and status, usually posted by users; and finally the page that present users’ profile.
+ 
+Admin - One of the account types is admin. If logged in as admin, can search and update user status, includes actions such as deleting the user account if they violated the website usage. Admin account: email: admin password: admin

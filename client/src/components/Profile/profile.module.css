@@ -1,0 +1,75 @@
+.page_content{
+    height: 100vh;
+    width: 100%;
+}
+
+.profile{
+    align-items: center;
+    width: 100%;
+    display: flex;
+}
+
+.user{
+    padding: 10px;
+    background-color: #FEECBC;
+
+}
+
+.user_ProfilePic{
+    border-radius: 50%;
+    display: block;
+    background-size: cover;
+	background-repeat: no-repeat;
+    background-position: center;
+    border-width: 2px;
+    border-style: solid;
+
+}
+
+.user_banner{
+    max-height: 400px;
+    width: 100%;
+
+}
+
+.book_cover{
+    height: 100px;
+    width: 70px;
+
+    border-style: solid;
+    border-color: grey;
+    border-width: 2px;
+}
+
+
+.comments{
+    background-color: rgb(211, 243, 211);
+    background-size: contain;
+	background-repeat: no-repeat;
+    background-position: center;
+    
+    border-radius: 2px;
+    border-style: solid;
+    border-color: grey;
+}
+
+.title{
+    width: 100%;
+}
+
+.comment_title{
+    text-decoration: none;
+    color: rgb(82, 171, 201);
+    
+}
+
+.list{
+    width:100%;
+}
+.comment_content{
+    color: purple;
+}
+
+.list_padding{
+    padding: 10px;
+}
