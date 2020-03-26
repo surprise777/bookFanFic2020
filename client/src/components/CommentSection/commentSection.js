@@ -34,7 +34,10 @@ class CommentSection extends React.Component {
         super(props);
         this.state = {
             rating: 0,
-            comment: ''
+            comment: '',
+            targetBook: this.props.book,
+            comments: this.props.comments,
+            allUser: this.props.user,
         }
     }
 
@@ -107,18 +110,17 @@ class CommentSection extends React.Component {
                 </Box>
                 </Container>
                 <Box>
-                {comments.map((comment, index) => {
-                    const {userName, img_url, content} = comment;
-                    return (                       
-                            <Comment userName={userName} 
-                            icon_url={img_url}
-                            content={content}
+                {this.state.comments.filter(c => c.book === this.state.targetBook.brefTitle).map((comment, index) => 
+                              
+                           ( <Comment userName={this.state.allUser.filter(u => u.email===comment.email)[0].userName} 
+                            icon_url={this.state.allUser.filter(u => u.email===comment.email)[0].icon_url}
+                            content={comment.content}
                             key={index}
-                            counter={55}
-                            date="8 months ago"
-                            click={false}/>
-                    )
-                })}
+                            counter={comment.likes}
+                            date={comment.date}
+                            click={comment.fanList.filter(u => this.props.current.userName === u).length !== 0}/>)
+              
+                )}
                 </Box>
             </Box>
         )
