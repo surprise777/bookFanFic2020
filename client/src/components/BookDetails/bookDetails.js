@@ -8,9 +8,10 @@ import Rating from '@material-ui/lab/Rating';
 import Banner from '../Banner/banner';
 import SectionHeader from '../SectionHeader/sectionHeader';
 import CommentSection from '../CommentSection/commentSection';
-
+import Button from '@material-ui/core/Button';
 
 import Tags from '../Tags/tags';
+import Review from '../Review/review';
 
 
 class BookDetail extends React.Component {
@@ -20,6 +21,8 @@ class BookDetail extends React.Component {
         this.state = {
             allUser: this.props.state.user,
             targetBook:this.props.state.selectedBook,
+            allReview: this.props.state.review,
+            allComment: this.props.state.comment
         }
         this.handleSelectedBook = this.handleSelectedBook.bind(this)
         this.searchingTagChange = this.searchingTagChange.bind(this)
@@ -87,7 +90,18 @@ class BookDetail extends React.Component {
                                 </Box>
                                 <Box pt={10}>
                                     <SectionHeader headerText="Comments"/>
-                                    <CommentSection/>
+                                    <CommentSection book={this.state.targetBook} comments={this.state.allComment} user={this.state.allUser} current={this.props.state.current}/>
+                                </Box>
+                                <Box pt={10}>
+                                    <SectionHeader headerText="Reviews"/>
+                                    <Box display='flex' justifyContent='flex-end'>
+                                    <Button color='primary'>Add a Review</Button>
+                                    </Box>
+                                    {this.state.allReview.filter((r)=>r.book === this.state.targetBook.brefTitle).map(
+                                (rv, index) => (
+                                    <Review key={index} src={this.state.targetBook.image} title={rv.title} author={this.state.allUser.filter(u => u.email === rv.email)[0].userName} rating={(rv.rating)} reviewItem={rv}/>
+                                )
+                            )}
                                 </Box>
                             </Container>
                         </Grid>
