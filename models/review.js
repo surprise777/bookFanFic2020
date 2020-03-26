@@ -36,7 +36,7 @@ const ReviewSchema = new mongoose.Schema({
         default: 0
     },
     fanList: {
-        type: [String],
+        type: [ObjectId],
         required: true,
         default: []
     },
