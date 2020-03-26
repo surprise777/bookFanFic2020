@@ -9,6 +9,10 @@ import BookCard from '../BookCard/bookCard';
 import SectionHeader from '../SectionHeader/sectionHeader';
 import CommentSection from '../CommentSection/commentSection';
 import {Typography} from '@material-ui/core';
+import Review from '../Review/review';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 class BookReview extends React.Component {
     constructor(props){
@@ -16,13 +20,44 @@ class BookReview extends React.Component {
         console.log(this.props.state.login_status)
         this.state = {
             allUser: this.props.state.user,
-            targetBook:this.props.state.book.filter(b => b.brefTitle === this.props.state.selectedReview.book),
+            targetBook:this.props.state.book.filter(b => b.brefTitle === this.props.state.selectedReview.book)[0],
             targetUser: this.props.state.user.filter(u => u.email === this.props.state.selectedReview.email),
             targetReview: this.props.state.selectedReview,
+            allReview: this.props.state.review,
+            click: this.props.state.selectedReview.fanList.filter(u => this.props.state.current.userName === u).length !== 0,
+            counter: this.props.state.selectedReview.popularity
         }
         console.log(this.props.state.selectedReview)
         console.log(this.props.state.selectedReview.email)
 
+    }
+
+    createThumbUpButton(){
+        if (this.state.click)
+        {
+            return (
+                <FavoriteIcon fontSize='small' color='primary'/>
+            )
+        }else{
+            return (
+                <FavoriteIcon fontSize='small'/>
+            )
+        }
+    }
+
+    clickhandler(){
+        const clicked = this.state.click ? false : true;
+        if (clicked){
+            this.setState({
+                "click": clicked,
+                "counter": this.state.counter + 1
+            })
+        }else{
+            this.setState({
+                "click": clicked,
+                "counter": this.state.counter - 1
+            })
+        }
     }
 
     render() {
@@ -54,18 +89,32 @@ class BookReview extends React.Component {
                                         (paragraph, index) => <div key={index}>{paragraph}<br/><br/></div>
                                     )}
                                 </Box>
+                                <Box pt={1} display='flex' alignItems='center' justifyContent='flex-end'>
+                    <IconButton edge='center' onClick={this.clickhandler.bind(this)}>
+                        {this.createThumbUpButton()}
+                    </IconButton>
+                        <span className={styles.likeCount}>{this.state.counter}</span>
+                    </Box>
                                 <Box pt={5}>
-                                <SectionHeader headerText="Comments"/>
-                                <CommentSection/>
+                                <SectionHeader headerText="You may also like"/>
+                                {this.state.allReview.filter((r)=>r.book === this.state.targetBook.brefTitle).map(
+                                (rv, index) => (
+                                    <Review key={index} src={this.state.targetBook.image} title={rv.title} author={this.state.allUser.filter(u => u.email === rv.email)[0].userName} rating={(rv.rating)} reviewItem={rv}/>
+                                )
+                            )}
                                 </Box>
                             </Grid>
                             <Grid item xs={12} sm={4}>
                                 <Box pt={12} className={styles.center_text}>
-                                <BookCard media={this.state.targetBook[0].image} title={this.state.targetBook[0].title} />
-                                    <div>Author: {this.state.targetBook[0].author}</div>
-                                    <div>Genres: {this.state.targetBook[0].genres}</div>
-                                    <div>Published: {this.state.targetBook[0].published}</div>
+                                <BookCard media={this.state.targetBook.image} title={this.state.targetBook.title} />
+                                    <div>Author: {this.state.targetBook.author}</div>
+                                    <div>Genres: {this.state.targetBook.genres}</div>
+                                    <div>Published: {this.state.targetBook.published}</div>
+                                    <Button color='primary'>Add a Review</Button>
                                 </Box>
+                               
+                                    
+                        
                             </Grid>
                         </Grid>
                         </Box>
