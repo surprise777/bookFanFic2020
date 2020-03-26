@@ -32,15 +32,15 @@ const UserSchema = new mongoose.Schema({
         required: true,
         default: "u"
     },
-    icon_id: { // Default will be empty string
+    icon_id: { // Default will be string null, should use preset icon
         type: String,
         required: true,
-        default: ""
+        default: "null"
     },
-    icon_url: { // Default will be empty string
+    icon_url: { // Default will be string null, should use preset icon
         type: String,
         required: true,
-        default: ""
+        default: "null"
     },
     signature: {
         type: String,
