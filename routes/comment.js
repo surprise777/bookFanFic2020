@@ -66,17 +66,6 @@ router.post("/addComment", check_login, (req, res) => {
     })    
 })
 
-//get all comments
-router.get("/all", (req, res) => {
-    
-    Comment.find().then(comments => {
-        res.send(comments)
-    }).catch(error => {
-        console.log(error)
-        res.status(500).send()
-    })
-})
-
 // Delete the comment, either admin or user itself can delete it
 router.delete("/removeComment/:id", check_login, (req, res) => {
     const commentId = req.params.id;
@@ -112,6 +101,17 @@ router.delete("/removeComment/:id", check_login, (req, res) => {
     })
 })
 
+//get all comments
+router.get("/all", (req, res) => {
+    
+    Comment.find().then(comments => {
+        res.send(comments)
+    }).catch(error => {
+        console.log(error)
+        res.status(500).send()
+    })
+})
+
 // get all comments of a book by book Id
 router.get("/byBook/:id", (req, res) => {
     const bookId = req.params.id;
@@ -128,6 +128,46 @@ router.get("/byBook/:id", (req, res) => {
         console.log(error)
         res.status(400).send()
     })
+})
+
+// Load 5 comments each time, sorted by time
+router.get("/loadComments/:id/:index", (req, res) => {
+    const bookId = req.params.id;
+    const offset = parseInt(req.params.index);
+    if (!Number.isInteger(offset)){
+        res.status(400).send()
+        return
+    }
+    if (!ObjectID.isValid(bookId)){
+        res.status(400).send()
+        return
+    }
+
+    Comment.find({bookId: bookId}).sort({date: -1}).skip(offset).limit(5).then(comments => {
+        res.send(comments)
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+
+})
+
+//Get the top comment of a book(i.e. most likes)
+router.get("/top/:id", (req, res) => {
+    const bookId = req.params.id;
+
+    if (!ObjectID.isValid(bookId)) {
+        res.status(400).send()
+        return
+    }
+
+    Comment.find({bookId: bookId}).sort({likes : -1}).limit(1).then(comment => {
+        res.send(comment)
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+
 })
 
 // get all comments posted by a particular user
@@ -179,7 +219,5 @@ router.patch("/like", check_login, (req, res) => {
         res.status(400).send()
     })
 })
-
-
 
 module.exports = router;
