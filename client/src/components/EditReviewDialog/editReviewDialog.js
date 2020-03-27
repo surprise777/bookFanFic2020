@@ -22,11 +22,11 @@ function SimpleDialog(props) {
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} fullWidth maxWidth="md">
             <Grid container className={styles.padding}>
                 <Grid container item xs={12} justify="center" className={styles.paddingBottom} >
-                <Typography variant="h3" color="secondary">Review</Typography>
-                    </Grid>
+                    <Typography variant="h3" color="secondary">Review</Typography>
+                </Grid>
                 <Grid container item xs={12} className={styles.paddingBottom}>
                     <Grid container item xs={6}>
-                        <Grid container item xs={9}> <TextField id="standard-basic" placeholder="Title" fullWidth/></Grid>
+                        <Grid container item xs={9}> <TextField id="standard-basic" placeholder="Title" fullWidth /></Grid>
                     </Grid>
                     <Grid container item xs={6} justify="flex-end" alignItems="center">
                         <Rating
