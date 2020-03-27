@@ -61,7 +61,7 @@ router.get("/check-session", (req, res) => {
 // Get all users
 router.get("/all", (req, res) => {
     User.find().then(users => {
-        res.send(users)
+        res.send({users})
     }).catch(error => {
         console.log(error)
         res.status(500).send()
