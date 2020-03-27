@@ -8,19 +8,18 @@ import Rating from '@material-ui/lab/Rating';
 import Banner from '../Banner/banner';
 import SectionHeader from '../SectionHeader/sectionHeader';
 import CommentSection from '../CommentSection/commentSection';
-import Button from '@material-ui/core/Button';
-
+import ReveiwDialog from '../EditReviewDialog/editReviewDialog';
 import Tags from '../Tags/tags';
 import Review from '../Review/review';
 
 
 class BookDetail extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         console.log(this.props.state.login_status)
         this.state = {
             allUser: this.props.state.user,
-            targetBook:this.props.state.selectedBook,
+            targetBook: this.props.state.selectedBook,
             allReview: this.props.state.review,
             allComment: this.props.state.comment
         }
@@ -30,9 +29,9 @@ class BookDetail extends React.Component {
 
     }
 
-    async searchingTagChange(e){
+    async searchingTagChange(e) {
         e.persist()
-        this.setState({input: e.target.innerText})
+        this.setState({ input: e.target.innerText })
         let tempState = this.props.state
         tempState.header.input = e.target.innerText
         console.log(tempState.header.input)
@@ -40,7 +39,7 @@ class BookDetail extends React.Component {
 
     }
 
-    async handleSelectedBook(e){
+    async handleSelectedBook(e) {
         let tempState = this.props.state
         tempState.selectedBook = this.props.state.book.filter(b => b.brefTitle === e.target.innerText)[0]
         console.log(tempState)
@@ -54,88 +53,88 @@ class BookDetail extends React.Component {
                 <Banner />
                 <Container maxWidth='lg'>
                     <Box pt={8}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={8}>
-                            <Grid container spacing={0}>
-                                <Grid item xs={12} md={3}>
-                                    <Box display="flex" justifyContent="center" alignItems="center">
-                                        <Box>
-                                            <img className={styles.cardLayout} alt='' src={this.state.targetBook.image}>
-                                            </img>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={8}>
+                                <Grid container spacing={0}>
+                                    <Grid item xs={12} md={3}>
+                                        <Box display="flex" justifyContent="center" alignItems="center">
+                                            <Box>
+                                                <img className={styles.cardLayout} alt='' src={this.state.targetBook.image}>
+                                                </img>
+                                            </Box>
                                         </Box>
-                                    </Box>
+                                    </Grid>
+                                    <Grid item xs={12} md={9}>
+                                        <Container maxWidth='lg'>
+                                            <Box pt={1}>
+                                                <Typography variant="h4">{this.state.targetBook.title}</Typography>
+                                            </Box>
+                                            <Box pt={2}>
+                                                <div>Author: {this.state.targetBook.author}</div>
+                                                <div>Published: {this.state.targetBook.published}</div>
+                                                <Grid container alignItems="center"><Grid item xs={1}>Gneres: </Grid><Grid item xs={11}><Tags tags={this.state.targetBook.genres} handle={this.searchingTagChange} /></Grid></Grid>
+                                                <div>Id: {this.state.targetBook.id}</div>
+                                            </Box>
+                                        </Container>
+                                    </Grid>
                                 </Grid>
-                                <Grid item xs={12} md={9}>
-                                    <Container maxWidth='lg'>
-                                    <Box pt={1}>
-                                    <Typography variant="h4">{this.state.targetBook.title}</Typography>
-                                    </Box>
-                                    <Box pt={2}>
-                                        <div>Author: {this.state.targetBook.author}</div>
-                                        <div>Published: {this.state.targetBook.published}</div>
-        <div>Gneres: {this.state.targetBook.genres.map((g, index) => <span key={index}>{g}</span>)}</div>
-                                        <div>Id: {this.state.targetBook.id}</div>
-                                    </Box>
-                                    </Container>
-                                </Grid>
-                            </Grid>
-                            <Container maxWidth='lg'>
-                                <Box pt={6}>
-                                <SectionHeader headerText="Description" />
                                 <Container maxWidth='lg'>
-                                    <Box pt={1}>
-                                        {this.state.targetBook.description}
+                                    <Box pt={6}>
+                                        <SectionHeader headerText="Description" />
+                                        <Container maxWidth='lg'>
+                                            <Box pt={1}>
+                                                {this.state.targetBook.description}
+                                            </Box>
+                                        </Container>
+                                    </Box>
+                                    <Box pt={10}>
+                                        <SectionHeader headerText="Comments" />
+                                        <CommentSection book={this.state.targetBook} comments={this.state.allComment} user={this.state.allUser} current={this.props.state.current} />
+                                    </Box>
+                                    <Box pt={10}>
+                                        <SectionHeader headerText="Reviews" />
+                                        <Box display='flex' justifyContent='flex-end'>
+                                            <ReveiwDialog />
+                                        </Box>
+                                        {this.state.allReview.filter((r) => r.book === this.state.targetBook.brefTitle).map(
+                                            (rv, index) => (
+                                                <Review key={index} src={this.state.targetBook.image} title={rv.title} author={this.state.allUser.filter(u => u.email === rv.email)[0].userName} rating={(rv.rating)} reviewItem={rv} />
+                                            )
+                                        )}
                                     </Box>
                                 </Container>
-                                </Box>
-                                <Box pt={10}>
-                                    <SectionHeader headerText="Comments"/>
-                                    <CommentSection book={this.state.targetBook} comments={this.state.allComment} user={this.state.allUser} current={this.props.state.current}/>
-                                </Box>
-                                <Box pt={10}>
-                                    <SectionHeader headerText="Reviews"/>
-                                    <Box display='flex' justifyContent='flex-end'>
-                                    <Button color='primary'>Add a Review</Button>
-                                    </Box>
-                                    {this.state.allReview.filter((r)=>r.book === this.state.targetBook.brefTitle).map(
-                                (rv, index) => (
-                                    <Review key={index} src={this.state.targetBook.image} title={rv.title} author={this.state.allUser.filter(u => u.email === rv.email)[0].userName} rating={(rv.rating)} reviewItem={rv}/>
-                                )
-                            )}
-                                </Box>
-                            </Container>
-                        </Grid>
-                        <Grid item xs={12} sm={4}>
-                            <Box pt={4} className={styles.shrink}>
-                                <SectionHeader headerText="Rating" />
-                                <Box className={styles.padding_left}>
-                                    <Rating
-                                        value={4.53}
-                                        precision={0.5}
-                                        readOnly={true}
-                                        size={"medium"}
-                                    />
-                                    
-                                    <Typography variant='h4' className={styles.rating}>{this.state.targetBook.rating}</Typography>
-                                    <div>{this.state.targetBook.numOfRating}</div>
-                                    
-                                </Box>
-                            </Box>
-                            <Box pt={4} className={styles.shrink}>
-                                <SectionHeader headerText="Tags" />
-                                <Tags tags={this.state.targetBook.genres} handle={this.searchingTagChange}/>
-                            </Box>
-                            <Box pt={6} className={styles.shrink}>
-                                <SectionHeader headerText="Recent" />
-                                <Box className={styles.trending} pb={2} pt={2}>
+                            </Grid>
+                            <Grid item xs={12} sm={4}>
+                                <Box pt={4} className={styles.shrink}>
+                                    <SectionHeader headerText="Rating" />
                                     <Box className={styles.padding_left}>
-                                        {this.state.targetBook.relatedBook.map((b, index) => <React.Fragment key={index}><div className={styles.bookTitle} onClick={this.handleSelectedBook} >{b.title}</div>
-                                        <div className={styles.author}>{b.author}}</div></React.Fragment>)}
+                                        <Rating
+                                            value={4.53}
+                                            precision={0.5}
+                                            readOnly={true}
+                                            size={"medium"}
+                                        />
+
+                                        <Typography variant='h4' className={styles.rating}>{this.state.targetBook.rating}</Typography>
+                                        <div>{this.state.targetBook.numOfRating}</div>
+
                                     </Box>
                                 </Box>
-                            </Box>
+                                <Box pt={4} className={styles.shrink}>
+                                    <SectionHeader headerText="Tags" />
+                                    <Tags tags={this.state.targetBook.genres} handle={this.searchingTagChange} />
+                                </Box>
+                                <Box pt={6} className={styles.shrink}>
+                                    <SectionHeader headerText="Recent" />
+                                    <Box className={styles.trending} pb={2} pt={2}>
+                                        <Box className={styles.padding_left}>
+                                            {this.state.targetBook.relatedBook.map((b, index) => <React.Fragment key={index}><div className={styles.bookTitle} onClick={this.handleSelectedBook} >{b.title}</div>
+                                                <div className={styles.author}>{b.author}}</div></React.Fragment>)}
+                                        </Box>
+                                    </Box>
+                                </Box>
+                            </Grid>
                         </Grid>
-                    </Grid>
                     </Box>
                 </Container>
             </Container>

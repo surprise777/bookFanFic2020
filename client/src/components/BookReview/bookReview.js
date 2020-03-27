@@ -7,12 +7,11 @@ import Banner from '../Banner/banner';
 import Rating from '@material-ui/lab/Rating';
 import BookCard from '../BookCard/bookCard';
 import SectionHeader from '../SectionHeader/sectionHeader';
-import CommentSection from '../CommentSection/commentSection';
 import {Typography} from '@material-ui/core';
 import Review from '../Review/review';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import ReveiwDialog from '../EditReviewDialog/editReviewDialog';
 
 class BookReview extends React.Component {
     constructor(props){
@@ -90,7 +89,7 @@ class BookReview extends React.Component {
                                     )}
                                 </Box>
                                 <Box pt={1} display='flex' alignItems='center' justifyContent='flex-end'>
-                    <IconButton edge='center' onClick={this.clickhandler.bind(this)}>
+                    <IconButton edge='start' onClick={this.clickhandler.bind(this)}>
                         {this.createThumbUpButton()}
                     </IconButton>
                         <span className={styles.likeCount}>{this.state.counter}</span>
@@ -108,9 +107,8 @@ class BookReview extends React.Component {
                                 <Box pt={12} className={styles.center_text}>
                                 <BookCard media={this.state.targetBook.image} title={this.state.targetBook.title} />
                                     <div>Author: {this.state.targetBook.author}</div>
-                                    <div>Genres: {this.state.targetBook.genres}</div>
                                     <div>Published: {this.state.targetBook.published}</div>
-                                    <Button color='primary'>Add a Review</Button>
+                                    <ReveiwDialog/>
                                 </Box>
                                
                                     

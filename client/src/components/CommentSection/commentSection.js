@@ -1,5 +1,4 @@
 import React from 'react';
-import comments from '../../contents/commentCollection';
 import Comment from '../Comment/comment';
 import styles from './commentSection.module.css';
 import Box from '@material-ui/core/Box';
@@ -11,7 +10,7 @@ import { TextField } from '@material-ui/core';
 import CommentSectionContent from '../../contents/commentSection';
 
 function ClickRating({rating_handler, rating}) {
-    const [value, setValue] = React.useState(0);
+    const [setValue] = React.useState(0);
     return (
       <div className={styles.mr2}>
         <Box component="fieldset" borderColor="transparent">

@@ -105,7 +105,7 @@ class Home extends React.Component{
                             </Grid>
                         </Box>
 
-                        <Box px={6} pt={4} className={styles.overWidth}>
+                        <Box px={6} pt={4}>
                             <SectionHeader headerText={HomeContent.popular_review} />
                             {this.state.pupReview.map(
                                 (rv, index) => (
