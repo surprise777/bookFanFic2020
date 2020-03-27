@@ -14,14 +14,14 @@ import TextField from '@material-ui/core/TextField';
 import Hidden from '@material-ui/core/Hidden';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import {RoutesMap} from '../../utils/routesMap';
-
+import {handleLogout} from '../../actions/user';
 class Header extends React.Component {
     
     constructor(props){
         super(props)
+        this.handleCheckLogin = this.handleCheckLogin.bind(this)
         this.state = {
             input: this.props.state.header.input,
-            status: this.props.state.login_status,
         }
         this.searchingChange = this.searchingChange.bind(this)
     }
@@ -35,22 +35,40 @@ class Header extends React.Component {
 
     }
 
-    async handleLogout(e){
-        let tempState = this.props.state
-        await this.setState({status: false})
-        tempState.login_status = this.state.status
-        tempState.current.userName = ""
-        tempState.current.email=""
-        tempState.current.userType=""
-        this.props.handler(tempState)
+    // async handleLogout(e){
+    //     let tempState = this.props.state
+    //     await this.setState({status: false})
+    //     tempState.login_status = this.state.status
+    //     tempState.current.userName = ""
+    //     tempState.current.email=""
+    //     tempState.current.userType=""
+    //     this.props.handler(tempState)
 
-    }
+    // }
+
+
+handleCheckLogin(app){
+    const url = "/user/check-session";
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            }
+        })
+        .then(json => {
+            if (json && json.loggedIn) {
+                app.setState({ loggedIn: json.loggedIn });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
 
     loginU(){
-        let tempState = this.props.state
-        console.log(tempState.login_status)
-        console.log(tempState.current.userName)
-        if (!tempState.login_status)
+        // this.handleCheckLogin(this.props)
+        if (!this.props.state.loggedIn)
         {
             return (
                 <React.Fragment>
@@ -68,21 +86,15 @@ class Header extends React.Component {
             )
         }else{
             let next = RoutesMap.Profile.path
-            if(tempState.current.userType === 'a'){
-                next = RoutesMap.AdminProfile.path
-            }
-            else{
-                next = RoutesMap.Profile.path
-            }
-            console.log(next)
             return ( 
                 <React.Fragment>
                 <Button >
                 <Link className={styles.link} to={next}>
-                    {tempState.current.userName}
+                    {this.props.state.currentUser.userName}
                 </Link>
             </Button>
-            <Button  onClick={(e) => this.handleLogout(e)}>
+            {/* <Button  onClick={(e) => this.handleLogout(e)}> */}
+            <Button  onClick={() => handleLogout(this.props.app)}> 
                 <Link className={styles.link} to={RoutesMap.Home.path}>
                     {HeaderContent.logout}
                 </Link>

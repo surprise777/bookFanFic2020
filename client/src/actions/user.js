@@ -1,34 +1,5 @@
 
 
-export const handleLogin = (loginPage, app) => {
-    
-    const request = new Request("/user/login", {
-        method: "post",
-        body: JSON.stringify(loginPage.state),
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        }
-    });
-
-    fetch(request)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            }
-        })
-        .then(json => {
-            if (json.currentUser !== undefined) {
-                app.setState({ currentUser: json.currentUser,
-                loggedIn: true});
-            }
-        })
-        .catch(error => {
-            console.log(error);
-        });
-};
-
-
 export const handleLogout = (app) => {
     const url = "/users/logout";
 
@@ -66,26 +37,6 @@ export const handleSignup = (signupPage) => {
                 console.log("Singup Successfully.")
             } else {
                 alert( "Signup Failed.")
-            }
-        })
-        .catch(error => {
-            console.log(error);
-        });
-};
-
-
-export const handleCheckLogin = (app) => {
-    const url = "/user/check-session";
-
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            }
-        })
-        .then(json => {
-            if (json && json.currentUser) {
-                app.setState({ loggedIn: json.loggedIn });
             }
         })
         .catch(error => {
