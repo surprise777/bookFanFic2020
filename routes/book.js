@@ -49,14 +49,18 @@ router.post("/addBook", authenticateAdmin, (req, res) => {
     })
 })
 
+//when deleting books, also deletes all relevant comments and reviews
 router.delete("/deleteBook", authenticateAdmin, (req, res) => {
-    //TODO: when deleting books, also deletes all relevant comments and reviews
+    //TODO: delete book cover from the cloudinary database as well
     const id = req.body.bookId;
 
     if (!ObjectID.isValid(id)){
         res.status(400).send()
         return;
     }
+
+    Comment.deleteMany({bookId: id}, function(err){})
+    Review.deleteMany({bookId: id}, function(err){})
 
     Book.findByIdAndDelete(id).then(book => {
         if (!book){
