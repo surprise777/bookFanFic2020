@@ -38,7 +38,7 @@ class Login extends React.Component{
         this.props.handler(tempProps)
     }
 
-    handleMatch(event){
+    handleLogin(event){
         let tempProps = this.props.state
         const matchU = tempProps.user.filter(u => u.email === this.state.email)
         if (matchU.length === 0 || this.state.email === '') {
@@ -84,7 +84,7 @@ class Login extends React.Component{
                              onChange={(e)=>this.handlePassword(e)}>
                             </input>
                             <br/>
-                            <Link to={RoutesMap.Home.path} className={styles.no_decor}><Button className={styles.login_button} checked={this.state.match} onClick={(e)=>this.handleMatch(e)}>
+                            <Link to={RoutesMap.Home.path} className={styles.no_decor}><Button className={styles.login_button} checked={this.state.match} onClick={(e)=>this.handleLogin(e)}>
                             {LoginContent.login}
                                 </Button></Link>
                         </form>
