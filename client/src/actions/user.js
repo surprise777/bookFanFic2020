@@ -1,20 +1,5 @@
 
 
-export const handleLogout = (app) => {
-    const url = "/users/logout";
-
-    fetch(url)
-        .then(res => {
-            app.setState({
-                currentUser: null,
-                loggedIn: false,
-            });
-        })
-        .catch(error => {
-            console.log(error);
-        });
-};
-
 
 export const handleSignup = (signupPage) => {
 

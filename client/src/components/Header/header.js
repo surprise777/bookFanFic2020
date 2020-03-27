@@ -13,21 +13,20 @@ import styles from './header.module.css';
 import TextField from '@material-ui/core/TextField';
 import Hidden from '@material-ui/core/Hidden';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import {RoutesMap} from '../../utils/routesMap';
-import {handleLogout} from '../../actions/user';
+import { RoutesMap } from '../../utils/routesMap';
 class Header extends React.Component {
-    
-    constructor(props){
+
+    constructor(props) {
         super(props)
-        this.handleCheckLogin = this.handleCheckLogin.bind(this)
         this.state = {
             input: this.props.state.header.input,
         }
         this.searchingChange = this.searchingChange.bind(this)
+        this.handleLogout = this.handleLogout.bind(this) 
     }
-    
-    async searchingChange(e){
-        await this.setState({input: e.target.value})
+
+    async searchingChange(e) {
+        await this.setState({ input: e.target.value })
         let tempState = this.props.state
         tempState.header.input = this.state.input
         console.log(tempState)
@@ -35,82 +34,64 @@ class Header extends React.Component {
 
     }
 
-    // async handleLogout(e){
-    //     let tempState = this.props.state
-    //     await this.setState({status: false})
-    //     tempState.login_status = this.state.status
-    //     tempState.current.userName = ""
-    //     tempState.current.email=""
-    //     tempState.current.userType=""
-    //     this.props.handler(tempState)
+    handleLogout(app) {
+        const url = "/users/logout";
 
-    // }
+        fetch(url)
+            .then(res => {
+                app.setState({
+                    loggedIn: false,
+                    currentUser: null,
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
 
-
-handleCheckLogin(app){
-    const url = "/user/check-session";
-
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            }
-        })
-        .then(json => {
-            if (json && json.loggedIn) {
-                app.setState({ loggedIn: json.loggedIn });
-            }
-        })
-        .catch(error => {
-            console.log(error);
-        });
-};
-
-    loginU(){
-        // this.handleCheckLogin(this.props)
-        if (!this.props.state.loggedIn)
-        {
+    loginU() {
+        console.log(this.props.app)
+        if (!this.props.app.state.loggedIn) {
             return (
                 <React.Fragment>
-                <Button >
-                <Link className={styles.link} to={RoutesMap.Login.path}>
-                    {HeaderContent.login}
-                </Link>
-            </Button>
-            <Button >
-                <Link className={styles.link} to={RoutesMap.Signup.path}>
-                    {HeaderContent.signup}
-                </Link>
-            </Button>
-            </React.Fragment>
+                    <Button >
+                        <Link className={styles.link} to={RoutesMap.Login.path}>
+                            {HeaderContent.login}
+                        </Link>
+                    </Button>
+                    <Button >
+                        <Link className={styles.link} to={RoutesMap.Signup.path}>
+                            {HeaderContent.signup}
+                        </Link>
+                    </Button>
+                </React.Fragment>
             )
-        }else{
+        } else {
             let next = RoutesMap.Profile.path
-            return ( 
+            return (
                 <React.Fragment>
-                <Button >
-                <Link className={styles.link} to={next}>
-                    {this.props.state.currentUser.userName}
-                </Link>
-            </Button>
-            {/* <Button  onClick={(e) => this.handleLogout(e)}> */}
-            <Button  onClick={() => handleLogout(this.props.app)}> 
-                <Link className={styles.link} to={RoutesMap.Home.path}>
-                    {HeaderContent.logout}
-                </Link>
-            </Button>
-            </React.Fragment>
+                    <Button >
+                        <Link className={styles.link} to={next}>
+                            {this.props.state.currentUser.userName}
+                        </Link>
+                    </Button>
+                    {/* <Button  onClick={(e) => this.handleLogout(e)}> */}
+                    <Button onClick={() => this.handleLogout(this.props.app)}>
+                        <Link className={styles.link} to={RoutesMap.Login.path}>
+                            {HeaderContent.logout}
+                        </Link>
+                    </Button>
+                </React.Fragment>
             )
         }
     }
-
     render() {
         // {login_status} = this.props;
         const searchLink = window.location.pathname === RoutesMap.SearchResult.path ? RoutesMap.SearchTagResult.path : RoutesMap.SearchResult.path
         return (
             <Container className={styles.head} >
-            <AppBar>
-              
+                <AppBar>
+
                     <Toolbar>
                         <Grid
                             fullWidth
@@ -120,17 +101,17 @@ handleCheckLogin(app){
                         >
                             <Hidden mdDown>
                                 <Grid container item xs={12} sm={2} alignItems="center" justify="center">
-                               
+
                                     <Grid container item xs={2} alignItems="center" justify="center">
                                         <MenuBookIcon />
                                     </Grid>
                                     <Grid container item xs={10} alignItems="center" justify="flex-start">
-                                    <Link className={styles.link} to={RoutesMap.Home.path}>
-                                        <Typography variant="h6">
-                                            {HeaderContent.title}
-                                        </Typography></Link>
+                                        <Link className={styles.link} to={RoutesMap.Home.path}>
+                                            <Typography variant="h6">
+                                                {HeaderContent.title}
+                                            </Typography></Link>
                                     </Grid>
-                                    
+
                                 </Grid>
                             </Hidden>
                             <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
@@ -146,13 +127,13 @@ handleCheckLogin(app){
                                 </Grid>
                             </Grid>
                             <Grid container item xs={4} sm={2} alignItems="center" justify="flex-end">
-                               {this.loginU()}
-                                </Grid>
-        
+                                {this.loginU()}
+                            </Grid>
+
 
                         </Grid>
                     </Toolbar>
-            </AppBar>
+                </AppBar>
             </Container>
         )
     }
