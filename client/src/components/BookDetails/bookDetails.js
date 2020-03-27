@@ -11,6 +11,7 @@ import CommentSection from '../CommentSection/commentSection';
 import ReveiwDialog from '../EditReviewDialog/editReviewDialog';
 import Tags from '../Tags/tags';
 import Review from '../Review/review';
+import Button from '@material-ui/core/Button';
 
 
 class BookDetail extends React.Component {
@@ -21,13 +22,51 @@ class BookDetail extends React.Component {
             allUser: this.props.state.user,
             targetBook: this.props.state.selectedBook,
             allReview: this.props.state.review,
-            allComment: this.props.state.comment
+            allComment: this.props.state.comment,
+            targetComents: this.props.state.comment.filter(c => c.book === this.props.state.selectedBook.brefTitle),
+            targetReviews: this.props.state.review.filter((r) => r.book === this.props.state.selectedBook.brefTitle),
+            currentComents: this.props.state.comment.filter(c => c.book === this.props.state.selectedBook.brefTitle).slice(0, 1),
+            currentReviews: this.props.state.review.filter((r) => r.book === this.props.state.selectedBook.brefTitle).slice(0,1),
+            pageSize: 1,
+            commentOffset: 0,
+            reviewOffset: 0,
         }
         this.handleSelectedBook = this.handleSelectedBook.bind(this)
         this.searchingTagChange = this.searchingTagChange.bind(this)
+        this.commentPageNext=this.commentPageNext.bind(this)
+        this.commentCurrentPage=this.commentCurrentPage.bind(this)
+        this.reviewPageNext=this.reviewPageNext.bind(this);
+        this.reviewCurrentPage=this.reviewCurrentPage.bind(this)
 
 
     }
+
+    commentCurrentPage(num){
+        this.setState({
+            currentComents:this.state.targetComents.slice(0,num+this.state.pageSize)
+        })
+    }
+
+    commentPageNext () {
+        this.setState({
+            commentOffset:this.state.commentOffset+this.state.pageSize
+        })
+        this.commentCurrentPage(this.state.commentOffset)
+    }
+    
+    reviewCurrentPage(num){
+        this.setState({
+            currentComents:this.state.targetComents.slice(0,num+this.state.pageSize)
+        })
+    }
+
+    reviewPageNext () {
+        this.setState({
+            reviewOffset:this.state.reviewOffset+this.state.pageSize
+        })
+        this.reviewCurrentPage(this.state.reviewOffset)
+    }
+
 
     async searchingTagChange(e) {
         e.persist()
@@ -89,18 +128,20 @@ class BookDetail extends React.Component {
                                     </Box>
                                     <Box pt={10}>
                                         <SectionHeader headerText="Comments" />
-                                        <CommentSection book={this.state.targetBook} comments={this.state.allComment} user={this.state.allUser} current={this.props.state.current} />
+                                        <CommentSection book={this.state.targetBook} comments={this.state.currentComents} user={this.state.allUser} current={this.props.state.current} pageSize={this.props.state.pageSize} handlePageNext={this.commentPageNext}/>
                                     </Box>
                                     <Box pt={10}>
                                         <SectionHeader headerText="Reviews" />
                                         <Box display='flex' justifyContent='flex-end'>
                                             <ReveiwDialog />
                                         </Box>
-                                        {this.state.allReview.filter((r) => r.book === this.state.targetBook.brefTitle).map(
+                                        {this.state.currentReviews.map(
                                             (rv, index) => (
                                                 <Review key={index} src={this.state.targetBook.image} title={rv.title} author={this.state.allUser.filter(u => u.email === rv.email)[0].userName} rating={(rv.rating)} reviewItem={rv} />
                                             )
                                         )}
+                                         <Box display='flex' justifyContent='flex-end'>
+                                         <Button color='secondary' onClick={this.reviewPageNext}>show more</Button></Box>
                                     </Box>
                                 </Container>
                             </Grid>
