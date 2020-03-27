@@ -2,15 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import Rating from '@material-ui/lab/Rating';
 import Grid from '../../containers/mui/grid';
 import Box from "@material-ui/core/Box";
 import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
 import styles from './addBook.module.css';
-import Tags from '../Tags/tags';
 import Container from '../../containers/mui/container';
-import ButtonBase from '@material-ui/core/ButtonBase';
 
 const informations = ['Title', 'Rating', 'Content'];
 

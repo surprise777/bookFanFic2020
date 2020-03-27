@@ -1,0 +1,32 @@
+.book_cover{
+    height: 100px;
+    width: 70px;
+
+    border-style: solid;
+    border-color: grey;
+    border-width: 2px;
+}
+
+.title{
+    width: 100%;
+}
+
+.comment_title{
+    text-decoration: none;
+    color: rgba(0, 128, 128, 0.5);
+    
+}
+
+.list{
+    width:100%;
+}
+.comment_content{
+    color: rgba(34, 30, 30, 0.6);
+}
+
+.commenter{
+    padding-left: 10px;
+    display: inline-block;
+    color: rgba(34, 30, 30, 0.6);
+    font-family: "Times New Roman", Times, serif;
+}

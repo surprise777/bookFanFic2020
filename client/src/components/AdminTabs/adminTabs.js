@@ -110,7 +110,16 @@ export default function SimpleTabs() {
                                 <React.Fragment>
                                     <Button
                                     component="span"
-                                    variant='h6'
+                                    gutterBottom
+                                    onClick={() => (
+                                        console.log(c.content)
+                                    )}     // TODO: change it to Delete()
+                                    >
+                                    Jump To</Button>
+                                </React.Fragment>
+                                <React.Fragment>
+                                    <Button
+                                    component="span"
                                     gutterBottom
                                     onClick={() => (
                                         
@@ -169,6 +178,16 @@ export default function SimpleTabs() {
                                 <React.Fragment>
                                     <Button
                                     component="span"
+                                    gutterBottom
+                                    onClick={() => (
+                                        console.log(c.content)
+                                    )}     // TODO: change it to Delete()
+                                    >
+                                    Jump To</Button>
+                                </React.Fragment>
+                                <React.Fragment>
+                                    <Button
+                                    component="span"
                                     onClick={() => BookDialog(c)}     // TODO: change it to Delete()
                                     >
                                     Delete</Button>
@@ -212,7 +231,16 @@ export default function SimpleTabs() {
                                 <React.Fragment>
                                     <Button
                                     component="span"
-                                    variant='h6'
+                                    gutterBottom
+                                    onClick={() => (
+                                        console.log(c.content)
+                                    )}     // TODO: change it to Delete()
+                                    >
+                                    View Profile</Button>
+                                </React.Fragment>
+                                <React.Fragment>
+                                    <Button
+                                    component="span"
                                     gutterBottom
                                     onClick={() => BookDialog(c)}     // TODO: change it to Delete()
                                     >

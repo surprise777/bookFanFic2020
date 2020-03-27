@@ -5,12 +5,15 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Dialog from '@material-ui/core/Dialog';
+import Box from "@material-ui/core/Box";
 import Edit from '@material-ui/icons/Edit';
-import { Input } from '@material-ui/core';
+import { Input, StylesProvider } from '@material-ui/core';
 import Grid from '../../containers/mui/grid';
 import EditProfileDialogContent from '../../contents/editProfileDialog';
+import Typography from '@material-ui/core/Typography'
+import styles from './editProfileDialog.module.css';
 
-const informations = ['Name', 'Address', 'Email', 'Phone'];
+const informations = ['Name', 'Email', 'Phone'];
 
 function SimpleDialog(props) {
   const { onClose, selectedValue, open } = props;
@@ -20,29 +23,52 @@ function SimpleDialog(props) {
   };
 
   return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <List>
-        {informations.map((info) => (
-          <ListItem  key={info}>
-            <ListItemText primary={info + '：'}/>
-            <Input disableUnderline placeholder={'Your ' + info}/>
-          </ListItem>
-        ))}
-        <Grid container>
-          <Grid item xs={2}/> 
-          <Grid item xs={2}>
-            <Button variant='outlined' component='span' color='secondary'>
-              {EditProfileDialogContent.confirm}
-            </Button>
+    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} maxWidth="md">
+      <Grid container item xs={12} justify="center" >
+        <Typography className={styles.paddingSides} variant="h5" color="secondary">If you don't want to change any of these, leave it blank</Typography>
+      </Grid>
+      
+      
+        
+        <List>
+          <Grid container spacing={0} xs={12}>
+            <Grid item xs={12} md={5}>
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <Box display="flex-center">
+                    <Typography variant="h6" align="center"> Upload image</Typography>
+                </Box>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              {informations.map((info) => (
+                <ListItem  key={info}>
+                  <ListItemText primary={info + '：'} justify="flex-end" />
+                  <Input disableUnderline placeholder={'Your ' + info}/>
+                </ListItem>
+              ))}
+            </Grid>
           </Grid>
-          <Grid item xs={3}/>
-          <Grid item xs={2}>
-            <Button variant='outlined' component='span' color='primary' onClick={handleClose}>
-              {EditProfileDialogContent.cancel}
-            </Button>
+          
+
+          <Grid container className={styles.paddingTop} item xs={12}>
+            <Grid container item xs={1}></Grid>
+            <Grid container item xs={5} justify="flex-start">
+              <Button variant='outlined' component='span' color='secondary'>
+                {EditProfileDialogContent.confirm}
+              </Button>
+            </Grid>
+            
+            <Grid container item xs={5} justify="flex-end">
+              <Button variant='outlined' component='span' color='primary' onClick={handleClose}>
+                {EditProfileDialogContent.cancel}
+              </Button>        
+            </Grid>
           </Grid>
-        </Grid>
-      </List>
+
+            
+
+        </List>
+      
     </Dialog>
   );
 }
