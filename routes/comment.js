@@ -66,6 +66,16 @@ router.post("/addComment", check_login, (req, res) => {
     })    
 })
 
+//get all comments
+router.get("/all", (req, res) => {
+    
+    Comment.find().then(comments => {
+        res.send(comments)
+    }).catch(error => {
+        console.log(error)
+        res.status(500).send()
+    })
+})
 
 // Delete the comment, either admin or user itself can delete it
 router.delete("/removeComment/:id", check_login, (req, res) => {

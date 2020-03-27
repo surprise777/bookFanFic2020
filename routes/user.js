@@ -58,6 +58,16 @@ router.get("/check-session", (req, res) => {
     } 
 })
 
+// Get all users
+router.get("/all", (req, res) => {
+    User.find().then(users => {
+        res.send(users)
+    }).catch(error => {
+        console.log(error)
+        res.status(500).send()
+    })
+})
+
 //Find the user id, will return userName, email, icon_id, icon_url and signature
 router.get("/:id", (req, res) => {
     const id = req.params.id;
@@ -84,7 +94,7 @@ router.get("/:id", (req, res) => {
     })
 })
 
-//Turn a user into Admin
+//Turn a user into Admin, this is suppose to be a hidden route
 router.patch("/makeAdmin", (req, res) => {
     const userId = req.body.userId;
     if (!ObjectID.isValid(userId)){

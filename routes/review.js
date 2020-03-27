@@ -85,6 +85,15 @@ router.delete("/removeReview/:id", check_login, (req, res) => {
     })
 })
 
+// Get all reviews
+router.get("/all", (req, res) => {
+    Review.find().then(reviews => {
+        res.send(reviews)
+    }).catch(error => {
+        console.log(error)
+        res.status(500).send()
+    })
+})
 
 // Like/Unlike a review
 router.patch("/like", check_login, (req, res) => {
