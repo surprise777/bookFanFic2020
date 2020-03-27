@@ -9,6 +9,7 @@ import Container from '../../containers/mui/container';
 import Button from '../../containers/mui/button';
 import Add from '@material-ui/icons/Add';
 import AdminProfileContent from '../../contents/adminProfile';
+import AddBook from '../AddBook/addBook';
 
 class AdminProfile extends React.Component {
     state = {
@@ -37,10 +38,7 @@ class AdminProfile extends React.Component {
                             </Grid>))}
                         </Grid>
                         <Grid container item xs={3}>
-                            <Button>
-                                <Add/>
-                            <Typography variant='h6'> {AdminProfileContent.addBook} </Typography>
-                            </Button>
+                            <AddBook/>
                         </Grid>
                     </Grid>
                     <Container className={styles.profile}>                        

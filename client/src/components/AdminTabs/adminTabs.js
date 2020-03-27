@@ -151,7 +151,7 @@ export default function SimpleTabs() {
                                         <React.Fragment>
                                             <Link onClick={() => BookDialog(c)}>
                                                 <Typography variant='h5' component="span" className={styles.comment_title}> {c.book} >>
-                                                    <Typography variant='h5' className={styles.commenter}> {"  " + (c.commenter ? c.commenter : 'Unknown')} </Typography>
+                                                    <Typography className={styles.commenter} variant='h6'> {"  " + (c.commenter ? c.commenter : 'Unknown')} </Typography>
                                                 </Typography>
                                             </Link>
                                         </React.Fragment>
@@ -160,7 +160,7 @@ export default function SimpleTabs() {
                                         <React.Fragment>
                                             <Typography
                                                 component="span"
-                                                variant='h6' className={styles.comment_content}
+                                                variant='p' className={styles.comment_content}
                                                 gutterBottom
                                             >{c.comment}</Typography>
                                         </React.Fragment>
@@ -203,9 +203,9 @@ export default function SimpleTabs() {
                                 <ListItemText
                                     primary={
                                         <React.Fragment>
-                                            <Link className={styles.comment_title} onClick={() => BookDialog(c)}>
-                                                <Typography variant='h5' component="span" className={styles.comment_title}> {c.id} </Typography>
-                                            </Link>
+                                            <Grid className={styles.comment_title}>
+                                                <Typography variant='h6' component="span" className={styles.commenter}> {c.id} </Typography>
+                                            </Grid>
                                         </React.Fragment>
                                     }                       
                                 />
