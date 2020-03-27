@@ -109,7 +109,7 @@ class CommentSection extends React.Component {
                     </Box>
                 </Container>
                 <Box>
-                    {this.state.comments.filter(c => c.book === this.state.targetBook.brefTitle).map((comment, index) =>
+                    {this.state.comments.map((comment, index) =>
 
                         (<Comment userName={this.state.allUser.filter(u => u.email === comment.email)[0].userName}
                             icon_url={this.state.allUser.filter(u => u.email === comment.email)[0].icon_url}
@@ -120,6 +120,7 @@ class CommentSection extends React.Component {
                             click={comment.fanList.filter(u => this.props.current.userName === u).length !== 0} />)
 
                     )}
+                    <Box display='flex' justifyContent='flex-end'><Button color='secondary' onClick={this.props.handlePageNext}>show more</Button></Box> 
                 </Box>
             </Box>
         )
