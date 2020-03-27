@@ -26,7 +26,7 @@ const BookSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    rating: {
+    rating: { // the total rating of the book
         type: Number,
         min: 0,
         required: true,

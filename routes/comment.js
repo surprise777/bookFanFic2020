@@ -16,10 +16,10 @@ const check_login = (req, res, next) => {
 }
 
 // Add comment to a book specified by book Id, The request body
-// Should include userId, bookId, text and rating
+// Should include bookId, text and rating
 router.post("/addComment", check_login, (req, res) => {
     
-    const userId = req.body.userId;
+    const userId = req.session.user;
     const bookId = req.body.bookId;
     if (!ObjectID.isValid(userId) || !ObjectID.isValid(bookId)){
         res.status(404).send();
@@ -27,8 +27,8 @@ router.post("/addComment", check_login, (req, res) => {
     }
 
     // Check if the user and book exists
-    Book.findById(bookId).then(result => {
-        if (!result){
+    Book.findById(bookId).then(book => {
+        if (!book){
             res.status(404).send("The book does not exist.");
             return
         }else{
@@ -45,6 +45,10 @@ router.post("/addComment", check_login, (req, res) => {
                         date: new Date()
                     })
                     newComment.save().then(comment => {
+                        // Modify the book as well
+                        book.numRating += 1;
+                        book.rating += req.body.rating;
+                        book.save();
                         res.send(comment);
                     }).catch(error => {
                         console.log(error)
@@ -81,6 +85,12 @@ router.delete("/removeComment/:id", check_login, (req, res) => {
             if (!commentUser.equals(userId) && !isAdmin){
                 res.status(401).send("unauthorized operation");
             }else{
+                // Modify the relevant books
+                Book.findById(comment.bookId).then(book => {
+                    book.rating -= comment.rating
+                    book.numRating -= 1
+                    book.save()
+                })
                 return Comment.findByIdAndDelete(commentId)
             }
         }

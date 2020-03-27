@@ -18,6 +18,12 @@ const ReviewSchema = new mongoose.Schema({
         type: ObjectId,
         required: true
     },
+    title: {
+        type: String,
+        minlength: 1,
+        trim: true,
+        required: true
+    },
     rating: {
         type: Number,
         min: 0,
@@ -30,7 +36,7 @@ const ReviewSchema = new mongoose.Schema({
         default: 0
     },
     fanList: {
-        type: [String],
+        type: [ObjectId],
         required: true,
         default: []
     },
