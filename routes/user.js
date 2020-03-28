@@ -5,6 +5,27 @@ const express = require("express");
 const { ObjectID } = require("mongodb");
 const router = express.Router();
 
+// multipart middleware: allows you to access uploaded file from req.file
+const multipart = require('connect-multiparty');
+const multipartMiddleware = multipart();
+
+// cloudinary: configure using credentials found on your Cloudinary Dashboard
+const cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: 'project309',
+    api_key: '566185589847321',
+    api_secret: 'IEQi9LiO3jdJ2LuiYonVvbHKbEM'
+});
+
+
+const check_login = (req, res, next) => {
+    if (!req.session.user){
+        res.status(401).send("unauthorized");
+    }else{
+        next();
+    }
+}
+
 // Sign up for an account
 router.post("/signup", (req, res) => {
     const user = new User({
@@ -92,6 +113,122 @@ router.get("/:id", (req, res) => {
         console.log(error)
         res.status(400).send()
     })
+})
+
+router.get("/byName/:name", (req, res) => {
+    const name = req.params.name;
+    
+    User.find({userName: {$regex: name, $options: 'i'}}).then(users =>{
+        res.send(users)
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+})
+
+//update user signature
+router.patch("/updateSignature", check_login, (req, res) => {
+    const newSigna = req.body.signature;
+    const id = req.session.user;
+
+    User.findById(id).then(user => {
+        if (!user){
+            res.status(404).send()
+        }else{
+            user.signature = newSigna
+            return user.save()
+        }
+    }).then(result => {
+        if (result){
+            res.send({signature: result.signature})
+        }else{
+            res.status(500).send()
+        }
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+})
+
+//update username
+router.patch("/updateUserName", check_login, (req, res) => {
+    const newUserName = req.body.userName;
+    const id = req.session.user;
+
+    User.findById(id).then(user => {
+        if (!user){
+            res.status(404).send()
+        }else{
+            user.userName = newUserName
+            return user.save()
+        }
+    }).then(result => {
+        if (result){
+            res.send({userName: result.userName})
+        }else{
+            res.status(500).send()
+        }
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+})
+
+//update password, this one is a little special, put user id into request body as well
+//Admin can also change the password of any user
+router.patch("/updatePassword", check_login, (req, res) => {
+    const isAdmin = req.session.acctType;
+    const id = req.body.id;
+    const password = req.body.password;
+
+    if (!ObjectID.isValid(id)){
+        res.status(400).send()
+        return
+    }
+
+    User.findById(id).then(user => {
+        if (!user){
+            res.status(404).send()
+        }else{
+            if (!isAdmin && !id.equals(req.session.user)){
+                res.status(401).send("unauthorized")
+            }else{
+                user.password = password
+                return user.save()
+            }
+        }
+    }).then(result => {
+        res.send()
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+})
+
+// allow user to update their icons, please name the name of the input field in the form "image"
+// e.g. <input name="image" type="file" />, see the example posted for further helps
+router.patch("/updateIcons", check_login, multipartMiddleware, (req, res) => {
+    console.log(req)
+    cloudinary.uploader.upload(
+        req.files.image.path, // req.files contains uploaded files
+        function (result) {
+
+            User.findById(req.session.user).then(user => {
+                // Destroy user's previous image icon
+                if (user.icon_url !== "null"){
+                    cloudinary.uploader.destroy(user.icon_id, function (result) {});
+                }
+                user.icon_id = result.public_id
+                user.icon_url = result.url
+                return user.save()
+            }).then(result => {
+                res.send(result)
+            }).catch(error => {
+                console.log(error)
+                res.status(400).send()
+            })
+
+        });
 })
 
 //Turn a user into Admin, this is suppose to be a hidden route
