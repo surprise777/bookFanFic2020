@@ -28,30 +28,35 @@ const authenticateAdmin = (req, res, next) => {
     }
 }
 
-router.post("/addBook", authenticateAdmin, (req, res) => {
+router.post("/addBook", authenticateAdmin, multipartMiddleware, (req, res) => {
     
-    //TODO: connect it to cloudinary and upload images
-    const newBook = new Book({
-        brefTitle: req.body.brefTitle,
-        title: req.body.title,
-        author: req.body.author,
-        genres: req.body.genres,
-        published: req.body.published,
-        monthRec: req.body.monthRec,
-        description: req.body.description
-    })
-
-    newBook.save().then((result) => {
-        res.send(result)
-    }).catch(error => {
-        console.log(error)
-        res.status(400).send()
-    })
+    cloudinary.uploader.upload(
+        req.files.image.path, // req.files contains uploaded files
+        function (result) {
+            const newBook = new Book({
+                brefTitle: req.body.brefTitle,
+                title: req.body.title,
+                author: req.body.author,
+                genres: req.body.genres,
+                published: req.body.published,
+                monthRec: req.body.monthRec,
+                description: req.body.description,
+                cover_id: result.public_id,
+                cover_url: result.url
+            })
+            newBook.save().then((book) => {
+                res.send(book)
+            }).catch(error => {
+                console.log(error)
+                //destroy the cover image
+                cloudinary.uploader.destroy(result.public_id, function (result) {});
+                res.status(400).send()
+            })
+        });
 })
 
 //when deleting books, also deletes all relevant comments and reviews
 router.delete("/deleteBook", authenticateAdmin, (req, res) => {
-    //TODO: delete book cover from the cloudinary database as well
     const id = req.body.bookId;
 
     if (!ObjectID.isValid(id)){
@@ -66,6 +71,7 @@ router.delete("/deleteBook", authenticateAdmin, (req, res) => {
         if (!book){
             res.status(404).send()
         }else {
+            cloudinary.uploader.destroy(book.cover_id, function (result) {});
             res.send(book)
         }
     }).catch(error => {
