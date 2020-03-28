@@ -17,7 +17,7 @@ const check_login = (req, res, next) => {
     }
 }
 
-// Need to provide the book id
+// Need to provide the book id, need to provide bookId, title, rating, contents
 router.post("/addReview", check_login, (req, res) => {
     const userId = req.session.user;
 
@@ -53,7 +53,6 @@ router.post("/addReview", check_login, (req, res) => {
         res.status(400).send()
     })
 })
-
 
 // Used to delete the review, only user itself or admin can remove the comment
 router.delete("/removeReview/:id", check_login, (req, res) => {
@@ -93,6 +92,92 @@ router.get("/all", (req, res) => {
         console.log(error)
         res.status(500).send()
     })
+})
+
+// Search by the title
+router.get("/searchByName/:title", (req, res) => {
+    const title = req.params.title;
+
+    Review.find({title: {$regex: title, $options: 'i'}}).then(reviews => {
+        res.send(reviews)
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+
+})
+
+// Search by user id
+router.get("/byUser/:id", (req, res) => {
+    const id = req.params.id;
+    if (!ObjectID.isValid(id)){
+        res.status(400).send()
+        return
+    }
+    
+    Review.find({userId: id}).then(reviews => {
+        res.send(reviews)
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+})
+
+// get all reviews of a book by book Id
+router.get("/byBook/:id", (req, res) => {
+    const bookId = req.params.id;
+
+    if (!ObjectID.isValid(bookId)) {
+        res.status(400).send()
+        return
+    }
+
+    // Already checked when adding reviews that book exists, no need to check again
+    Review.find({bookId: bookId}).then(reviews => {
+        res.send(reviews)
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+})
+
+// Load 5 reviews each time, sorted by time
+router.get("/loadReviews/:id/:index", (req, res) => {
+    const bookId = req.params.id;
+    const offset = parseInt(req.params.index);
+    if (!Number.isInteger(offset)){
+        res.status(400).send()
+        return
+    }
+    if (!ObjectID.isValid(bookId)){
+        res.status(400).send()
+        return
+    }
+
+    Review.find({bookId: bookId}).sort({date: -1}).skip(offset).limit(5).then(reviews => {
+        res.send(reviews)
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+})
+
+//Get the top review of a book(i.e. most popularities)
+router.get("/top/:id", (req, res) => {
+    const bookId = req.params.id;
+
+    if (!ObjectID.isValid(bookId)) {
+        res.status(400).send()
+        return
+    }
+
+    Review.find({bookId: bookId}).sort({popularity : -1}).limit(1).then(review => {
+        res.send(review)
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+
 })
 
 // Like/Unlike a review
