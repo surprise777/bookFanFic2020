@@ -208,7 +208,7 @@ router.patch("/updatePassword", check_login, (req, res) => {
 // allow user to update their icons, please name the name of the input field in the form "image"
 // e.g. <input name="image" type="file" />, see the example posted for further helps
 router.patch("/updateIcons", check_login, multipartMiddleware, (req, res) => {
-    console.log(req)
+    
     cloudinary.uploader.upload(
         req.files.image.path, // req.files contains uploaded files
         function (result) {

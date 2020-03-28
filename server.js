@@ -8,9 +8,6 @@ const app = express();
 const { mongoose } = require("./db/mongoose");
 mongoose.set('useFindAndModify', false);
 
-// to validate object IDs
-const { ObjectID } = require("mongodb");
-
 // body-parser: middleware for parsing HTTP JSON body into a usable object
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -32,24 +29,6 @@ app.use(
         }
     })
 );
-
-// multipart middleware: allows you to access uploaded file from req.file
-const multipart = require('connect-multiparty');
-const multipartMiddleware = multipart();
-
-// cloudinary: configure using credentials found on your Cloudinary Dashboard
-const cloudinary = require('cloudinary');
-cloudinary.config({
-    cloud_name: 'project309',
-    api_key: '566185589847321',
-    api_secret: 'IEQi9LiO3jdJ2LuiYonVvbHKbEM'
-});
-
-// import the mongoose models
-const {User} = require("./models/user");
-const {Review} = require("./models/review");
-const {Comment} = require("./models/comment");
-const {Book} = require("./models/book");
 
 // import the router
 const user = require("./routes/user");
