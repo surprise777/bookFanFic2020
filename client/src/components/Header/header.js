@@ -68,6 +68,11 @@ class Header extends React.Component {
             )
         } else {
             let next = RoutesMap.Profile.path
+            if(this.props.app.state.currentUser.acctType ==='a')
+            { next = RoutesMap.AdminProfile.path}
+            else{
+                next = RoutesMap.Profile.path
+            }
             return (
                 <React.Fragment>
                     <Button >
@@ -75,9 +80,8 @@ class Header extends React.Component {
                             {this.props.state.currentUser.userName}
                         </Link>
                     </Button>
-                    {/* <Button  onClick={(e) => this.handleLogout(e)}> */}
                     <Button onClick={() => this.handleLogout(this.props.app)}>
-                        <Link className={styles.link} to={RoutesMap.Login.path}>
+                        <Link className={styles.link} to={RoutesMap.Home.path}>
                             {HeaderContent.logout}
                         </Link>
                     </Button>
