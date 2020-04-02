@@ -3,16 +3,8 @@
     width: 100%;
 }
 
-.profile{
-    align-items: center;
-    width: 100%;
-    display: flex;
-}
-
-.user{
+.list_padding{
     padding: 10px;
-    background-color: #FEECBC;
-
 }
 
 .user_ProfilePic{
@@ -27,49 +19,23 @@
 }
 
 .user_banner{
-    max-height: 400px;
     width: 100%;
-
+    max-height: 400px;
 }
 
-.book_cover{
-    height: 100px;
-    width: 70px;
+.profile{
+    align-items: center;
+    width: 100%;
+    display: flex;
 
-    border-style: solid;
-    border-color: grey;
-    border-width: 2px;
 }
-
 
 .comments{
-    background-color: rgb(211, 243, 211);
+    background-color: rgba(245, 151, 114, 0.05);
     background-size: contain;
 	background-repeat: no-repeat;
     background-position: center;
     
-    border-radius: 2px;
     border-style: solid;
     border-color: grey;
-}
-
-.title{
-    width: 100%;
-}
-
-.comment_title{
-    text-decoration: none;
-    color: rgb(82, 171, 201);
-    
-}
-
-.list{
-    width:100%;
-}
-.comment_content{
-    color: purple;
-}
-
-.list_padding{
-    padding: 10px;
 }

@@ -6,3 +6,23 @@
     padding-left: 1rem;
     padding-right: 1rem;
 }
+
+.iconLayout {
+    height: 100%;
+    margin: auto;
+	background-color: rgba(199, 197, 218, 0);
+    min-height: 200px;
+    max-height: 200px;
+	min-width: 150px;
+	max-width: 150px;
+	background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 0 !important;
+}
+
+.uploadButton {
+    margin: auto;
+    width: auto;
+    background-repeat: no-repeat;
+    border-radius: 0 !important;
+}

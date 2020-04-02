@@ -6,15 +6,17 @@ export default {
         "profile": [
             {
                 "tag": "Name",
-                "u": 'Nick1225'
+                "u": 'Killer Bee',
             },
             {
                 "tag": "Email",
-                "u": 'N/A'
+                "u": 'def@123.com',
             },
             {
-                "tag": "Phone",
-                "u": 'N/A'
+                "tag": "Preferences",
+                "u": [
+                    "Novel"
+                ]
             },
         ]
     }

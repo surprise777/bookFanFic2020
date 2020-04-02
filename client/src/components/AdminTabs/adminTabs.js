@@ -73,13 +73,14 @@ export default function SimpleTabs() {
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
                     <Tab label={AdminTabsContent.booksLabel} {...a11yProps(0)} />
                     <Tab label={AdminTabsContent.commentsLabel} {...a11yProps(1)} />
-                    <Tab label={AdminTabsContent.usersLabel} {...a11yProps(2)} />
+                    <Tab label={AdminTabsContent.reviewsLabel} {...a11yProps(2)} />
+                    <Tab label={AdminTabsContent.usersLabel} {...a11yProps(3)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
                 <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
                     <Grid container item alignItems="center" justify="center">
-                        <TextField id="search-field" placeholder={'Book Name'} fullWidth
+                        <TextField id="search-field" placeholder={'Search Book'} fullWidth
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
@@ -112,16 +113,6 @@ export default function SimpleTabs() {
                                     component="span"
                                     gutterBottom
                                     onClick={() => (
-                                        console.log(c.content)
-                                    )}     // TODO: change it to Delete()
-                                    >
-                                    Jump To</Button>
-                                </React.Fragment>
-                                <React.Fragment>
-                                    <Button
-                                    component="span"
-                                    gutterBottom
-                                    onClick={() => (
                                         
                                         console.log(AdminTabsContent.books)
                                     )}     // TODO: change it to Delete()
@@ -137,7 +128,7 @@ export default function SimpleTabs() {
             <TabPanel value={value} index={1}>
                 <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
                     <Grid container item alignItems="center" justify="center">
-                        <TextField id="search-field" placeholder={'Book Name'} fullWidth
+                        <TextField id="search-field" placeholder={'Search Comment'} fullWidth
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
@@ -178,16 +169,6 @@ export default function SimpleTabs() {
                                 <React.Fragment>
                                     <Button
                                     component="span"
-                                    gutterBottom
-                                    onClick={() => (
-                                        console.log(c.content)
-                                    )}     // TODO: change it to Delete()
-                                    >
-                                    Jump To</Button>
-                                </React.Fragment>
-                                <React.Fragment>
-                                    <Button
-                                    component="span"
                                     onClick={() => BookDialog(c)}     // TODO: change it to Delete()
                                     >
                                     Delete</Button>
@@ -199,6 +180,57 @@ export default function SimpleTabs() {
             </TabPanel>
 
             <TabPanel value={value} index={2}>
+                <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
+                    <Grid container item alignItems="center" justify="center">
+                        <TextField id="search-field" placeholder={'Search Review'} fullWidth
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <Button> <SearchIcon /></Button>
+                                    </InputAdornment>
+                                ),
+                            }} />
+                    </Grid>
+                </Grid>
+                <List className={styles.list}>
+                    {AdminTabsContent.reviews.map((c, key) => (
+                        <React.Fragment key={key}>
+                            <Divider variant='fullWidth' component='li' />
+                            <ListItem alignItems='flex-start'>
+                                
+                                <ListItemText
+                                    primary={
+                                        <React.Fragment>
+                                            <Grid className={styles.comment_title}>
+                                                <Typography variant='h5' component='span' className={styles.comment_title}> {c.book} </Typography>
+                                            </Grid>
+                                        </React.Fragment>
+                                    }
+                                    secondary={
+                                        <React.Fragment>
+                                            <Typography
+                                                component="span"
+                                                variant='p' className={styles.comment_content}
+                                                gutterBottom
+                                            > title: {c.title}</Typography>
+                                        </React.Fragment>
+                                    }
+                                />
+                                <React.Fragment>
+                                    <Button
+                                    component="span"
+                                    gutterBottom
+                                    onClick={() => BookDialog(c)}     // TODO: change it to Delete()
+                                    >
+                                    Delete</Button>
+                                </React.Fragment>
+                            </ListItem>
+                        </React.Fragment>
+                    ))}
+                </List>
+            </TabPanel>
+
+            <TabPanel value={value} index={3}>
                 <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
                     <Grid container item alignItems="center" justify="center">
                         <TextField id="search-field" placeholder={'User Name'} fullWidth
@@ -217,27 +249,17 @@ export default function SimpleTabs() {
                             <Divider variant="fullWidth" component="li" />
                             <ListItem alignItems="flex-start">
                                 <ListItemAvatar>
-                                    <Avatar alt={c.book} src={c.src} />
+                                    <Avatar alt='' src={c.icon_url}/>
                                 </ListItemAvatar>
                                 <ListItemText
                                     primary={
                                         <React.Fragment>
                                             <Grid className={styles.comment_title}>
-                                                <Typography variant='h6' component="span" className={styles.commenter}> {c.id} </Typography>
+                                                <Typography variant='h6' component="span" className={styles.commenter}> {c.userName} </Typography>
                                             </Grid>
                                         </React.Fragment>
                                     }                       
                                 />
-                                <React.Fragment>
-                                    <Button
-                                    component="span"
-                                    gutterBottom
-                                    onClick={() => (
-                                        console.log(c.content)
-                                    )}     // TODO: change it to Delete()
-                                    >
-                                    View Profile</Button>
-                                </React.Fragment>
                                 <React.Fragment>
                                     <Button
                                     component="span"

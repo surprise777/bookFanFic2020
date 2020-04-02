@@ -12,8 +12,9 @@ import Grid from '../../containers/mui/grid';
 import EditProfileDialogContent from '../../contents/editProfileDialog';
 import Typography from '@material-ui/core/Typography'
 import styles from './editProfileDialog.module.css';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 
-const informations = ['Name', 'Email', 'Phone'];
+const informations = ['Name', 'Email', 'Password'];
 
 function SimpleDialog(props) {
   const { onClose, selectedValue, open } = props;
@@ -25,49 +26,48 @@ function SimpleDialog(props) {
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} maxWidth="md">
       <Grid container item xs={12} justify="center" >
-        <Typography className={styles.paddingSides} variant="h5" color="secondary">If you don't want to change any of these, leave it blank</Typography>
+        <Typography className={styles.paddingSides} variant="h5" color="secondary">
+          If you don't want to change any of these, leave it blank
+        </Typography>
       </Grid>
-      
-      
-        
-        <List>
-          <Grid container spacing={0} xs={12}>
-            <Grid item xs={12} md={5}>
-              <Box display="flex" justifyContent="center" alignItems="center">
-                <Box display="flex-center">
-                    <Typography variant="h6" align="center"> Upload image</Typography>
-                </Box>
+      <List>
+        <Grid container spacing={0} xs={12}>
+          <Grid item xs={12} md={4}>
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <Box display="flex-center">
+                
+                <Button>
+
+                  <AddPhotoAlternateIcon style={{ fontSize: 100 }}/>
+  
+                </Button>
               </Box>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              {informations.map((info) => (
-                <ListItem  key={info}>
-                  <ListItemText primary={info + '：'} justify="flex-end" />
-                  <Input disableUnderline placeholder={'Your ' + info}/>
-                </ListItem>
-              ))}
-            </Grid>
+            </Box>
           </Grid>
-          
-
-          <Grid container className={styles.paddingTop} item xs={12}>
-            <Grid container item xs={1}></Grid>
-            <Grid container item xs={5} justify="flex-start">
-              <Button variant='outlined' component='span' color='secondary'>
-                {EditProfileDialogContent.confirm}
-              </Button>
-            </Grid>
-            
-            <Grid container item xs={5} justify="flex-end">
-              <Button variant='outlined' component='span' color='primary' onClick={handleClose}>
-                {EditProfileDialogContent.cancel}
-              </Button>        
-            </Grid>
+          <Grid item xs={12} md={6}>
+            {informations.map((info) => (
+              <ListItem  key={info}>
+                <ListItemText primary={info + '：'} justify="flex-end" />
+                <Input disableUnderline placeholder={'New ' + info}/>
+              </ListItem>
+            ))}
           </Grid>
+        </Grid>
 
-            
-
-        </List>
+        <Grid container className={styles.paddingTop} item xs={12}>
+          <Grid container item xs={1}></Grid>
+          <Grid container item xs={5} justify="flex-start">
+            <Button variant='outlined' component='span' color='secondary'>
+              {EditProfileDialogContent.confirm}
+            </Button>
+          </Grid>      
+          <Grid container item xs={5} justify="flex-end">
+            <Button variant='outlined' component='span' color='primary' onClick={handleClose}>
+              {EditProfileDialogContent.cancel}
+            </Button>        
+          </Grid>
+        </Grid>
+      </List>
       
     </Dialog>
   );
@@ -94,9 +94,8 @@ export default function SimpleDialogDemo() {
 
   return (
     <div>
-      <br />
+      <br/>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        <Edit/>
         {EditProfileDialogContent.edit}
       </Button>
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
