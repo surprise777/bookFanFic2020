@@ -22,7 +22,7 @@ class Home extends React.Component {
             allUser: this.props.state.user,
             selectedBook: this.props.state.selectedBook,
             selectedReview: this.props.state.selectedReview,
-            input: this.props.state.header.input,
+            input: this.props.app.state.searchInput,
         }
         this.handleSelectedBook = this.handleSelectedBook.bind(this)
         this.handleSelectedReview = this.handleSelectedReview.bind(this)
