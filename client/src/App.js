@@ -21,9 +21,9 @@ class App extends React.Component {
       review: reviews,
       comment: comments,
       currentUser:null,
-      "header": {
-        "input": ""
-      },
+      // "header": {
+      //   "input": ""
+      // },
       // "login": {
       //   "email": "",
       //   "userName": "",
@@ -37,6 +37,10 @@ class App extends React.Component {
       //   "confirm": "",
       //   "acctType": "",
       // },
+      searchBooks: [],
+      searchUsers: [],
+      searchReviews: [],
+      searchInput:"",
       selectedReview: reviews[0],
       selectedBook: books[0],
       selectedUser: users[0],
