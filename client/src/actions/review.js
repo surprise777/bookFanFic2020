@@ -1,12 +1,12 @@
-export const handleAddComment = (detailPage) => {
+export const handleAddReview = (detailPage) => {
 
-    const url = "/comment/addComment";
+    const url = "/review/addReview";
 
-    const comment = detailPage.state.comment
+    const review = detailPage.state.review
 
     const request = new Request(url, {
         method: "post",
-        body: JSON.stringify(comment),
+        body: JSON.stringify(review),
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
@@ -16,9 +16,9 @@ export const handleAddComment = (detailPage) => {
     fetch(request)
         .then(function (res) {
             if (res.status === 200) {
-                console.log("Add comment Successfully.")
+                console.log("Add review Successfully.")
             } else {
-                alert( "Comment adds Failed.")
+                alert( "Review adds Failed.")
             }
         })
         .catch(error => {
@@ -26,15 +26,15 @@ export const handleAddComment = (detailPage) => {
         });
 };
 
-export const handleDeleteComment = (page, commentId) => {
+export const handleDeleteReview = (page, reviewId) => {
 
-    const url = "/comment/removeComment/" + commentId;
+    const url = "/review/removeReview/" + reviewId;
 
-    const comment = page.state.targetComment
+    const review = page.state.targetReview
 
     const request = new Request(url, {
         method: "delete",
-        body: JSON.stringify(comment),
+        body: JSON.stringify(review),
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
@@ -44,9 +44,9 @@ export const handleDeleteComment = (page, commentId) => {
     fetch(request)
         .then(function (res) {
             if (res.status === 200) {
-                console.log("delete comment Successfully.")
+                console.log("delete review Successfully.")
             } else {
-                alert( "Comment deletes Failed.")
+                alert( "Review deletes Failed.")
             }
         })
         .catch(error => {
@@ -54,74 +54,111 @@ export const handleDeleteComment = (page, commentId) => {
         });
 };
 
-export const getAllComments = (page) => {
-    const url = "/comment/all";
+export const getAllReviews = (page) => {
+    const url = "/review/all";
 
     fetch(url)
         .then(res => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log( "Error: Could not get comments.")
+                console.log( "Error: Could not get reviews.")
             }
         })
         .then(json => {
-            page.setState({ allComments: json });
+            page.setState({ allReviews: json });
         })
         .catch(error => {
             console.log(error);
         });
 };
 
-export const getCommentsByOneBook = (bookId, page) => {
-    const url = "/comment/byBook/"+bookId;
+export const getReviewByName = (title, page) => {
+    const url = "/review/searchByName/"+title;
 
     fetch(url)
         .then(res => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log("Could not get comments by id");
+                console.log("Could not get review by name");
             }
         })
         .then(json => {
-            page.setState({ targetAllComments: json });
+            page.setState({ targetReview: json });
         })
         .catch(error => {
             console.log(error);
         });
 };
 
+export const getAllReviewsByOneUser = (userId, page) => {
+    const url = "/review/byUser/"+userId;
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                console.log("Could not get all reviews by user");
+            }
+        })
+        .then(json => {
+            page.setState({ targetUserReviews: json });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
+export const getAllReviewsByOneBook = (bookId, page) => {
+    const url = "/review/byBook/"+bookId;
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                console.log("Could not get all reviews by a book");
+            }
+        })
+        .then(json => {
+            page.setState({ targetBookReviews: json });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
 
 export const loadCommentsInTime = (bookId, offset, page) => {
-    const url = "/comment/loadComments/"+bookId + offset;
+    const url = "/review/loadReviews/"+bookId + offset;
 
     fetch(url)
         .then(res => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log("Could not load next comments");
+                console.log("Could not load next reviess");
             }
         })
         .then(json => {
-            page.setState({ nextLoadingComments: json });
+            page.setState({ nextLoadingReviews: json });
         })
         .catch(error => {
             console.log(error);
         });
 };
 
-export const getTopCommentByBook = (bookId, page) => {
+export const getTopReviewByBook = (bookId, page) => {
 
-    const url = "/comment/top/"+bookId;
+    const url = "/review/top/"+bookId;
 
     fetch(url)
         .then(res => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log("Could not get top comment");
+                console.log("Could not get top review");
             }
         })
         .then(json => {
@@ -134,35 +171,17 @@ export const getTopCommentByBook = (bookId, page) => {
 
 
 
-export const getAllCommentsByUser = (userId, page) => {
-    const url = "/comment/byUser/" + userId;
-
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                console.log( "Error: Could not get comments by user.")
-            }
-        })
-        .then(json => {
-            page.setState({ allCommentsByTargetUser: json });
-        })
-        .catch(error => {
-            console.log(error);
-        });
-};
 
 
-export const handleLikeComment = (page) => {
+export const handleLikeReview = (page) => {
 
-    const url = "/comment/like";
+    const url = "/review/like";
 
-    const comment = page.state.targetComment
+    const review = page.state.targetReview
 
     const request = new Request(url, {
         method: "patch",
-        body: JSON.stringify(comment),
+        body: JSON.stringify(review),
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
@@ -172,9 +191,9 @@ export const handleLikeComment = (page) => {
     fetch(request)
         .then(function (res) {
             if (res.status === 200) {
-                console.log("like/unlike comments Successfully.")
+                console.log("like/unlike review Successfully.")
             } else {
-                alert( "Like/Unlike comment Failed.")
+                alert( "Like/Unlike review Failed.")
             }
         })
         .catch(error => {
