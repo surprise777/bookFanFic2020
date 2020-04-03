@@ -73,7 +73,7 @@ export const getAllReviews = (page) => {
         });
 };
 
-export const getReviewByName = (title, page) => {
+export const searchReviewsByName = (title, page) => {
     const url = "/review/searchByName/"+title;
 
     fetch(url)
@@ -81,11 +81,11 @@ export const getReviewByName = (title, page) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log("Could not get review by name");
+                console.log("Could not search reviews");
             }
         })
         .then(json => {
-            page.setState({ targetReview: json });
+            page.setState({ searchReviews: json });
         })
         .catch(error => {
             console.log(error);
