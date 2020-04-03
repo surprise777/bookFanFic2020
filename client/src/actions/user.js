@@ -68,15 +68,15 @@ export const getUserById = (userId, page) => {
         });
 };
 
-export const getUsersByName = (userName, page) => {
-    const url = "/user/"+userName;
+export const searchUsersByName = (userName, page) => {
+    const url = "/user/byName/"+userName;
 
     fetch(url)
         .then(res => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log("Could not get user");
+                console.log("Could not search users");
             }
         })
         .then(json => {
