@@ -185,6 +185,26 @@ router.get("/monthRecommendation", (req, res) => {
     })
 })
 
+//Retrieve popular genres, trendings are dependent on total rating, only show 10
+router.get("/popularGenres", (req, res) => {
+    
+    Book.find().sort({ratings: -1}).limit(10).then(books => {
+        const tags = []
+        books.forEach(book => {
+            book.genres.forEach(genre => {
+                if (!tags.includes(genre)){
+                    tags.push(genre)
+                }
+            })
+        })
+        res.send(tags)
+    }).catch(error => {
+        console.log(error)
+        res.status(500).send()
+    })
+
+})
+
 // Admin can make a book become monthly recommendation, or remove it from monthly recommendation
 router.patch("/makeRec/", authenticateAdmin, (req, res) => {
     const bookId = req.body.bookId;
