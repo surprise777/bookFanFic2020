@@ -93,7 +93,7 @@ export const getBookById = (bookId, page) => {
 };
 
 
-export const getBookByName = (bookTitle, page) => {
+export const searchBooksByName = (bookTitle, page) => {
     const url = "/book/searchByName/"+bookTitle;
 
     fetch(url)
@@ -101,11 +101,11 @@ export const getBookByName = (bookTitle, page) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log("Could not get user");
+                console.log("Could not search books");
             }
         })
         .then(json => {
-            page.setState({ targetBook: json });
+            page.setState({ searchBooks: json });
         })
         .catch(error => {
             console.log(error);
