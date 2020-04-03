@@ -113,7 +113,7 @@ router.get("/byId/:id", (req, res) => {
         console.log(error)
         res.status(404).send();
     })
-    
+
 })
 
 // Search by the title
@@ -195,6 +195,18 @@ router.get("/top/:id", (req, res) => {
 
     Review.find({bookId: bookId}).sort({popularity : -1}).limit(1).then(review => {
         res.send(review)
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send()
+    })
+
+})
+
+//Get the top review of a book(i.e. most popularities)
+router.get("/mostPopular", (req, res) => {
+
+    Review.find().sort({popularity : -1}).limit(5).then(reviews => {
+        res.send(reviews)
     }).catch(error => {
         console.log(error)
         res.status(400).send()
