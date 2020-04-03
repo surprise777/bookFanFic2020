@@ -94,6 +94,28 @@ router.get("/all", (req, res) => {
     })
 })
 
+//Get reviews by it unique id
+router.get("/byId/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)){
+        res.status(404).send();
+        return
+    }
+
+    Review.findById(id).then(review => {
+        if (!review){
+            res.status(404).send();
+        }else{
+            res.send(review);
+        }
+    }).catch(error => {
+        console.log(error)
+        res.status(404).send();
+    })
+    
+})
+
 // Search by the title
 router.get("/searchByName/:title", (req, res) => {
     const title = req.params.title;
