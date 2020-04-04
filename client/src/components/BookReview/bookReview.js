@@ -25,20 +25,20 @@ class BookReview extends React.Component {
             reviewId: this.props.app.state.targetReview._id,
             // allReview: this.props.state.review,
             click: this.checkLike(this.props.app.state.currentUser, this.props.app.state.targetReview._id),
-            media: this.findBookCoverById(this.props.app.state.targetReview.bookId),
-            title: this.findBookTitleById(this.props.app.state.targetReview.bookId),
-            author: this.findBookAuthorById(this.props.app.state.targetReview.bookId),
-            book: this.findBookById(this.props.app.state.targetReview.bookId),
-            published: this.findBookPublishedById(this.props.app.state.targetReview.bookId),
+            media: this.props.app.state.targetBook.cover_url,
+            title: this.props.app.state.targetBook.title,
+            author: this.props.app.state.targetBook.author,
+            book: this.props.app.state.targetBook,
+            published: this.props.app.state.targetBook.published,
             popularity: this.props.app.state.targetReview.popularity
             // counter: this.props.state.selectedReview.popularity
         }
         //console.log(JSON.parse(this.state.nextLoadingReviews))
         // console.log(this.props.state.selectedReview.email)
-        this.findBookCoverById = this.findBookCoverById.bind(this)
-        this.findBookAuthorById = this.findBookAuthorById.bind(this)
-        this.findBookPublishedById = this.findBookPublishedById.bind(this)
-        this.findBookTitleById = this.findBookTitleById.bind(this)
+        // this.findBookCoverById = this.findBookCoverById.bind(this)
+        // this.findBookAuthorById = this.findBookAuthorById.bind(this)
+        // this.findBookPublishedById = this.findBookPublishedById.bind(this)
+        // this.findBookTitleById = this.findBookTitleById.bind(this)
         this.handleLikeReview = this.handleLikeReview.bind(this)
         this.checkLike = this.checkLike.bind(this)
         this.getPopularity = this.getPopularity.bind(this)
@@ -146,85 +146,85 @@ class BookReview extends React.Component {
             });
     }
 
-    findBookCoverById(bookId){
-        const url = "/book/searchById/"+bookId;
+    // findBookCoverById(bookId){
+    //     const url = "/book/searchById/"+bookId;
     
-        fetch(url)
-            .then(res => {
-                if (res.status === 200) {
-                    return res.json().cover_url;
-                } else {
-                    console.log("Could not get book cover url by id");
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
+    //     fetch(url)
+    //         .then(res => {
+    //             if (res.status === 200) {
+    //                 return res.json().cover_url;
+    //             } else {
+    //                 console.log("Could not get book cover url by id");
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // };
 
-    findBookAuthorById(bookId){
-        const url = "/book/searchById/"+bookId;
+    // findBookAuthorById(bookId){
+    //     const url = "/book/searchById/"+bookId;
     
-        fetch(url)
-            .then(res => {
-                if (res.status === 200) {
-                    return res.json().author;
-                } else {
-                    console.log("Could not get book cover url by id");
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
+    //     fetch(url)
+    //         .then(res => {
+    //             if (res.status === 200) {
+    //                 return res.json().author;
+    //             } else {
+    //                 console.log("Could not get book cover url by id");
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // };
 
-    findBookPublishedById(bookId){
-        const url = "/book/searchById/"+bookId;
+    // findBookPublishedById(bookId){
+    //     const url = "/book/searchById/"+bookId;
     
-        fetch(url)
-            .then(res => {
-                if (res.status === 200) {
-                    return res.json().published;
-                } else {
-                    console.log("Could not get book cover url by id");
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
+    //     fetch(url)
+    //         .then(res => {
+    //             if (res.status === 200) {
+    //                 return res.json().published;
+    //             } else {
+    //                 console.log("Could not get book cover url by id");
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // };
 
-    findBookById(bookId){
-        const url = "/book/searchById/"+bookId;
+    // findBookById(bookId){
+    //     const url = "/book/searchById/"+bookId;
     
-        fetch(url)
-            .then(res => {
-                if (res.status === 200) {
-                    return res.json();
-                } else {
-                    console.log("Could not get book cover url by id");
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
+    //     fetch(url)
+    //         .then(res => {
+    //             if (res.status === 200) {
+    //                 return res.json();
+    //             } else {
+    //                 console.log("Could not get book cover url by id");
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // };
 
-    findBookTitleById(bookId){
-        const url = "/book/searchById/"+bookId;
+    // findBookTitleById(bookId){
+    //     const url = "/book/searchById/"+bookId;
     
-        fetch(url)
-            .then(res => {
-                if (res.status === 200) {
-                    return res.json().title;
-                } else {
-                    console.log("Could not get book cover url by id");
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
+    //     fetch(url)
+    //         .then(res => {
+    //             if (res.status === 200) {
+    //                 return res.json().title;
+    //             } else {
+    //                 console.log("Could not get book cover url by id");
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // };
     
     // loadReviewsInTime(bookId){
     //     const url = "/review/loadReviews/"+bookId + "/0";
@@ -289,7 +289,7 @@ class BookReview extends React.Component {
                                     <BookCard media={this.state.media} title={this.state.author} book={this.state.book} page={this.props.app} />
                                     <div>Author: {this.state.author}</div>
                                     <div>Published: {this.state.published}</div>
-                                    <ReveiwDialog />
+                                    <ReveiwDialog book={this.state.book} />
                                 </Box>
 
 

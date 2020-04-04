@@ -76,7 +76,6 @@ export const getAllReviews = (page) => {
 export const getReviewById = (id, page) => {
 
     const url = "/review/byId/"+id;
-
     fetch(url)
         .then(res => {
             if (res.status === 200) {
@@ -87,10 +86,32 @@ export const getReviewById = (id, page) => {
         })
         .then(json => {
             page.setState({ targetReview: json });
+            return json.bookId
+        }).then(bookId => {
+
+        const bookUrl = "/book/searchById/"+bookId;
+
+        fetch(bookUrl)
+            .then(res => {
+                if (res.status === 200) {
+                    return res.json();
+                } else {
+                    console.log("Could not get book by id");
+                }
+            })
+            .then(json => {
+                page.setState({ targetBook: json });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+
         })
         .catch(error => {
             console.log(error);
         });
+
 };
 
 export const searchReviewsByName = (title, page) => {
