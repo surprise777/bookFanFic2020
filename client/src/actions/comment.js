@@ -269,3 +269,18 @@ export const loadComments = (app) => {
         console.log(error);
     })
 }
+
+export const loadTopComment = (app) => {
+    const url = "/comment/top/" + app.state.targetBook;
+    fetch(url).then(res => {
+        if (res.status == 200){
+            return res.json();
+        }
+    }).then(json => {
+        if (json){
+            app.setState({top_comment: json});
+        }
+    }).catch(error => {
+        console.log(error)
+    })
+}

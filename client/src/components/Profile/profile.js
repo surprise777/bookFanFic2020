@@ -9,6 +9,7 @@ import Edit from '@material-ui/icons/Edit';
 import Container from '../../containers/mui/container';
 import Dialog from '../EditProfileDialog/editProfileDialog';
 import UserTabs from '../UserProfileTabs/profileTabs';
+import Banner from "../Banner/banner";
 
 class Profile extends React.Component {
     constructor(props) {
@@ -20,10 +21,11 @@ class Profile extends React.Component {
         return (
             <React.Fragment>
                 <Container maxWidth={false} disableGutters={true}>
-                    <img
+                    {/* <img
                     className={styles.user_banner}
                     src={ProfileContent.spanner}
-                    alt='' />
+                    alt='' /> */}
+                    <Banner/>
                     <Container maxWidth='lg' className={styles.page_content}>
                         <Grid container item alignItems='center'>
                             <Grid container item xs={2}/>
