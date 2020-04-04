@@ -223,7 +223,8 @@ router.patch("/like", check_login, (req, res) => {
         res.status(400).send()
         return
     }
-
+    let status = false;
+    
     Review.findById(reviewId).then(review => {
         if (!review){
             res.status(404).send()
@@ -232,14 +233,16 @@ router.patch("/like", check_login, (req, res) => {
             if (liked){
                 review.fanList = review.fanList.filter(id => !id.equals(userId));
                 review.popularity -= 1
+                status = false
             }else {
                 review.fanList.push(userId)
                 review.popularity +=1
+                status = true
             }
             return review.save()
         }
     }).then(result => {
-        res.send(result)
+        res.send({result, status: status})
     }).catch(error => {
         console.log(error)
         res.status(400).send()
