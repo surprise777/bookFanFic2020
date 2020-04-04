@@ -168,10 +168,11 @@ class BookDetail extends React.Component {
                                             </Box>
                                         </Container>
                                     </Box>
-                                    {/* <Box pt={10}>
+                                    <Box pt={10}>
                                         <SectionHeader headerText="Comments" />
-                                        <CommentSection book={this.state.targetBook} comments={this.state.currentComents} user={this.state.allUser} current={this.props.state.current} pageSize={this.props.state.pageSize} handlePageNext={this.commentPageNext}/>
+                                        <CommentSection bookId={this.props.app.state.targetBook._id} currentUser={this.props.app.state.currentUser}/>
                                     </Box>
+                                    {/*
                                     <Box pt={10}>
                                         <SectionHeader headerText="Reviews" />
                                         <Box display='flex' justifyContent='flex-end'>

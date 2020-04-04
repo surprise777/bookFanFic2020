@@ -5,19 +5,31 @@ import Grid from '../../containers/mui/grid';
 import Rating from '@material-ui/lab/Rating';
 import IconButton from '@material-ui/core/IconButton';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import { findUserInfo } from "../../actions/user";
+import {likeComment} from "../../actions/comment";
 
 class Comment extends React.Component{
     constructor(props){
         super(props);
-        const {counter, click} = this.props;
         this.state = {
-            click: click,
-            counter: counter
+            id: this.props.id,
+            counter: this.props.counter,
+            userName: "",
+            icon_url: "",
+            fanList: this.props.fanList,
+            currentUser: this.props.currentUser
         }
+        findUserInfo(this, this.props.userId)
     }
 
     createThumbUpButton(){
-        if (this.state.click)
+        if (!this.state.currentUser){
+            return (
+                <ThumbUpIcon fontSize='small'/>
+            )
+        }
+
+        if (this.state.fanList.includes(this.state.currentUser._id))
         {
             return (
                 <ThumbUpIcon fontSize='small' color='primary'/>
@@ -29,23 +41,27 @@ class Comment extends React.Component{
         }
     }
 
-    clickhandler(){
-        const clicked = this.state.click ? false : true;
-        if (clicked){
-            this.setState({
-                "click": clicked,
-                "counter": this.state.counter + 1
-            })
-        }else{
-            this.setState({
-                "click": clicked,
-                "counter": this.state.counter - 1
-            })
-        }
+    loginWarning(){
+        window.alert("Please log in first!");
     }
+    // clickhandler(){
+    //     const clicked = this.state.click ? false : true;
+    //     if (clicked){
+    //         this.setState({
+    //             "click": clicked,
+    //             "counter": this.state.counter + 1
+    //         })
+    //     }else{
+    //         this.setState({
+    //             "click": clicked,
+    //             "counter": this.state.counter - 1
+    //         })
+    //     }
+    // }
 
     render() {
-        const {userName, icon_url, content, date} = this.props;
+        const {content, date, rating} = this.props;
+        const {icon_url, userName} = this.state;
         return(
             <Grid container>
                 <Grid item sm={12} md={1}>
@@ -60,14 +76,14 @@ class Comment extends React.Component{
                         <span className={styles.date}>{date}</span>
                     </div>
                     <Rating
-                                    value={4.53}
+                                    value={rating}
                                     precision={0.5}
                                     readOnly={true}
                                     size={"small"}
                     />
                     <div>{content}</div>
                     <Box pt={2} display='flex' alignItems='center'>
-                    <IconButton edge='start' onClick={this.clickhandler.bind(this)}>
+                    <IconButton edge='start' onClick={() => {likeComment(this)}}>
                         {this.createThumbUpButton()}
                     </IconButton>
                         <span className={styles.likeCount}>{this.state.counter}</span>

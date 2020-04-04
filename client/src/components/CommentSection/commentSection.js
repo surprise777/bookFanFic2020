@@ -8,9 +8,10 @@ import Container from '../../containers/mui/container';
 import Rating from '@material-ui/lab/Rating';
 import { TextField } from '@material-ui/core';
 import CommentSectionContent from '../../contents/commentSection';
+import {loadComments, addComment} from "../../actions/comment";
 
 function ClickRating({ rating_handler, rating }) {
-    const [setValue] = React.useState(0);
+    const [value, setValue] = React.useState(0);
     return (
         <div className={styles.mr2}>
             <Box component="fieldset" borderColor="transparent">
@@ -34,9 +35,27 @@ class CommentSection extends React.Component {
         this.state = {
             rating: 0,
             comment: '',
-            targetBook: this.props.book,
-            comments: this.props.comments,
-            allUser: this.props.user,
+            targetBook: this.props.bookId,
+            comments: [],
+            currentUser: this.props.currentUser,
+            index: 0
+        }
+        loadComments(this)
+    }
+
+    loginWarning(){
+        window.alert("Please log in first!");
+    }
+
+    fillInWarning(){
+        window.alert("Comment can not be empty/Rating can not be 0");
+    }
+
+    loadUserIcon(user) {
+        if (user){
+            return (<img src={user.icon_url} className={styles.icon} alt='' />)
+        }else{
+            return (<img src={CommentSectionContent.icon} className={styles.icon} alt='' />)
         }
     }
 
@@ -59,18 +78,6 @@ class CommentSection extends React.Component {
         })
     };
 
-    print_comment() {
-        const comments = this.state.comment.split('\n');
-        console.log(comments);
-        return (
-            comments.map(c => {
-                return (
-                    <div>{c}</div>
-                )
-            })
-        )
-    }
-
     render() {
         return (
             <Box>
@@ -79,7 +86,7 @@ class CommentSection extends React.Component {
                         <Grid container>
                             <Grid item sm={12} md={1}>
                                 <Box display='flex' justifyContent='flex-start' flexWrap='wrap' alignItems='flex-start' pt={3}>
-                                    <img src={CommentSectionContent.icon} className={styles.icon} alt='' />
+                                    {this.loadUserIcon(this.state.currentUser)}
                                 </Box>
                             </Grid>
                             <Grid item sm={12} md={11}>
@@ -101,7 +108,7 @@ class CommentSection extends React.Component {
                                             onClick={this.cancelhandler.bind(this)}
                                         >{CommentSectionContent.cancel}
                                         </Button>
-                                        <Button color='primary'>{CommentSectionContent.comment}</Button>
+                                        <Button color='primary' onClick={() => {addComment(this)}}>{CommentSectionContent.comment}</Button>
                                     </Box>
                                 </Box>
                             </Grid>
@@ -111,16 +118,20 @@ class CommentSection extends React.Component {
                 <Box>
                     {this.state.comments.map((comment, index) =>
 
-                        (<Comment userName={this.state.allUser.filter(u => u.email === comment.email)[0].userName}
-                            icon_url={this.state.allUser.filter(u => u.email === comment.email)[0].icon_url}
+                        (<Comment
+                            currentUser={this.state.currentUser}
+                            id = {comment._id}
+                            fanList={comment.fanList}
+                            userId={comment.userId}
                             content={comment.content}
+                            rating={comment.rating}
                             key={index}
                             counter={comment.likes}
                             date={comment.date}
-                            click={comment.fanList.filter(u => this.props.current.userName === u).length !== 0} />)
+                            />)
 
                     )}
-                    <Box display='flex' justifyContent='flex-end'><Button color='secondary' onClick={this.props.handlePageNext}>show more</Button></Box> 
+                    <Box display='flex' justifyContent='flex-end'><Button color='secondary' onClick={() => {loadComments(this)}}>show more</Button></Box> 
                 </Box>
             </Box>
         )

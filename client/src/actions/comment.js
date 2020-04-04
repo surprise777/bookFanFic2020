@@ -181,3 +181,91 @@ export const handleLikeComment = (page) => {
             console.log(error);
         });
 };
+
+export const addComment = (app) => {
+    if (!app.state.currentUser){
+        app.loginWarning();
+        return;
+    }
+
+    if (app.state.comment === "" || app.state.rating === 0){
+        app.fillInWarning();
+        return;
+    }
+
+    const requestBody = {rating: app.state.rating, content: app.state.comment, bookId: app.state.targetBook}
+    const url = "/comment/addComment";
+    const request = new Request(url, {
+        method: "post",
+        body: JSON.stringify(requestBody),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+
+    fetch(request).then(res => {
+        if (res.status == 200){
+            return res.json();
+        }else if (res.status == 401){
+            app.loginWarning();
+        }
+    }).then(json => {
+        if (json){
+            const new_comments = app.state.comments;
+            new_comments.unshift(json);
+            app.setState({comments: new_comments});
+        }
+    }).catch(error => {
+        console.log(error)
+    })
+}
+
+export const likeComment = (app) => {
+    if (!app.state.currentUser){
+        app.loginWarning();
+        return;
+    }
+    const requestBody = {commentId: app.state.id}
+    
+    const url = "/comment/like";
+    const request = new Request(url, {
+        method: "PATCH",
+        body: JSON.stringify(requestBody),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+
+    fetch(request).then(res => {
+        if (res.status == 200){
+            return res.json()
+        }else if (res.status == 401){
+            app.loginWarning();
+        }
+    }).then(json => {
+            app.setState({fanList: json.fanList, counter: json.likes})
+    }).catch(error => {
+        console.log(error)
+    })
+
+}
+
+export const loadComments = (app) => {
+    const url = `/comment/loadComments/${app.state.targetBook}/${app.state.index}`;
+    fetch(url).then(res => {
+        if (res.status == 200){
+            return res.json();
+        }
+    }).then(json => {
+        if (json.length !== 0){
+            const newList = app.state.comments;
+            console.log("incremented");
+            json.forEach(c => newList.push(c));
+            app.setState({comments: newList, index : app.state.index + json.length});
+        }
+    }).catch(error => {
+        console.log(error);
+    })
+}

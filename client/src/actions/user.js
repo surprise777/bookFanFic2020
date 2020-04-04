@@ -226,3 +226,18 @@ export const handleMakeAdmin = (page) => {
             console.log(error);
         });
 };
+
+export const findUserInfo = (app, id) => {
+    const url = `user/${id}`;
+    fetch(url).then(res => {
+        if (res.status == 200){
+            return res.json()
+        }
+    }).then(json => {
+        if (json){
+            app.setState({userName: json.userName, icon_url: json.icon_url})
+        }
+    }).catch(error => {
+        console.log(error)
+    })
+}
