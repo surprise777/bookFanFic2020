@@ -21,18 +21,29 @@ class BookReview extends React.Component {
             // allUser: this.props.state.user,
             // targetBook: this.props.state.book.filter(b => b.brefTitle === this.props.state.selectedReview.book)[0],
             //targetUser: this.props.state.user.filter(u => u.email === this.props.state.selectedReview.email),
-            // targetReview: this.props.state.selectedReview,
+            targetReview: this.props.app.state.targetReview,
+            reviewId: this.props.app.state.targetReview._id,
             // allReview: this.props.state.review,
-            // click: this.props.state.selectedReview.fanList.filter(u => this.props.state.current.userName === u).length !== 0,
+            click: this.checkLike(this.props.app.state.currentUser._id, this.props.app.state.targetReview._id),
+            media: this.findBookCoverById(this.props.app.state.targetReview.bookId),
+            title: this.findBookTitleById(this.props.app.state.targetReview.bookId),
+            author: this.findBookAuthorById(this.props.app.state.targetReview.bookId),
+            book: this.findBookById(this.props.app.state.targetReview.bookId),
+            published: this.findBookPublishedById(this.props.app.state.targetReview.bookId),
+            popularity: this.props.app.state.targetReview.popularity
             // counter: this.props.state.selectedReview.popularity
         }
-        // console.log(this.props.state.selectedReview)
+        //console.log(JSON.parse(this.state.nextLoadingReviews))
         // console.log(this.props.state.selectedReview.email)
         this.findBookCoverById = this.findBookCoverById.bind(this)
         this.findBookAuthorById = this.findBookAuthorById.bind(this)
         this.findBookPublishedById = this.findBookPublishedById.bind(this)
         this.findBookTitleById = this.findBookTitleById.bind(this)
+        this.handleLikeReview = this.handleLikeReview.bind(this)
+        this.checkLike = this.checkLike.bind(this)
+        this.getPopularity = this.getPopularity.bind(this)
         // this.findBookById = this.findBookById.bind(this)
+        //this.loadReviewsInTime = this.loadReviewsInTime.bind(this)
 
     }
 
@@ -62,6 +73,76 @@ class BookReview extends React.Component {
     //         })
     //     }
     // }
+    
+    handleLikeReview(page){
+
+        const url = "/review/like";
+    
+        const review = page.state
+    
+        const request = new Request(url, {
+            method: "patch",
+            body: JSON.stringify(review),
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        });
+    
+        fetch(request)
+            .then((res) => {
+                if (res.status === 200) {
+                    return res.json();
+                } else {
+                    alert( "Like/Unlike review Failed.")
+                    return
+                }
+            })   
+            .then(json => {
+                page.setState({ click: json.status });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
+    checkLike(userId, reviewId){
+        const url = "/review/byId/"+reviewId;
+
+        fetch(url)
+            .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                console.log("Could not get review by id");
+            }
+            })
+            .then(json => {
+                return json.fanList.includes(userId);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+    
+    getPopularity(reviewId){
+        const url = "/review/byId/"+reviewId;
+
+        fetch(url)
+            .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                console.log("Could not get review by id");
+            }
+            })
+            .then(json => {
+                return json.popularity;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 
     findBookCoverById(bookId){
         const url = "/book/searchById/"+bookId;
@@ -142,6 +223,22 @@ class BookReview extends React.Component {
                 console.log(error);
             });
     };
+    
+    // loadReviewsInTime(bookId){
+    //     const url = "/review/loadReviews/"+bookId + "/0";
+    
+    //     fetch(url)
+    //         .then(res => {
+    //             if (res.status === 200) {
+    //                 return res.json();
+    //             } else {
+    //                 console.log("Could not load next reviews");
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // };
 
     render() {
         // console.log(this.props.match);
@@ -171,25 +268,25 @@ class BookReview extends React.Component {
                                     {this.props.app.state.targetReview.contents}
                                 </Box>
                                 <Box pt={1} display='flex' alignItems='center' justifyContent='flex-end'>
-                                    <IconButton edge='start'>
+                                    <IconButton edge='start' onClick={()=>this.handleLikeReview(this)} disabled={!this.props.app.state.currentUser}>
                                         {this.createThumbUpButton()}
                                     </IconButton>
-                                    <span className={styles.likeCount}>{this.props.app.state.targetReview.popularity}</span>
+                                    <span className={styles.likeCount} >{this.state.popularity}</span>
                                 </Box>
                                 {/* <Box pt={5}>
                                     <SectionHeader headerText="You may also like" />
-                                    {this.state.allReview.filter((r) => r.book === this.state.targetBook.brefTitle).map(
+                                    {this.state.nextLoadingReviews.map(
                                         (rv, index) => (
-                                            <Review key={index} src={this.state.targetBook.image} title={rv.title} author={this.state.allUser.filter(u => u.email === rv.email)[0].userName} rating={(rv.rating)} reviewItem={rv} />
+                                            <Review key={index} src={this.state.media} title={rv.title} author={rv.author} rating={(rv.rating)} reviewItem={rv} page={this.props.app}/>
                                         )
                                     )}
                                 </Box> */}
                             </Grid>
                             <Grid item xs={12} sm={4}>
                                 <Box pt={12} className={styles.center_text}>
-                                    <BookCard media={this.findBookCoverById(this.props.app.state.targetReview.bookId)} title={this.findBookTitleById(this.props.app.state.targetReview.bookId)} book={this.findBookById(this.props.app.state.targetReview.bookId)} page={this.props.app} />
-                                    <div>Author: {this.findBookAuthorById(this.props.app.state.targetReview.bookId)}</div>
-                                    <div>Published: {this.findBookPublishedById(this.props.app.state.targetReview.bookId)}</div>
+                                    <BookCard media={this.state.media} title={this.state.author} book={this.state.book} page={this.props.app} />
+                                    <div>Author: {this.state.author}</div>
+                                    <div>Published: {this.state.published}</div>
                                     <ReveiwDialog />
                                 </Box>
 

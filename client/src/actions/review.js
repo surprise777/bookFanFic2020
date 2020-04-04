@@ -150,7 +150,7 @@ export const getAllReviewsByOneBook = (bookId, page) => {
         });
 };
 
-export const loadCommentsInTime = (bookId, offset, page) => {
+export const loadReviewsInTime = (bookId, offset, page) => {
     const url = "/review/loadReviews/"+bookId + offset;
 
     fetch(url)
@@ -228,10 +228,13 @@ export const handleLikeReview = (page) => {
     fetch(request)
         .then(function (res) {
             if (res.status === 200) {
-                console.log("like/unlike review Successfully.")
+                return res.json();
             } else {
                 alert( "Like/Unlike review Failed.")
             }
+        })   
+        .then(json => {
+            page.setState({ click: json.status });
         })
         .catch(error => {
             console.log(error);
