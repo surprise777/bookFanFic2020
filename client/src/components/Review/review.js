@@ -28,14 +28,14 @@ class Review extends React.Component {
         return (
             <Box pt={1} pb={1} className={styles.outline_bottom}>
                 <Grid container className={styles.review} spacing={1}>
-                    <Grid item xs={12} sm={2}>
-                        <Box display='flex' justifyContent='center' justifyItems='center'>
+                    <Grid item xs={12} sm={3}>
+                        <Box display='flex' justifyContent='flex-start' justifyItems='center'>
                             <CardMedia>
                                 <img alt="" src={cover_url} className={styles.cardMedia}></img>
                             </CardMedia>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} sm={10}>
+                    <Grid item xs={12} sm={9}>
                         <Link onMouseOver={() =>getReviewById(reviewItem._id, page)} id={reviewItem.title} to={RoutesMap.BookReview.path} className={styles.no_decor}> <Typography variant="h6" className={styles.fullLink}> {title}</Typography></Link>
 
 
@@ -51,7 +51,7 @@ class Review extends React.Component {
                             />
                         </Box>
                         <div>
-                        <Link onMouseOver={() =>getReviewById(reviewItem._id, page)} id={reviewItem.title} to={RoutesMap.BookReview.path} className={styles.no_decor}>{reviewItem.contents}<span className={styles.fullLink}>full</span></Link>
+                        <Link onMouseOver={() =>getReviewById(reviewItem._id, page)} id={reviewItem.title} to={RoutesMap.BookReview.path} className={styles.no_decor}>{reviewItem.contents.slice(0, 200)}<span className={styles.fullLink}>full</span></Link>
                         </div>
                     </Grid>
                 </Grid>
