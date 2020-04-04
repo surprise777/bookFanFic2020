@@ -127,11 +127,11 @@ export const getBookByGenres = (genresList, page) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log("Could not get user");
+                console.log("Could not searchBy genres");
             }
         })
         .then(json => {
-            page.setState({ genresBooks: json });
+            page.setState({ searchBooks: json, searchInput: genres });
         })
         .catch(error => {
             console.log(error);
@@ -197,6 +197,24 @@ export const getMonthlyRec = (page) => {
         });
 };
 
+export const getPopularGenres = (page) => {
+    const url = "/book/popularGenres";
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                console.log( "Error: Could not get monthly books.")
+            }
+        })
+        .then(json => {
+            page.setState({ popularTags: json });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
 
 export const handleMakeRec = (page) => {
 

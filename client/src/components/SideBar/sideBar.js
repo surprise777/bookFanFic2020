@@ -11,15 +11,15 @@ import SiedBarContent from '../../contents/sideBar';
 
 class SideBar extends React.Component{
    render(){
-    const{book, handleSearching, handleSelectedBook} = this.props
+    const { tags, trending, page } = this.props;
     return ( <Grid item xs>
         <Box px={6} pt={10}>
             <SectionHeader headerText={SiedBarContent.titles.popular_tags} />
-            <Tags tags={tags} handle={handleSearching}/>
+            <Tags tags={tags} page={page}/>
         </Box>
         <Box px={6} pt={8} className={styles.overWidth}>
             <SectionHeader headerText={SiedBarContent.titles.trending} />
-            <Trending book={book} handle={handleSelectedBook}/>
+            <Trending trending={trending} page={page}/>
         </Box>
         <Box px={6} pt={8}>
             <SectionHeader headerText={SiedBarContent.titles.contact_us} />

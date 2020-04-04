@@ -73,6 +73,26 @@ export const getAllReviews = (page) => {
         });
 };
 
+export const getReviewById = (id, page) => {
+
+    const url = "/review/byId/"+id;
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                console.log("Could not get review by id");
+            }
+        })
+        .then(json => {
+            page.setState({ targetReview: json });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
 export const searchReviewsByName = (title, page) => {
     const url = "/review/searchByName/"+title;
 
@@ -170,7 +190,24 @@ export const getTopReviewByBook = (bookId, page) => {
 };
 
 
+export const getMostPopularReviews = (page) => {
+    const url = "/review/mostPopular";
 
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                console.log( "Error: Could not get popular reviews.")
+            }
+        })
+        .then(json => {
+            page.setState({ popularReviews: json });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
 
 
 export const handleLikeReview = (page) => {
