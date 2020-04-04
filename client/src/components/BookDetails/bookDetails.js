@@ -13,14 +13,15 @@ import Tags from '../Tags/tags';
 import Review from '../Review/review';
 import Button from '@material-ui/core/Button';
 // import {getReleventById} from '../../actions/book';
+import {loadReviews, loadTopReview} from '../../actions/review';
 import SideBar from '../SideBar/sideBar';
 class BookDetail extends React.Component {
     constructor(props) {
         super(props)
         // console.log(this.props.state.login_status)
-        // this.state = {
+        this.state = {
             // allUser: this.props.state.user,
-            // targetBook: this.props.app.state.targetBook,
+            targetBook: this.props.app.state.targetBook,
             // allReview: this.props.state.review,
             // allComment: this.props.state.comment,
             // targetComents: this.props.state.comment.filter(c => c.book === this.props.state.selectedBook.brefTitle),
@@ -28,9 +29,12 @@ class BookDetail extends React.Component {
             // currentComents: this.props.state.comment.filter(c => c.book === this.props.state.selectedBook.brefTitle).slice(0, 1),
             // currentReviews: this.props.state.review.filter((r) => r.book === this.props.state.selectedBook.brefTitle).slice(0,1),
             // pageSize: 1,
-            // commentOffset: 0,
+            offset: 0,
+            nextLoadingReviews: [],
+            top_review: null,
+            currentUser: this.props.app.state.currentUser,
             // reviewOffset: 0,
-        // }
+        }
         // this.handleSelectedBook = this.handleSelectedBook.bind(this)
         // this.searchingTagChange = this.searchingTagChange.bind(this)
         // this.commentPageNext = this.commentPageNext.bind(this)
@@ -42,6 +46,8 @@ class BookDetail extends React.Component {
         // this.getReleventById(this.props.app.state.targetBook._id, this.props.app)
         this.getTrending = this.getTrending.bind(this)
         this.getTrending(this.props.app)
+        loadReviews(this)
+        loadTopReview(this)
 
     }
     
@@ -127,7 +133,16 @@ class BookDetail extends React.Component {
                 console.log(error);
             });
     };
-
+    show_top_review() {
+        if (!this.state.top_review){
+            return;
+        }else{
+            const rv = this.state.top_review[0];
+            return (<Review
+                src={this.state.targetBook.cover_url} title={rv.title} author={rv.userName} rating={(rv.rating)} reviewItem={rv} page={this.props.app}
+                />);
+        }
+    }
     render() {
 
         return (
@@ -172,20 +187,24 @@ class BookDetail extends React.Component {
                                         <SectionHeader headerText="Comments" />
                                         <CommentSection bookId={this.props.app.state.targetBook._id} currentUser={this.props.app.state.currentUser}/>
                                     </Box>
-                                    {/*
                                     <Box pt={10}>
                                         <SectionHeader headerText="Reviews" />
+                                        <Box>
+                        <div className={styles.hottest}>Top Review</div>
+                        {this.show_top_review()}
+                        <hr className={styles.bottom_padding}/>
+                    </Box>
                                         <Box display='flex' justifyContent='flex-end'>
-                                            <ReveiwDialog />
+                                            <ReveiwDialog book={this.state.targetBook}/>
                                         </Box>
-                                        {this.state.currentReviews.map(
+                                        {this.state.nextLoadingReviews.map(
                                             (rv, index) => (
-                                                <Review key={index} src={this.state.targetBook.image} title={rv.title} author={this.state.allUser.filter(u => u.email === rv.email)[0].userName} rating={(rv.rating)} reviewItem={rv} />
+                                                <Review key={index} src={this.state.targetBook.cover_url} title={rv.title} author={rv.userName} rating={(rv.rating)} reviewItem={rv} page={this.props.app}/>
                                             )
                                         )}
                                          <Box display='flex' justifyContent='flex-end'>
-                                         <Button color='secondary' onClick={this.reviewPageNext}>show more</Button></Box>
-                                    </Box>*/}
+                                         <Button color='secondary' onClick={() => {loadReviews(this)}}>show more</Button></Box>
+                                    </Box>
                                 </Container>
                             </Grid>
                             <Grid item xs={12} sm={4}>

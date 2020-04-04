@@ -100,7 +100,7 @@ class BookReview extends React.Component {
                 }
             })   
             .then(json => {
-                page.setState({ click: json.status });
+                page.setState({ click: json.status, popularity: json.result.popularity });
             })
             .catch(error => {
                 console.log(error);

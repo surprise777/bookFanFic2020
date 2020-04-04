@@ -261,3 +261,37 @@ export const handleLikeReview = (page) => {
             console.log(error);
         });
 };
+
+
+export const loadReviews = (app) => {
+    const url = `/review/loadReviews/${app.state.targetBook._id}/${app.state.offset}`;
+    fetch(url).then(res => {
+        if (res.status == 200){
+            return res.json();
+        }
+    }).then(json => {
+        if (json.length !== 0){
+            const newList = app.state.nextLoadingReviews;
+            console.log("incremented");
+            json.forEach(c => newList.push(c));
+            app.setState({nextLoadingReviews: newList, offset : app.state.offset + json.length});
+        }
+    }).catch(error => {
+        console.log(error);
+    })
+}
+
+export const loadTopReview = (app) => {
+    const url = "/review/top/" + app.state.targetBook._id;
+    fetch(url).then(res => {
+        if (res.status == 200){
+            return res.json();
+        }
+    }).then(json => {
+        if (json){
+            app.setState({top_review: json});
+        }
+    }).catch(error => {
+        console.log(error)
+    })
+}
