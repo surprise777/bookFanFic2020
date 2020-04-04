@@ -209,7 +209,7 @@ class Home extends React.Component {
                                     <SectionHeader headerText={HomeContent.popular_review} />
                                     {this.props.app.state.popularReviews.map(
                                         (rv, index) => (
-                                            <Review key={index} src={this.findBookCoverById(rv.bookId)} title={rv.title} author={rv.userName} rating={(rv.rating)} reviewItem={rv} page={this.props.app}/>
+                                            <Review key={index} bookId={rv.bookId} title={rv.title} author={rv.userName} rating={(rv.rating)} reviewItem={rv} page={this.props.app}/>
                                         )
                                     )}
                                 </Box>

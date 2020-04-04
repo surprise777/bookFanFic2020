@@ -265,7 +265,7 @@ class BookReview extends React.Component {
                                     <SectionHeader headerText="You may also like" />
                                     {this.state.nextLoadingReviews.map(
                                         (rv, index) => (
-                                            <Review key={index} src={this.state.media} title={rv.title} author={rv.author} rating={(rv.rating)} reviewItem={rv} page={this.props.app}/>
+                                            <Review key={index} bookId={rv.bookId} title={rv.title} author={rv.author} rating={(rv.rating)} reviewItem={rv} page={this.props.app}/>
                                         )
                                     )}
                                 </Box>

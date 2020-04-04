@@ -8,19 +8,30 @@ import { Link } from 'react-router-dom';
 import { RoutesMap } from '../../utils/routesMap';
 import { Box } from "@material-ui/core";
 import {getReviewById} from '../../actions/review';
-
+import {getBookCover} from "../../actions/book";
 class Review extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            bookId: this.props.bookId,
+            cover_url: ""
+        }
+
+        getBookCover(this);
+    }
+
     render() {
-        const { src, title, author, rating, reviewItem, page } = this.props;
-        console.log(src);
+        const { title, author, rating, reviewItem, page } = this.props;
+        const {cover_url} = this.state;
+        console.log(cover_url)
         return (
             <Box pt={1} pb={1} className={styles.outline_bottom}>
                 <Grid container className={styles.review} spacing={1}>
                     <Grid item xs={12} sm={2}>
                         <Box display='flex' justifyContent='center' justifyItems='center'>
                             <CardMedia>
-                                <img alt="" src={src} className={styles.cardMedia}></img>
+                                <img alt="" src={cover_url} className={styles.cardMedia}></img>
                             </CardMedia>
                         </Box>
                     </Grid>

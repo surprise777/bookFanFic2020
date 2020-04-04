@@ -243,3 +243,20 @@ export const handleMakeRec = (page) => {
             console.log(error);
         });
 };
+
+export const getBookCover = (app) => {
+
+    const url = "/book/searchById/" + app.state.bookId;
+
+    fetch(url).then(res => {
+        if (res.status == 200){
+            return res.json()
+        }
+    }).then(json => {
+        if (json){
+            app.setState({cover_url: json.cover_url})
+        }
+    }).catch(error => {
+        console.log(error)
+    })
+}
