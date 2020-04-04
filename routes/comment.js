@@ -198,6 +198,8 @@ router.patch("/like", check_login, (req, res) => {
         return
     }
 
+    let status = false;
+
     Comment.findById(commentId).then(comment => {
         if (!comment){
             res.status(404).send()
@@ -206,14 +208,16 @@ router.patch("/like", check_login, (req, res) => {
             if (liked){
                 comment.fanList = comment.fanList.filter(id => !id.equals(userId));
                 comment.likes -= 1;
+                status = false
             }else{
                 comment.fanList.push(userId);
                 comment.likes += 1
+                status = true
             }
             return comment.save()
         }
     }).then(result => {
-        res.send(result)
+        res.send({result, status: status})
     }).catch(error => {
         console.log(error)
         res.status(400).send()
