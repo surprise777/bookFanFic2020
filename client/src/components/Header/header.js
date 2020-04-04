@@ -118,7 +118,7 @@ class Header extends React.Component {
                 }
             })
             .then(json => {
-                page.setState({ searchBooks: json });
+                page.setState({ searchBooks: json, tagSearch:false });
             })
             .catch(error => {
                 console.log(error);
