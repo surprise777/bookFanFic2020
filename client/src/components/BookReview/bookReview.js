@@ -25,6 +25,7 @@ class BookReview extends React.Component {
             reviewId: this.props.app.state.targetReview._id,
             // allReview: this.props.state.review,
             click: this.checkLike(this.props.app.state.currentUser, this.props.app.state.targetReview._id),
+            nextLoadingReviews: this.loadReviewsInTime(this.props.app.state.targetBook._id),
             media: this.props.app.state.targetBook.cover_url,
             title: this.props.app.state.targetBook.title,
             author: this.props.app.state.targetBook.author,
@@ -43,7 +44,7 @@ class BookReview extends React.Component {
         this.checkLike = this.checkLike.bind(this)
         this.getPopularity = this.getPopularity.bind(this)
         // this.findBookById = this.findBookById.bind(this)
-        //this.loadReviewsInTime = this.loadReviewsInTime.bind(this)
+        this.loadReviewsInTime = this.loadReviewsInTime.bind(this)
 
     }
 
@@ -81,7 +82,7 @@ class BookReview extends React.Component {
         const review = page.state
     
         const request = new Request(url, {
-            method: "patch",
+            method: "PATCH",
             body: JSON.stringify(review),
             headers: {
                 Accept: "application/json, text/plain, */*",
@@ -226,21 +227,21 @@ class BookReview extends React.Component {
     //         });
     // };
     
-    // loadReviewsInTime(bookId){
-    //     const url = "/review/loadReviews/"+bookId + "/0";
+    loadReviewsInTime(bookId){
+        const url = "/review/loadReviews/"+bookId + "/0";
     
-    //     fetch(url)
-    //         .then(res => {
-    //             if (res.status === 200) {
-    //                 return res.json();
-    //             } else {
-    //                 console.log("Could not load next reviews");
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // };
+        fetch(url)
+            .then(res => {
+                if (res.status === 200) {
+                    return res.json();
+                } else {
+                    console.log("Could not load next reviews");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
 
     render() {
         // console.log(this.props.match);
@@ -275,14 +276,14 @@ class BookReview extends React.Component {
                                     </IconButton>
                                     <span className={styles.likeCount} >{this.state.popularity}</span>
                                 </Box>
-                                {/* <Box pt={5}>
+                                <Box pt={5}>
                                     <SectionHeader headerText="You may also like" />
                                     {this.state.nextLoadingReviews.map(
                                         (rv, index) => (
                                             <Review key={index} src={this.state.media} title={rv.title} author={rv.author} rating={(rv.rating)} reviewItem={rv} page={this.props.app}/>
                                         )
                                     )}
-                                </Box> */}
+                                </Box>
                             </Grid>
                             <Grid item xs={12} sm={4}>
                                 <Box pt={12} className={styles.center_text}>

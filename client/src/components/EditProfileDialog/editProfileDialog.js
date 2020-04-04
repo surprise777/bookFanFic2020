@@ -13,11 +13,12 @@ import EditProfileDialogContent from '../../contents/editProfileDialog';
 import Typography from '@material-ui/core/Typography'
 import styles from './editProfileDialog.module.css';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
+import ProfileForm from './profileForm';
 
-const informations = ['Name', 'Email', 'Password'];
+const informations = ['Name', 'Password', 'Signiture'];
 
 function SimpleDialog(props) {
-  const { onClose, selectedValue, open } = props;
+  const { onClose, selectedValue, open, user } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -30,45 +31,7 @@ function SimpleDialog(props) {
           If you don't want to change any of these, leave it blank
         </Typography>
       </Grid>
-      <List>
-        <Grid container spacing={0} xs={12}>
-          <Grid item xs={12} md={4}>
-            <Box display="flex" justifyContent="center" alignItems="center">
-              <Box display="flex-center">
-                
-                <Button>
-
-                  <AddPhotoAlternateIcon style={{ fontSize: 100 }}/>
-  
-                </Button>
-              </Box>
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            {informations.map((info) => (
-              <ListItem  key={info}>
-                <ListItemText primary={info + '：'} justify="flex-end" />
-                <Input disableUnderline placeholder={'New ' + info}/>
-              </ListItem>
-            ))}
-          </Grid>
-        </Grid>
-
-        <Grid container className={styles.paddingTop} item xs={12}>
-          <Grid container item xs={1}></Grid>
-          <Grid container item xs={5} justify="flex-start">
-            <Button variant='outlined' component='span' color='secondary'>
-              {EditProfileDialogContent.confirm}
-            </Button>
-          </Grid>      
-          <Grid container item xs={5} justify="flex-end">
-            <Button variant='outlined' component='span' color='primary' onClick={handleClose}>
-              {EditProfileDialogContent.cancel}
-            </Button>        
-          </Grid>
-        </Grid>
-      </List>
-      
+      <ProfileForm user={user}/>
     </Dialog>
   );
 }
@@ -79,10 +42,10 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function SimpleDialogDemo() {
+export default function SimpleDialogDemo(props) {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(informations[1]);
-
+  const {user} = props
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -98,7 +61,7 @@ export default function SimpleDialogDemo() {
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         {EditProfileDialogContent.edit}
       </Button>
-      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} user={user}/>
     </div>
   );
 }

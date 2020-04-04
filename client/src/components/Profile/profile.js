@@ -11,10 +11,11 @@ import Dialog from '../EditProfileDialog/editProfileDialog';
 import UserTabs from '../UserProfileTabs/profileTabs';
 
 class Profile extends React.Component {
-    state = {
-        login_status: false
+    constructor(props) {
+        super(props)
+    
+    
     }
-
     render() {
         return (
             <React.Fragment>
@@ -30,22 +31,28 @@ class Profile extends React.Component {
                                 <img
                                     alt=''
                                     className={styles.user_ProfilePic}
-                                    src={ProfileContent.user.photo}
+                                    src={this.props.app.state.currentUser.icon_url}
                                 />
                             </Grid>
                             <Grid container item xs={7} direction="column" alignItems="flex-start" >
-                                {ProfileContent.user.profile.map((item, index) => (<Grid item key={index} >
-                                    <Typography variant='h6'>{item.tag}: {item.u}</Typography>
-                                </Grid>))}
-                                <Dialog/>
+                                <Grid item>
+                                    <Typography variant='body1'>Email: {this.props.app.state.currentUser.email}</Typography>
+                                </Grid>
+                                <Grid item>
+                                    <Typography variant='h6'>User Name: {this.props.app.state.currentUser.userName}</Typography>
+                                </Grid>
+                                <Grid item>
+                                    <Typography variant='body1'>Signiture: {this.props.app.state.currentUser.signiture}</Typography>
+                                </Grid>
+                                <Dialog user={this.props.app}/>
                             </Grid>
 
                             <Grid container item xs={4}/>
                             <Grid container item xs={8}>
-                                <Button><Edit/></Button>
+                                {/* <Button><Edit/></Button>
                                 <Typography variant='h6' component='span'>
                                     This guy is lazy, he haven't write anything yet.
-                                </Typography>
+                                </Typography> */}
                             </Grid>
                             
                         </Grid>
@@ -54,7 +61,7 @@ class Profile extends React.Component {
                             <Grid container item direction="column" justify="flex-start" >
                                 <div className={styles.comments}>
                                     <Grid container item xs={12}>
-                                        <UserTabs render={() => (<UserTabs/>)}/>
+                                        <UserTabs page={this.props.app} render={() => (<UserTabs page={this.props.app} />)}/>
                                     </Grid>
                                 </div>
                             </Grid >
