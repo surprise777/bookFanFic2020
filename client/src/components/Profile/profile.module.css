@@ -1,6 +1,7 @@
 .page_content{
     height: 100vh;
     width: 100%;
+    margin-top: 3rem;
 }
 
 .list_padding{
@@ -27,11 +28,11 @@
     align-items: center;
     width: 100%;
     display: flex;
-
+    margin-top: 5rem;
 }
 
 .comments{
-    background-color: rgba(245, 151, 114, 0.05);
+    background-color: rgba(245, 151, 114, 0.089);
     background-size: contain;
 	background-repeat: no-repeat;
     background-position: center;

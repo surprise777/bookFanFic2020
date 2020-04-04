@@ -41,20 +41,12 @@ class Profile extends React.Component {
                                     <Typography variant='body1'>Email: {this.props.app.state.currentUser.email}</Typography>
                                 </Grid>
                                 <Grid item>
-                                    <Typography variant='h6'>User Name: {this.props.app.state.currentUser.userName}</Typography>
+                                    <Typography variant='body1'>Username: {this.props.app.state.currentUser.userName}</Typography>
                                 </Grid>
                                 <Grid item>
                                     <Typography variant='body1'>Signiture: {this.props.app.state.currentUser.signiture}</Typography>
                                 </Grid>
                                 <Dialog user={this.props.app}/>
-                            </Grid>
-
-                            <Grid container item xs={4}/>
-                            <Grid container item xs={8}>
-                                {/* <Button><Edit/></Button>
-                                <Typography variant='h6' component='span'>
-                                    This guy is lazy, he haven't write anything yet.
-                                </Typography> */}
                             </Grid>
                             
                         </Grid>
