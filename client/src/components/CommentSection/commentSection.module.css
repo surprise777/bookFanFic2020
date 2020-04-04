@@ -7,3 +7,19 @@
 .mr2 {
     margin-right: 20px;
 }
+
+.hottest {
+    color: #fc5203;
+    margin-bottom: 10px;
+    font-size: 2em;
+    font-style: italic;
+    border-bottom: 1px solid grey;
+}
+
+.bottom_padding {
+    margin-bottom: 30px;
+    width: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: 1px solid #f2f2f2;
+}

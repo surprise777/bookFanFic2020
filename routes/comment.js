@@ -193,12 +193,10 @@ router.patch("/like", check_login, (req, res) => {
     const userId = req.session.user;
     const commentId = req.body.commentId;
 
-    console.log(commentId);
     if (!ObjectID.isValid(commentId)){
         res.status(400).send();
         return
     }
-    console.log("here");
 
     Comment.findById(commentId).then(comment => {
         if (!comment){

@@ -8,7 +8,7 @@ import Container from '../../containers/mui/container';
 import Rating from '@material-ui/lab/Rating';
 import { TextField } from '@material-ui/core';
 import CommentSectionContent from '../../contents/commentSection';
-import {loadComments, addComment} from "../../actions/comment";
+import {loadComments, addComment, loadTopComment} from "../../actions/comment";
 
 function ClickRating({ rating_handler, rating }) {
     const [value, setValue] = React.useState(0);
@@ -37,9 +37,11 @@ class CommentSection extends React.Component {
             comment: '',
             targetBook: this.props.bookId,
             comments: [],
+            top_comment: null,
             currentUser: this.props.currentUser,
             index: 0
         }
+        loadTopComment(this)
         loadComments(this)
     }
 
@@ -56,6 +58,24 @@ class CommentSection extends React.Component {
             return (<img src={user.icon_url} className={styles.icon} alt='' />)
         }else{
             return (<img src={CommentSectionContent.icon} className={styles.icon} alt='' />)
+        }
+    }
+
+    show_top_comment() {
+        if (!this.state.top_comment){
+            return;
+        }else{
+            const comment = this.state.top_comment[0];
+            return (<Comment
+                currentUser={this.state.currentUser}
+                id = {comment._id}
+                fanList={comment.fanList}
+                userId={comment.userId}
+                content={comment.content}
+                rating={comment.rating}
+                counter={comment.likes}
+                date={comment.date}
+                />);
         }
     }
 
@@ -116,6 +136,11 @@ class CommentSection extends React.Component {
                     </Box>
                 </Container>
                 <Box>
+                    <Box>
+                        <div className={styles.hottest}>Top comment</div>
+                        {this.show_top_comment()}
+                        <hr className={styles.bottom_padding}/>
+                    </Box>
                     {this.state.comments.map((comment, index) =>
 
                         (<Comment
