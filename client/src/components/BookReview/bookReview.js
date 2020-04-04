@@ -12,7 +12,7 @@ import Review from '../Review/review';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ReveiwDialog from '../EditReviewDialog/editReviewDialog';
-import {getBookById} from '../../actions/book';
+import {loadReviews} from '../../actions/review';
 class BookReview extends React.Component {
     constructor(props) {
         super(props)
@@ -25,13 +25,15 @@ class BookReview extends React.Component {
             reviewId: this.props.app.state.targetReview._id,
             // allReview: this.props.state.review,
             click: this.checkLike(this.props.app.state.currentUser, this.props.app.state.targetReview._id),
-            nextLoadingReviews: this.loadReviewsInTime(this.props.app.state.targetBook._id),
+            nextLoadingReviews: [],
             media: this.props.app.state.targetBook.cover_url,
             title: this.props.app.state.targetBook.title,
             author: this.props.app.state.targetBook.author,
             book: this.props.app.state.targetBook,
+            targetBook:this.props.app.state.targetBook,
             published: this.props.app.state.targetBook.published,
-            popularity: this.props.app.state.targetReview.popularity
+            popularity: this.props.app.state.targetReview.popularity,
+            offset: 0
             // counter: this.props.state.selectedReview.popularity
         }
         //console.log(JSON.parse(this.state.nextLoadingReviews))
@@ -40,11 +42,10 @@ class BookReview extends React.Component {
         // this.findBookAuthorById = this.findBookAuthorById.bind(this)
         // this.findBookPublishedById = this.findBookPublishedById.bind(this)
         // this.findBookTitleById = this.findBookTitleById.bind(this)
-        this.handleLikeReview = this.handleLikeReview.bind(this)
         this.checkLike = this.checkLike.bind(this)
         this.getPopularity = this.getPopularity.bind(this)
         // this.findBookById = this.findBookById.bind(this)
-        this.loadReviewsInTime = this.loadReviewsInTime.bind(this)
+        loadReviews(this)
 
     }
 
@@ -226,22 +227,6 @@ class BookReview extends React.Component {
     //             console.log(error);
     //         });
     // };
-    
-    loadReviewsInTime(bookId){
-        const url = "/review/loadReviews/"+bookId + "/0";
-    
-        fetch(url)
-            .then(res => {
-                if (res.status === 200) {
-                    return res.json();
-                } else {
-                    console.log("Could not load next reviews");
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
 
     render() {
         // console.log(this.props.match);
