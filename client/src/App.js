@@ -16,27 +16,8 @@ class App extends React.Component {
     }
     state = {
       loggedIn: false,
-      user: users,
-      book: books,
-      review: reviews,
-      comment: comments,
+      tagSearch: false,
       currentUser:null,
-      // "header": {
-      //   "input": ""
-      // },
-      // "login": {
-      //   "email": "",
-      //   "userName": "",
-      //   "password": "",
-      //   "acctType": "",
-      // },
-      // "signup": {
-      //   "email": "",
-      //   "userName": "",
-      //   "password": "",
-      //   "confirm": "",
-      //   "acctType": "",
-      // },
       searchBooks: [],
       searchUsers: [],
       searchReviews: [],

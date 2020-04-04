@@ -131,7 +131,7 @@ export const getBookByGenres = (genresList, page) => {
             }
         })
         .then(json => {
-            page.setState({ searchBooks: json, searchInput: genres });
+            page.setState({ searchBooks: json, searchInput: genres, tagSearch: true});
         })
         .catch(error => {
             console.log(error);
