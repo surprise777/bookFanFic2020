@@ -80,7 +80,7 @@ class Search extends React.Component {
         return (
             <Container maxWidth={false} disableGutters={true}>
                 <Box className={styles.padding_bottom}>
-                    <Container maxWidth='lg'>
+                    <Container maxWidth="lg">
                         <Grid container>
                             <Grid item xs={12} md={8}>
                                 <Box px={6} pt={4}>
@@ -90,7 +90,7 @@ class Search extends React.Component {
                                         justify="space-between"
                                         alignItems="center">
                                         {this.props.app.state.searchBooks.map((book, index) => (<Grid container item xs={12} sm={6} md={4} lg={3} className={styles.cardLayout} key={index} justify="center">
-                                            <BookCard media={book.image} title={book.title} book={book} page={this.props.app} />
+                                            <BookCard media={book.cover_url} title={book.title} book={book} page={this.props.app} />
                                         </Grid>))}
                                     </Grid>
                                 </Box>
@@ -101,9 +101,9 @@ class Search extends React.Component {
                                         container
                                         justify="space-between"
                                         alignItems="center">
-                                        {this.props.app.state.searchUsers.map((us, index) => (<Grid container item xs={12} sm={6} md={4} lg={3} className={styles.cardLayout} key={index} justify="center">
+                                        {this.props.app.state.searchUsers.map((us, index) => (
                                             <UserCard icon_url={us.icon_url} name={us.userName} signature={us.signature} />
-                                        </Grid>))}
+                                        ))}
                                     </Grid>
                                 </Box>
 
@@ -119,7 +119,6 @@ class Search extends React.Component {
                             </Grid></Grid>
                     </Container>
                 </Box>
-                <Footer />
             </Container>
         )
     }

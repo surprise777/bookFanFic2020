@@ -55,3 +55,11 @@ code {
   width: 100%;
   background-color: white;
 }
+
+.SearchResult{
+  width: 100%; 
+}
+
+.SearchTagResult{
+  width: 100%; 
+}

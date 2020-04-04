@@ -13,7 +13,7 @@ class SideBar extends React.Component{
    render(){
     const { tags, trending, page } = this.props;
     return ( <Grid item xs>
-        <Box px={6} pt={10}>
+        <Box px={6} pt={10} className={styles.overWidth}>
             <SectionHeader headerText={SiedBarContent.titles.popular_tags} />
             <Tags tags={tags} page={page}/>
         </Box>
@@ -21,7 +21,7 @@ class SideBar extends React.Component{
             <SectionHeader headerText={SiedBarContent.titles.trending} />
             <Trending trending={trending} page={page}/>
         </Box>
-        <Box px={6} pt={8}>
+        <Box px={6} pt={8} className={styles.overWidth}>
             <SectionHeader headerText={SiedBarContent.titles.contact_us} />
             <Container maxWidth='md'>
                 {SiedBarContent.info.map(
