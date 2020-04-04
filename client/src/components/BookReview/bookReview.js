@@ -24,7 +24,7 @@ class BookReview extends React.Component {
             targetReview: this.props.app.state.targetReview,
             reviewId: this.props.app.state.targetReview._id,
             // allReview: this.props.state.review,
-            click: this.checkLike(this.props.app.state.currentUser._id, this.props.app.state.targetReview._id),
+            click: this.checkLike(this.props.app.state.currentUser, this.props.app.state.targetReview._id),
             media: this.findBookCoverById(this.props.app.state.targetReview.bookId),
             title: this.findBookTitleById(this.props.app.state.targetReview.bookId),
             author: this.findBookAuthorById(this.props.app.state.targetReview.bookId),
@@ -106,9 +106,11 @@ class BookReview extends React.Component {
             });
     };
 
-    checkLike(userId, reviewId){
+    checkLike(user, reviewId){
         const url = "/review/byId/"+reviewId;
-
+        if(!user){
+            return false
+        }
         fetch(url)
             .then(res => {
             if (res.status === 200) {
@@ -118,7 +120,7 @@ class BookReview extends React.Component {
             }
             })
             .then(json => {
-                return json.fanList.includes(userId);
+                return json.fanList.includes(user._id);
             })
             .catch(error => {
                 console.log(error);

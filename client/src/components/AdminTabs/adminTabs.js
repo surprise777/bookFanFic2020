@@ -66,7 +66,7 @@ export default function SimpleTabs() {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
+    
     return (
         <div className={classes.root}>
             <AppBar position="static">
