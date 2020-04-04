@@ -11,7 +11,7 @@ const router = express.Router();
 // Middleware to check for authorization
 const check_login = (req, res, next) => {
     if (!req.session.user){
-        res.status(401).next()
+        res.status(401).send()
     }else{
         next()
     }

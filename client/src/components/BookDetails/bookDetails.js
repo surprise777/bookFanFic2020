@@ -133,8 +133,9 @@ class BookDetail extends React.Component {
                 console.log(error);
             });
     };
+
     show_top_review() {
-        if (!this.state.top_review){
+        if (!this.state.top_review || this.state.top_review.length === 0){
             return;
         }else{
             const rv = this.state.top_review[0];
@@ -212,14 +213,14 @@ class BookDetail extends React.Component {
                                     <SectionHeader headerText="Rating" />
                                     <Box className={styles.padding_left}>
                                         <Rating
-                                            value={this.props.app.state.targetBook.rating}
+                                            value={(this.props.app.state.targetBook.rating / this.props.app.state.targetBook.numRating).toFixed(2)}
                                             precision={0.5}
                                             readOnly={true}
                                             size={"medium"}
                                         />
 
-                                        <Typography variant='h4' className={styles.rating}>{this.props.app.state.targetBook.rating}</Typography>
-                                        <div>{this.props.app.state.targetBook.numOfRating}</div>
+                                        <Typography variant='h4' className={styles.rating}>{(this.props.app.state.targetBook.rating / this.props.app.state.targetBook.numRating).toFixed(2)}</Typography>
+                                        <div>{this.props.app.state.targetBook.numRating} people has rated this book</div>
 
                                     </Box>
                                 </Box>

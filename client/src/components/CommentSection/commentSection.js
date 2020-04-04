@@ -62,7 +62,7 @@ class CommentSection extends React.Component {
     }
 
     show_top_comment() {
-        if (!this.state.top_comment){
+        if (!this.state.top_comment || this.state.top_comment.length === 0){
             return;
         }else{
             const comment = this.state.top_comment[0];
