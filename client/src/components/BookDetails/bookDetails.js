@@ -140,7 +140,7 @@ class BookDetail extends React.Component {
         }else{
             const rv = this.state.top_review[0];
             return (<Review
-                src={this.state.targetBook.cover_url} title={rv.title} author={rv.userName} rating={(rv.rating)} reviewItem={rv} page={this.props.app}
+                bookId={rv.bookId} title={rv.title} author={rv.userName} rating={(rv.rating)} reviewItem={rv} page={this.props.app}
                 />);
         }
     }
@@ -200,7 +200,7 @@ class BookDetail extends React.Component {
                                         </Box>
                                         {this.state.nextLoadingReviews.map(
                                             (rv, index) => (
-                                                <Review key={index} src={this.state.targetBook.cover_url} title={rv.title} author={rv.userName} rating={(rv.rating)} reviewItem={rv} page={this.props.app}/>
+                                                <Review key={index} bookId={rv.bookId} title={rv.title} author={rv.userName} rating={(rv.rating)} reviewItem={rv} page={this.props.app}/>
                                             )
                                         )}
                                          <Box display='flex' justifyContent='flex-end'>
