@@ -1,3 +1,7 @@
+.padding {
+    padding: 3rem;
+}
+
 .paddingTop {
     padding-top: 1.5rem;
 }
@@ -20,9 +24,10 @@
     border-radius: 0 !important;
 }
 
-.uploadButton {
-    margin: auto;
-    width: auto;
-    background-repeat: no-repeat;
-    border-radius: 0 !important;
+.uploadButton{
+    max-width: 200px;
+}
+
+.inputSize{
+    height: 30px;
 }

@@ -20,11 +20,11 @@ function SimpleDialog(props) {
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} maxWidth="md">
       <Grid container item xs={12} justify="center" >
-        <Typography className={styles.paddingSides} variant="h5" color="secondary">
-          If you don't want to change any of these, leave it blank
+        <Typography className={styles.paddingSides} variant="h3" color="secondary">
+          Edit Profile
         </Typography>
       </Grid>
-      <ProfileForm user={user} />
+      <ProfileForm user={user}/>
     </Dialog>
   );
 }
@@ -38,7 +38,7 @@ SimpleDialog.propTypes = {
 export default function SimpleDialogDemo(props) {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(informations[1]);
-  const { user } = props
+  const {user} = props
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -50,11 +50,11 @@ export default function SimpleDialogDemo(props) {
 
   return (
     <div>
-      <br />
+      <br/>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         {EditProfileDialogContent.edit}
       </Button>
-      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} user={user} />
+      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} user={user}/>
     </div>
   );
 }

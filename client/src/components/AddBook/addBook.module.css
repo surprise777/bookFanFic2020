@@ -17,3 +17,13 @@
 .paddingBottom {
     padding-bottom: 1.5rem;
 }
+
+.uploadButton{
+    padding-left: 20px;
+    max-width: 200px;
+}
+
+.form{
+    height: 500px;
+    width: 855px;
+}
