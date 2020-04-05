@@ -1,9 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
 import Grid from '../../containers/mui/grid';
-import Box from "@material-ui/core/Box";
 import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
 import styles from './editReviewDialog.module.css';
@@ -65,7 +61,7 @@ class ReviewForm extends React.Component {
                         <Typography variant="h3" color="secondary">Review</Typography>
                     </Grid>
                     <form id="add-review" onSubmit={this.handleSubmit}>
-                        <input type="hidden" name="bookId" value={this.props.book._id}/>
+                        <input type="hidden" name="bookId" value={this.props.book._id} />
                         <Grid container item xs={12} className={styles.paddingBottom}>
                             <Grid container item xs={6}>
                                 <Grid container item xs={9}> <TextField id="standard-basic" name="title" placeholder="Title" fullWidth /></Grid>

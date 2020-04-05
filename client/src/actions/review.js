@@ -18,7 +18,7 @@ export const handleAddReview = (detailPage) => {
             if (res.status === 200) {
                 console.log("Add review Successfully.")
             } else {
-                alert( "Review adds Failed.")
+                alert("Review adds Failed.")
             }
         })
         .catch(error => {
@@ -26,15 +26,13 @@ export const handleAddReview = (detailPage) => {
         });
 };
 
-export const handleDeleteReview = (page, reviewId) => {
+export const handleDeleteReview = (reviewId) => {
 
     const url = "/review/removeReview/" + reviewId;
 
-    const review = page.state.targetReview
 
     const request = new Request(url, {
         method: "delete",
-        body: JSON.stringify(review),
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
@@ -46,7 +44,7 @@ export const handleDeleteReview = (page, reviewId) => {
             if (res.status === 200) {
                 console.log("delete review Successfully.")
             } else {
-                alert( "Review deletes Failed.")
+                alert("Review deletes Failed.")
             }
         })
         .catch(error => {
@@ -62,7 +60,7 @@ export const getAllReviews = (page) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log( "Error: Could not get reviews.")
+                console.log("Error: Could not get reviews.")
             }
         })
         .then(json => {
@@ -75,7 +73,7 @@ export const getAllReviews = (page) => {
 
 export const getReviewById = (id, page) => {
 
-    const url = "/review/byId/"+id;
+    const url = "/review/byId/" + id;
     fetch(url)
         .then(res => {
             if (res.status === 200) {
@@ -89,22 +87,22 @@ export const getReviewById = (id, page) => {
             return json.bookId
         }).then(bookId => {
 
-        const bookUrl = "/book/searchById/"+bookId;
+            const bookUrl = "/book/searchById/" + bookId;
 
-        fetch(bookUrl)
-            .then(res => {
-                if (res.status === 200) {
-                    return res.json();
-                } else {
-                    console.log("Could not get book by id");
-                }
-            })
-            .then(json => {
-                page.setState({ targetBook: json });
-            })
-            .catch(error => {
-                console.log(error);
-            });
+            fetch(bookUrl)
+                .then(res => {
+                    if (res.status === 200) {
+                        return res.json();
+                    } else {
+                        console.log("Could not get book by id");
+                    }
+                })
+                .then(json => {
+                    page.setState({ targetBook: json });
+                })
+                .catch(error => {
+                    console.log(error);
+                });
 
 
         })
@@ -115,7 +113,7 @@ export const getReviewById = (id, page) => {
 };
 
 export const searchReviewsByName = (title, page) => {
-    const url = "/review/searchByName/"+title;
+    const url = "/review/searchByName/" + title;
 
     fetch(url)
         .then(res => {
@@ -134,7 +132,7 @@ export const searchReviewsByName = (title, page) => {
 };
 
 export const getAllReviewsByOneUser = (userId, page) => {
-    const url = "/review/byUser/"+userId;
+    const url = "/review/byUser/" + userId;
 
     fetch(url)
         .then(res => {
@@ -153,7 +151,7 @@ export const getAllReviewsByOneUser = (userId, page) => {
 };
 
 export const getAllReviewsByOneBook = (bookId, page) => {
-    const url = "/review/byBook/"+bookId;
+    const url = "/review/byBook/" + bookId;
 
     fetch(url)
         .then(res => {
@@ -172,7 +170,7 @@ export const getAllReviewsByOneBook = (bookId, page) => {
 };
 
 export const loadReviewsInTime = (bookId, offset, page) => {
-    const url = "/review/loadReviews/"+bookId + offset;
+    const url = "/review/loadReviews/" + bookId + offset;
 
     fetch(url)
         .then(res => {
@@ -192,7 +190,7 @@ export const loadReviewsInTime = (bookId, offset, page) => {
 
 export const getTopReviewByBook = (bookId, page) => {
 
-    const url = "/review/top/"+bookId;
+    const url = "/review/top/" + bookId;
 
     fetch(url)
         .then(res => {
@@ -219,7 +217,7 @@ export const getMostPopularReviews = (page) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log( "Error: Could not get popular reviews.")
+                console.log("Error: Could not get popular reviews.")
             }
         })
         .then(json => {
@@ -251,9 +249,9 @@ export const handleLikeReview = (page) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                alert( "Like/Unlike review Failed.")
+                alert("Like/Unlike review Failed.")
             }
-        })   
+        })
         .then(json => {
             page.setState({ click: json.status });
         })
@@ -266,15 +264,15 @@ export const handleLikeReview = (page) => {
 export const loadReviews = (app) => {
     const url = `/review/loadReviews/${app.state.targetBook._id}/${app.state.offset}`;
     fetch(url).then(res => {
-        if (res.status == 200){
+        if (res.status == 200) {
             return res.json();
         }
     }).then(json => {
-        if (json.length !== 0){
+        if (json.length !== 0) {
             const newList = app.state.nextLoadingReviews;
             console.log("incremented");
             json.forEach(c => newList.push(c));
-            app.setState({nextLoadingReviews: newList, offset : app.state.offset + json.length});
+            app.setState({ nextLoadingReviews: newList, offset: app.state.offset + json.length });
         }
     }).catch(error => {
         console.log(error);
@@ -284,12 +282,12 @@ export const loadReviews = (app) => {
 export const loadTopReview = (app) => {
     const url = "/review/top/" + app.state.targetBook._id;
     fetch(url).then(res => {
-        if (res.status == 200){
+        if (res.status == 200) {
             return res.json();
         }
     }).then(json => {
-        if (json){
-            app.setState({top_review: json});
+        if (json) {
+            app.setState({ top_review: json });
         }
     }).catch(error => {
         console.log(error)

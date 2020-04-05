@@ -13,12 +13,12 @@ class BookForm extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.state={
+        this.state = {
             checked: false
         }
         this.handleClicked = this.handleClicked.bind(this);
     }
-    handleClicked(e){
+    handleClicked(e) {
         this.setState({
             checked: !this.state.checked
         })
@@ -79,7 +79,7 @@ class BookForm extends React.Component {
                                     <Grid container item xs={12}> <TextField id="standard-basic" name="author" placeholder="Author" fullWidth /></Grid>
                                     <Grid container item xs={12}> <TextField id="standard-basic" name="published" placeholder="Published On" fullWidth /></Grid>
                                     <Grid container item xs={12}> <TextField id="standard-basic" name="genres" placeholder="Genres" fullWidth /></Grid>
-                                    <Grid container item xs={12}> <input type="radio" name="monthRec" checked={this.state.checked} value={this.state.checked} onChange={(e)=>this.handleClicked(e)}/><label for="monthRec">monthRec?</label></Grid>
+                                    <Grid container item xs={12}> <input type="radio" name="monthRec" checked={this.state.checked} value={this.state.checked} onChange={(e) => this.handleClicked(e)} /><label for="monthRec">monthRec?</label></Grid>
                                     <Grid container item xs={12} className={styles.paddingBottom}></Grid>
 
                                     <Grid container item xs={12} className={styles.paddingBottom}>

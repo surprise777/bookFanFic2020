@@ -7,7 +7,6 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import styles from "./adminTabs.module.css"
-import Link from '@material-ui/core/Link'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -15,26 +14,28 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import AdminTabsContent from '../../contents/adminTabs';
-import { BookDialog } from '../../actions/viewBookDetails';
 import Button from '../../containers/mui/button';
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Grid from '../../containers/mui/grid';
 import TextField from '@material-ui/core/TextField';
+import { handleDeleteBook } from '../../actions/book';
+import { handleDeleteComment } from '../../actions/comment';
+import { handleDeleteReview } from '../../actions/review'
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
     return (
         <Typography
-        component="div"
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
+            component="div"
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
         >
-        {value === index && <Box p={3}>{children}</Box>}
+            {value === index && <Box p={3}>{children}</Box>}
         </Typography>
     );
 }
@@ -59,14 +60,14 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SimpleTabs() {
+export default function SimpleTabs(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
-
+    const { page, app } = props;
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    
+
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -91,40 +92,35 @@ export default function SimpleTabs() {
                     </Grid>
                 </Grid>
                 <List className={styles.list}>
-                    {AdminTabsContent.books.map((c, key) => (
+                    {app.state.allBooks.map((b, key) => (
                         <React.Fragment key={key}>
                             <Divider variant="fullWidth" component="li" />
                             <ListItem alignItems="flex-start">
                                 <ListItemAvatar>
-                                    <Avatar alt={c.book} src={c.src} />
+                                    <Avatar alt={b.brefTitle} src={b.cover_url} />
                                 </ListItemAvatar>
                                 <ListItemText
                                     primary={
                                         <React.Fragment>
-                                            <Link onClick={() => BookDialog(c)}>
-                                                <Typography variant='h5' component="span" className={styles.comment_title}> {c.book} </Typography>
-                                            </Link>
+                                            <Typography variant='h5' component="span" className={styles.comment_title}> {b.title} </Typography>
                                         </React.Fragment>
                                     }
-                                                                
+
                                 />
                                 <React.Fragment>
                                     <Button
-                                    component="span"
-                                    gutterBottom
-                                    onClick={() => (
-                                        
-                                        console.log(AdminTabsContent.books)
-                                    )}     // TODO: change it to Delete()
+                                        component="span"
+                                        gutterBottom
+                                        onClick={() => handleDeleteBook(b._id)}
                                     >
-                                    Delete</Button>
+                                        Delete</Button>
                                 </React.Fragment>
                             </ListItem>
                         </React.Fragment>
                     ))}
                 </List>
             </TabPanel>
-      
+
             <TabPanel value={value} index={1}>
                 <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
                     <Grid container item alignItems="center" justify="center">
@@ -139,21 +135,19 @@ export default function SimpleTabs() {
                     </Grid>
                 </Grid>
                 <List className={styles.list}>
-                    {AdminTabsContent.comments.map((c, key) => (
+                    {app.state.allComments.map((c, key) => (
                         <React.Fragment key={key}>
                             <Divider variant="fullWidth" component="li" />
                             <ListItem alignItems="flex-start">
                                 <ListItemAvatar>
-                                    <Avatar alt={c.book} src={c.src} />
+                                    <Avatar alt={c.userName} />
                                 </ListItemAvatar>
                                 <ListItemText
                                     primary={
                                         <React.Fragment>
-                                            <Link onClick={() => BookDialog(c)}>
-                                                <Typography variant='h5' component="span" className={styles.comment_title}> {c.book} >>
-                                                    <Typography className={styles.commenter} variant='h6'> {"  " + (c.commenter ? c.commenter : 'Unknown')} </Typography>
-                                                </Typography>
-                                            </Link>
+                                            <Typography variant='h5' component="span" className={styles.comment_title}> {c.userName} >>
+                                                    <Typography className={styles.commenter} variant='h6'> {c.date} </Typography>
+                                            </Typography>
                                         </React.Fragment>
                                     }
                                     secondary={
@@ -162,16 +156,16 @@ export default function SimpleTabs() {
                                                 component="span"
                                                 variant='p' className={styles.comment_content}
                                                 gutterBottom
-                                            >{c.comment}</Typography>
+                                            >{c.content}</Typography>
                                         </React.Fragment>
-                                    }                            
+                                    }
                                 />
                                 <React.Fragment>
                                     <Button
-                                    component="span"
-                                    onClick={() => BookDialog(c)}     // TODO: change it to Delete()
+                                        component="span"
+                                        onClick={() => handleDeleteComment(c._id)}     // TODO: change it to Delete()
                                     >
-                                    Delete</Button>
+                                        Delete</Button>
                                 </React.Fragment>
                             </ListItem>
                         </React.Fragment>
@@ -193,16 +187,16 @@ export default function SimpleTabs() {
                     </Grid>
                 </Grid>
                 <List className={styles.list}>
-                    {AdminTabsContent.reviews.map((c, key) => (
+                    {app.state.allReviews.map((r, key) => (
                         <React.Fragment key={key}>
                             <Divider variant='fullWidth' component='li' />
                             <ListItem alignItems='flex-start'>
-                                
+
                                 <ListItemText
                                     primary={
                                         <React.Fragment>
                                             <Grid className={styles.comment_title}>
-                                                <Typography variant='h5' component='span' className={styles.comment_title}> {c.book} </Typography>
+                                                <Typography variant='h5' component='span' className={styles.comment_title}> {r.title} </Typography>
                                             </Grid>
                                         </React.Fragment>
                                     }
@@ -212,17 +206,17 @@ export default function SimpleTabs() {
                                                 component="span"
                                                 variant='p' className={styles.comment_content}
                                                 gutterBottom
-                                            > title: {c.title}</Typography>
+                                            > author: {r.userName}</Typography>
                                         </React.Fragment>
                                     }
                                 />
                                 <React.Fragment>
                                     <Button
-                                    component="span"
-                                    gutterBottom
-                                    onClick={() => BookDialog(c)}     // TODO: change it to Delete()
+                                        component="span"
+                                        gutterBottom
+                                        onClick={() => handleDeleteReview(r._id)}     // TODO: change it to Delete()
                                     >
-                                    Delete</Button>
+                                        Delete</Button>
                                 </React.Fragment>
                             </ListItem>
                         </React.Fragment>
@@ -231,43 +225,24 @@ export default function SimpleTabs() {
             </TabPanel>
 
             <TabPanel value={value} index={3}>
-                <Grid container item xs={8} sm={8} alignItems="center" fullWidth>
-                    <Grid container item alignItems="center" justify="center">
-                        <TextField id="search-field" placeholder={'User Name'} fullWidth
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position="end">
-                                        <Button> <SearchIcon /></Button>
-                                    </InputAdornment>
-                                ),
-                            }} />
-                    </Grid>
-                </Grid>
                 <List className={styles.list}>
-                    {AdminTabsContent.users.map((c, key) => (
+                    {app.state.allUser.map((u, key) => (
                         <React.Fragment key={key}>
                             <Divider variant="fullWidth" component="li" />
                             <ListItem alignItems="flex-start">
                                 <ListItemAvatar>
-                                    <Avatar alt='' src={c.icon_url}/>
+                                    <Avatar alt={u.icon_id} src={u.icon_url} />
                                 </ListItemAvatar>
                                 <ListItemText
                                     primary={
                                         <React.Fragment>
                                             <Grid className={styles.comment_title}>
-                                                <Typography variant='h6' component="span" className={styles.commenter}> {c.userName} </Typography>
+                                                <Typography variant='h6' component="span" className={styles.commenter}> {u.userName} </Typography>
                                             </Grid>
                                         </React.Fragment>
-                                    }                       
+                                    }
                                 />
-                                <React.Fragment>
-                                    <Button
-                                    component="span"
-                                    gutterBottom
-                                    onClick={() => BookDialog(c)}     // TODO: change it to Delete()
-                                    >
-                                    Delete</Button>
-                                </React.Fragment>
+
                             </ListItem>
                         </React.Fragment>
                     ))}

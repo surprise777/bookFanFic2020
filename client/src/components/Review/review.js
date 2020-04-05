@@ -7,8 +7,8 @@ import Rating from '@material-ui/lab/Rating';
 import { Link } from 'react-router-dom';
 import { RoutesMap } from '../../utils/routesMap';
 import { Box } from "@material-ui/core";
-import {getReviewById} from '../../actions/review';
-import {getBookCover} from "../../actions/book";
+import { getReviewById } from '../../actions/review';
+import { getBookCover } from "../../actions/book";
 class Review extends React.Component {
 
     constructor(props) {
@@ -23,7 +23,7 @@ class Review extends React.Component {
 
     render() {
         const { title, author, rating, reviewItem, page } = this.props;
-        const {cover_url} = this.state;
+        const { cover_url } = this.state;
         console.log(cover_url)
         return (
             <Box pt={1} pb={1} className={styles.outline_bottom}>
@@ -36,7 +36,7 @@ class Review extends React.Component {
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={9}>
-                        <Link onMouseOver={() =>getReviewById(reviewItem._id, page)} id={reviewItem.title} to={RoutesMap.BookReview.path} className={styles.no_decor}> <Typography variant="h6" className={styles.fullLink}> {title}</Typography></Link>
+                        <Link onMouseOver={() => getReviewById(reviewItem._id, page)} id={reviewItem.title} to={RoutesMap.BookReview.path} className={styles.no_decor}> <Typography variant="h6" className={styles.fullLink}> {title}</Typography></Link>
 
 
                         <Box display='flex' justifyContent='flex-start' alignContent='center'>
@@ -51,7 +51,7 @@ class Review extends React.Component {
                             />
                         </Box>
                         <div>
-                        <Link onMouseOver={() =>getReviewById(reviewItem._id, page)} id={reviewItem.title} to={RoutesMap.BookReview.path} className={styles.no_decor}>{reviewItem.contents.slice(0, 200)}<span className={styles.fullLink}>full</span></Link>
+                            <Link onMouseOver={() => getReviewById(reviewItem._id, page)} id={reviewItem.title} to={RoutesMap.BookReview.path} className={styles.no_decor}>{reviewItem.contents.slice(0, 200)}<span className={styles.fullLink}>...full</span></Link>
                         </div>
                     </Grid>
                 </Grid>

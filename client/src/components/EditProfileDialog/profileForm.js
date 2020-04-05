@@ -1,15 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Box from "@material-ui/core/Box";
 import Edit from '@material-ui/icons/Edit';
-import { Input, StylesProvider, TextField } from '@material-ui/core';
 import Grid from '../../containers/mui/grid';
-import EditProfileDialogContent from '../../contents/editProfileDialog';
-import styles from './editProfileDialog.module.css';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 
 class ProfileForm extends React.Component {
@@ -114,7 +109,7 @@ class ProfileForm extends React.Component {
         const url = "/user/updateSigniture";
         const data = new FormData(event.target);
         const jsonRaw = {
-             "userId": data.get("userId"),
+            "userId": data.get("userId"),
             "signiture": data.get("signiture"),
         }
         const request = new Request(url, {
@@ -143,43 +138,43 @@ class ProfileForm extends React.Component {
         return (
             <List>
                 <Grid container spacing={0} xs={12}>
-                        <Grid item xs={12} md={4}>
-                            <Box display="flex" justifyContent="center" alignItems="center">
-                                <Box display="flex-center">
-                                   <form id="update-icon" onSubmit={(e)=>this.handleSubmitIcon(e,this.props.user)}>
-                                        <input
-                                            accept="image/*"
-                                            id="contained-button-file"
-                                            name="image"
-                                            multiple
-                                            type="file"
-                                        />
-                                      <button type="submit" form="update-icon"><AddPhotoAlternateIcon /></button></form>
-                                </Box>
+                    <Grid item xs={12} md={4}>
+                        <Box display="flex" justifyContent="center" alignItems="center">
+                            <Box display="flex-center">
+                                <form id="update-icon" onSubmit={(e) => this.handleSubmitIcon(e, this.props.user)}>
+                                    <input
+                                        accept="image/*"
+                                        id="contained-button-file"
+                                        name="image"
+                                        multiple
+                                        type="file"
+                                    />
+                                    <button type="submit" form="update-icon"><AddPhotoAlternateIcon /></button></form>
                             </Box>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
                         <ListItem>
-                                    <ListItemText primary={'userName：'} justify="flex-end" />
-                                    <form id="update-user-name" onSubmit={(e)=>this.handleSubmitUserName(e,this.props.user)}>
-                                    <input name="userName" placeholder={this.props.user.state.currentUser.userName} />
-                                    <button type="submit" form="update-user-name"><Edit/></button></form>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemText primary={'password：'} justify="flex-end" />
-                                    <form id="update-password" onSubmit={(e)=>this.handleSubmitPassword(e, this.props.user)}>
-                                    <input type="hidden" name="id" value={this.props.user.state.currentUser._id}/>
-                                    <input name="password" />
-                                    <button type="submit" form="update-password"><Edit /></button></form>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemText primary={'signiture：'} justify="flex-end" />
-                                    <form id="update-signiture" onSubmit={(e)=>this.handleSubmitSigniture(e, this.props.user)}>
-                                    <input type="hidden" name="userId" value={this.props.user.state.currentUser._id}/>
-                                    <input name="signiture" placeholder={this.props.user.state.currentUser.signiture} />
-                                    <button type="submit" form="update-signiture"><Edit/></button></form>
-                                </ListItem>
-                        </Grid>
+                            <ListItemText primary={'userName：'} justify="flex-end" />
+                            <form id="update-user-name" onSubmit={(e) => this.handleSubmitUserName(e, this.props.user)}>
+                                <input name="userName" placeholder={this.props.user.state.currentUser.userName} />
+                                <button type="submit" form="update-user-name"><Edit /></button></form>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary={'password：'} justify="flex-end" />
+                            <form id="update-password" onSubmit={(e) => this.handleSubmitPassword(e, this.props.user)}>
+                                <input type="hidden" name="id" value={this.props.user.state.currentUser._id} />
+                                <input name="password" />
+                                <button type="submit" form="update-password"><Edit /></button></form>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary={'signiture：'} justify="flex-end" />
+                            <form id="update-signiture" onSubmit={(e) => this.handleSubmitSigniture(e, this.props.user)}>
+                                <input type="hidden" name="userId" value={this.props.user.state.currentUser._id} />
+                                <input name="signiture" placeholder={this.props.user.state.currentUser.signiture} />
+                                <button type="submit" form="update-signiture"><Edit /></button></form>
+                        </ListItem>
+                    </Grid>
                 </Grid>
             </List>
 

@@ -12,118 +12,34 @@ import ReveiwDialog from '../EditReviewDialog/editReviewDialog';
 import Tags from '../Tags/tags';
 import Review from '../Review/review';
 import Button from '@material-ui/core/Button';
-// import {getReleventById} from '../../actions/book';
-import {loadReviews, loadTopReview} from '../../actions/review';
+import { loadReviews, loadTopReview } from '../../actions/review';
 import SideBar from '../SideBar/sideBar';
 class BookDetail extends React.Component {
     constructor(props) {
         super(props)
-        // console.log(this.props.state.login_status)
         this.state = {
-            // allUser: this.props.state.user,
             targetBook: this.props.app.state.targetBook,
-            // allReview: this.props.state.review,
-            // allComment: this.props.state.comment,
-            // targetComents: this.props.state.comment.filter(c => c.book === this.props.state.selectedBook.brefTitle),
-            // targetReviews: this.props.state.review.filter((r) => r.book === this.props.state.selectedBook.brefTitle),
-            // currentComents: this.props.state.comment.filter(c => c.book === this.props.state.selectedBook.brefTitle).slice(0, 1),
-            // currentReviews: this.props.state.review.filter((r) => r.book === this.props.state.selectedBook.brefTitle).slice(0,1),
-            // pageSize: 1,
             offset: 0,
             nextLoadingReviews: [],
             top_review: null,
             currentUser: this.props.app.state.currentUser,
-            // reviewOffset: 0,
         }
-        // this.handleSelectedBook = this.handleSelectedBook.bind(this)
-        // this.searchingTagChange = this.searchingTagChange.bind(this)
-        // this.commentPageNext = this.commentPageNext.bind(this)
-        // this.commentCurrentPage = this.commentCurrentPage.bind(this)
-        // this.reviewPageNext = this.reviewPageNext.bind(this);
-        // this.reviewCurrentPage = this.reviewCurrentPage.bind(this)
-        // this.getReleventById = this.getReleventById.bind(this)
-        // console.log(this.props.app.state.targetBook)
-        // this.getReleventById(this.props.app.state.targetBook._id, this.props.app)
         this.getTrending = this.getTrending.bind(this)
         this.getTrending(this.props.app)
         loadReviews(this)
         loadTopReview(this)
 
     }
-    
-    // getReleventById(bookId, page){
-    //     const url = "/book/relevant/"+bookId;
-    //     console.log(this.props.app.state.targetBook)
-    //     console.log(bookId)
-    //     fetch(url)
-    //         .then(res => {
-    //             if (res.status === 200) {
-    //                 console.log(res.json)
-    //                 return res.json();
-    //             } else {
-    //                 console.log("Could not get relevent books");
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // };
-    
 
-    // commentCurrentPage(num) {
-    //     this.setState({
-    //         currentComents: this.state.targetComents.slice(0, num + this.state.pageSize)
-    //     })
-    // }
-
-    // commentPageNext() {
-    //     this.setState({
-    //         commentOffset: this.state.commentOffset + this.state.pageSize
-    //     })
-    //     this.commentCurrentPage(this.state.commentOffset)
-    // }
-
-    // reviewCurrentPage(num) {
-    //     this.setState({
-    //         currentComents: this.state.targetComents.slice(0, num + this.state.pageSize)
-    //     })
-    // }
-
-    // reviewPageNext() {
-    //     this.setState({
-    //         reviewOffset: this.state.reviewOffset + this.state.pageSize
-    //     })
-    //     this.reviewCurrentPage(this.state.reviewOffset)
-    // }
-
-
-    // async searchingTagChange(e) {
-    //     e.persist()
-    //     this.setState({ input: e.target.innerText })
-    //     let tempState = this.props.state
-    //     tempState.header.input = e.target.innerText
-    //     console.log(tempState.header.input)
-    //     this.props.handler(tempState)
-
-    // }
-
-    // async handleSelectedBook(e) {
-    //     let tempState = this.props.state
-    //     tempState.selectedBook = this.props.state.book.filter(b => b.brefTitle === e.target.innerText)[0]
-    //     console.log(tempState)
-    //     await this.props.handler(tempState)
-
-    // }
-    
-    getTrending(page){
+    getTrending(page) {
         const url = "/book/trending";
-    
+
         fetch(url)
             .then(res => {
                 if (res.status === 200) {
                     return res.json();
                 } else {
-                    console.log( "Error: Could not get trending books.")
+                    console.log("Error: Could not get trending books.")
                 }
             })
             .then(json => {
@@ -135,13 +51,13 @@ class BookDetail extends React.Component {
     };
 
     show_top_review() {
-        if (!this.state.top_review || this.state.top_review.length === 0){
+        if (!this.state.top_review || this.state.top_review.length === 0) {
             return;
-        }else{
+        } else {
             const rv = this.state.top_review[0];
             return (<Review
                 bookId={rv.bookId} title={rv.title} author={rv.userName} rating={(rv.rating)} reviewItem={rv} page={this.props.app}
-                />);
+            />);
         }
     }
     render() {
@@ -170,7 +86,7 @@ class BookDetail extends React.Component {
                                             <Box pt={2}>
                                                 <div>Author: {this.props.app.state.targetBook.author}</div>
                                                 <div>Published: {this.props.app.state.targetBook.published}</div>
-                                                <Grid container alignItems="center"><Grid item xs={1}>Gneres: </Grid><Grid item xs={11}><Tags tags={this.props.app.state.targetBook.genres} page={this.props.app}/></Grid></Grid>
+                                                <Grid container alignItems="center"><Grid item xs={1}>Gneres: </Grid><Grid item xs={11}><Tags tags={this.props.app.state.targetBook.genres} page={this.props.app} /></Grid></Grid>
                                             </Box>
                                         </Container>
                                     </Grid>
@@ -186,25 +102,25 @@ class BookDetail extends React.Component {
                                     </Box>
                                     <Box pt={10}>
                                         <SectionHeader headerText="Comments" />
-                                        <CommentSection bookId={this.props.app.state.targetBook._id} currentUser={this.props.app.state.currentUser}/>
+                                        <CommentSection bookId={this.props.app.state.targetBook._id} currentUser={this.props.app.state.currentUser} />
                                     </Box>
                                     <Box pt={10}>
                                         <SectionHeader headerText="Reviews" />
                                         <Box>
-                        <div className={styles.hottest}>Top Review</div>
-                        {this.show_top_review()}
-                        <hr className={styles.bottom_padding}/>
-                    </Box>
+                                            <div className={styles.hottest}>Top Review</div>
+                                            {this.show_top_review()}
+                                            <hr className={styles.bottom_padding} />
+                                        </Box>
                                         <Box display='flex' justifyContent='flex-end'>
-                                            <ReveiwDialog book={this.state.targetBook}/>
+                                            <ReveiwDialog book={this.state.targetBook} />
                                         </Box>
                                         {this.state.nextLoadingReviews.map(
                                             (rv, index) => (
-                                                <Review key={index} bookId={rv.bookId} title={rv.title} author={rv.userName} rating={(rv.rating)} reviewItem={rv} page={this.props.app}/>
+                                                <Review key={index} bookId={rv.bookId} title={rv.title} author={rv.userName} rating={(rv.rating)} reviewItem={rv} page={this.props.app} />
                                             )
                                         )}
-                                         <Box display='flex' justifyContent='flex-end'>
-                                         <Button color='secondary' onClick={() => {loadReviews(this)}}>show more</Button></Box>
+                                        <Box display='flex' justifyContent='flex-end'>
+                                            <Button color='secondary' onClick={() => { loadReviews(this) }}>show more</Button></Box>
                                     </Box>
                                 </Container>
                             </Grid>
@@ -224,22 +140,9 @@ class BookDetail extends React.Component {
 
                                     </Box>
                                 </Box>
-                                {/* <Box pt={4} className={styles.shrink}>
-                                    <SectionHeader headerText="Tags" />
-                                    <Tags tags={this.props.app.state.targetBook.genres} page={this.props.app} />
-                                </Box> */}
-                                {/* <Box pt={6} className={styles.shrink}>
-                                    <SectionHeader headerText="Relevant" />
-                                    <Box className={styles.trending} pb={2} pt={2}>
-                                        <Box className={styles.padding_left}>
-                                            {this.state.targetBook.relatedBook.map((b, index) => <React.Fragment key={index}><div className={styles.bookTitle} onClick={this.handleSelectedBook} >{b.title}</div>
-                                                <div className={styles.author}>{b.author}}</div></React.Fragment>)}
-                                        </Box>
-                                    </Box>
-                                </Box> */}
-                             <Box pt={10} className={styles.shrink}>
-                            <SideBar tags={this.props.app.state.targetBook.genres} trending={this.props.app.state.trending} page={this.props.app}/>
-                             </Box>
+                                <Box pt={10} className={styles.shrink}>
+                                    <SideBar tags={this.props.app.state.targetBook.genres} trending={this.props.app.state.trending} page={this.props.app} />
+                                </Box>
                             </Grid>
                         </Grid>
                     </Box>

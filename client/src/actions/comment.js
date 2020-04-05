@@ -18,7 +18,7 @@ export const handleAddComment = (detailPage) => {
             if (res.status === 200) {
                 console.log("Add comment Successfully.")
             } else {
-                alert( "Comment adds Failed.")
+                alert("Comment adds Failed.")
             }
         })
         .catch(error => {
@@ -26,15 +26,13 @@ export const handleAddComment = (detailPage) => {
         });
 };
 
-export const handleDeleteComment = (page, commentId) => {
+export const handleDeleteComment = (commentId) => {
 
     const url = "/comment/removeComment/" + commentId;
 
-    const comment = page.state.targetComment
 
     const request = new Request(url, {
         method: "delete",
-        body: JSON.stringify(comment),
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
@@ -46,7 +44,7 @@ export const handleDeleteComment = (page, commentId) => {
             if (res.status === 200) {
                 console.log("delete comment Successfully.")
             } else {
-                alert( "Comment deletes Failed.")
+                alert("Comment deletes Failed.")
             }
         })
         .catch(error => {
@@ -62,7 +60,7 @@ export const getAllComments = (page) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log( "Error: Could not get comments.")
+                console.log("Error: Could not get comments.")
             }
         })
         .then(json => {
@@ -74,7 +72,7 @@ export const getAllComments = (page) => {
 };
 
 export const getCommentsByOneBook = (bookId, page) => {
-    const url = "/comment/byBook/"+bookId;
+    const url = "/comment/byBook/" + bookId;
 
     fetch(url)
         .then(res => {
@@ -94,7 +92,7 @@ export const getCommentsByOneBook = (bookId, page) => {
 
 
 export const loadCommentsInTime = (bookId, offset, page) => {
-    const url = "/comment/loadComments/"+bookId + offset;
+    const url = "/comment/loadComments/" + bookId + offset;
 
     fetch(url)
         .then(res => {
@@ -114,7 +112,7 @@ export const loadCommentsInTime = (bookId, offset, page) => {
 
 export const getTopCommentByBook = (bookId, page) => {
 
-    const url = "/comment/top/"+bookId;
+    const url = "/comment/top/" + bookId;
 
     fetch(url)
         .then(res => {
@@ -142,7 +140,7 @@ export const getAllCommentsByUser = (userId, page) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log( "Error: Could not get comments by user.")
+                console.log("Error: Could not get comments by user.")
             }
         })
         .then(json => {
@@ -174,7 +172,7 @@ export const handleLikeComment = (page) => {
             if (res.status === 200) {
                 console.log("like/unlike comments Successfully.")
             } else {
-                alert( "Like/Unlike comment Failed.")
+                alert("Like/Unlike comment Failed.")
             }
         })
         .catch(error => {
@@ -183,17 +181,17 @@ export const handleLikeComment = (page) => {
 };
 
 export const addComment = (app) => {
-    if (!app.state.currentUser){
+    if (!app.state.currentUser) {
         app.loginWarning();
         return;
     }
 
-    if (app.state.comment === "" || app.state.rating === 0){
+    if (app.state.comment === "" || app.state.rating === 0) {
         app.fillInWarning();
         return;
     }
 
-    const requestBody = {rating: app.state.rating, content: app.state.comment, bookId: app.state.targetBook}
+    const requestBody = { rating: app.state.rating, content: app.state.comment, bookId: app.state.targetBook }
     const url = "/comment/addComment";
     const request = new Request(url, {
         method: "post",
@@ -205,16 +203,16 @@ export const addComment = (app) => {
     });
 
     fetch(request).then(res => {
-        if (res.status == 200){
+        if (res.status == 200) {
             return res.json();
-        }else if (res.status == 401){
+        } else if (res.status == 401) {
             app.loginWarning();
         }
     }).then(json => {
-        if (json){
+        if (json) {
             const new_comments = app.state.comments;
             new_comments.unshift(json);
-            app.setState({comments: new_comments});
+            app.setState({ comments: new_comments });
         }
     }).catch(error => {
         console.log(error)
@@ -222,12 +220,12 @@ export const addComment = (app) => {
 }
 
 export const likeComment = (app) => {
-    if (!app.state.currentUser){
+    if (!app.state.currentUser) {
         app.loginWarning();
         return;
     }
-    const requestBody = {commentId: app.state.id}
-    
+    const requestBody = { commentId: app.state.id }
+
     const url = "/comment/like";
     const request = new Request(url, {
         method: "PATCH",
@@ -239,13 +237,13 @@ export const likeComment = (app) => {
     });
 
     fetch(request).then(res => {
-        if (res.status == 200){
+        if (res.status == 200) {
             return res.json()
-        }else if (res.status == 401){
+        } else if (res.status == 401) {
             app.loginWarning();
         }
     }).then(json => {
-            app.setState({fanList: json.fanList, counter: json.likes})
+        app.setState({ fanList: json.fanList, counter: json.likes })
     }).catch(error => {
         console.log(error)
     })
@@ -255,15 +253,15 @@ export const likeComment = (app) => {
 export const loadComments = (app) => {
     const url = `/comment/loadComments/${app.state.targetBook}/${app.state.index}`;
     fetch(url).then(res => {
-        if (res.status == 200){
+        if (res.status == 200) {
             return res.json();
         }
     }).then(json => {
-        if (json.length !== 0){
+        if (json.length !== 0) {
             const newList = app.state.comments;
             console.log("incremented");
             json.forEach(c => newList.push(c));
-            app.setState({comments: newList, index : app.state.index + json.length});
+            app.setState({ comments: newList, index: app.state.index + json.length });
         }
     }).catch(error => {
         console.log(error);
@@ -273,12 +271,12 @@ export const loadComments = (app) => {
 export const loadTopComment = (app) => {
     const url = "/comment/top/" + app.state.targetBook;
     fetch(url).then(res => {
-        if (res.status == 200){
+        if (res.status == 200) {
             return res.json();
         }
     }).then(json => {
-        if (json){
-            app.setState({top_comment: json});
+        if (json) {
+            app.setState({ top_comment: json });
         }
     }).catch(error => {
         console.log(error)

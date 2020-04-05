@@ -18,7 +18,7 @@ export const handleAddBook = (bookPage) => {
             if (res.status === 200) {
                 console.log("Add book Successfully.")
             } else {
-                alert( "Book adds Failed.")
+                alert("Book adds Failed.")
             }
         })
         .catch(error => {
@@ -26,11 +26,11 @@ export const handleAddBook = (bookPage) => {
         });
 };
 
-export const handleDeleteBook = (page) => {
+export const handleDeleteBook = (bookId) => {
 
     const url = "/book/deleteBook";
 
-    const book = page.state.targetBook
+    const book = { "bookId": bookId }
 
     const request = new Request(url, {
         method: "delete",
@@ -46,7 +46,7 @@ export const handleDeleteBook = (page) => {
             if (res.status === 200) {
                 console.log("delete book Successfully.")
             } else {
-                alert( "Book deletes Failed.")
+                alert("Book deletes Failed.")
             }
         })
         .catch(error => {
@@ -62,7 +62,7 @@ export const getAllBooks = (page) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log( "Error: Could not get books.")
+                console.log("Error: Could not get books.")
             }
         })
         .then(json => {
@@ -74,7 +74,7 @@ export const getAllBooks = (page) => {
 };
 
 export const getBookById = (bookId, page) => {
-    const url = "/book/searchById/"+bookId;
+    const url = "/book/searchById/" + bookId;
 
     fetch(url)
         .then(res => {
@@ -94,7 +94,7 @@ export const getBookById = (bookId, page) => {
 
 
 export const searchBooksByName = (bookTitle, page) => {
-    const url = "/book/searchByName/"+bookTitle;
+    const url = "/book/searchByName/" + bookTitle;
 
     fetch(url)
         .then(res => {
@@ -114,13 +114,13 @@ export const searchBooksByName = (bookTitle, page) => {
 
 export const getBookByGenres = (genresList, page) => {
     let genres = ""
-    for(let i = 0 ; i < genresList.length; i++){
+    for (let i = 0; i < genresList.length; i++) {
         genres = genres + genresList[i]
-        if (i !== genresList.length-1){
+        if (i !== genresList.length - 1) {
             genres = genres + "&"
         }
     }
-    const url = "/book/searchByGenres/"+genres;
+    const url = "/book/searchByGenres/" + genres;
 
     fetch(url)
         .then(res => {
@@ -131,7 +131,7 @@ export const getBookByGenres = (genresList, page) => {
             }
         })
         .then(json => {
-            page.setState({ searchBooks: json, searchInput: genres, tagSearch: true});
+            page.setState({ searchBooks: json, searchInput: genres, tagSearch: true });
         })
         .catch(error => {
             console.log(error);
@@ -140,7 +140,7 @@ export const getBookByGenres = (genresList, page) => {
 
 
 export const getReleventById = (bookId, page) => {
-    const url = "/book/relevant/"+bookId;
+    const url = "/book/relevant/" + bookId;
 
     fetch(url)
         .then(res => {
@@ -167,7 +167,7 @@ export const getTrending = (page) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log( "Error: Could not get trending books.")
+                console.log("Error: Could not get trending books.")
             }
         })
         .then(json => {
@@ -186,7 +186,7 @@ export const getMonthlyRec = (page) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log( "Error: Could not get monthly books.")
+                console.log("Error: Could not get monthly books.")
             }
         })
         .then(json => {
@@ -205,7 +205,7 @@ export const getPopularGenres = (page) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log( "Error: Could not get monthly books.")
+                console.log("Error: Could not get monthly books.")
             }
         })
         .then(json => {
@@ -236,7 +236,7 @@ export const handleMakeRec = (page) => {
             if (res.status === 200) {
                 console.log("recomend book Successfully.")
             } else {
-                alert( "Book recomendation Failed.")
+                alert("Book recomendation Failed.")
             }
         })
         .catch(error => {
@@ -249,12 +249,12 @@ export const getBookCover = (app) => {
     const url = "/book/searchById/" + app.state.bookId;
 
     fetch(url).then(res => {
-        if (res.status == 200){
+        if (res.status == 200) {
             return res.json()
         }
     }).then(json => {
-        if (json){
-            app.setState({cover_url: json.cover_url})
+        if (json) {
+            app.setState({ cover_url: json.cover_url })
         }
     }).catch(error => {
         console.log(error)

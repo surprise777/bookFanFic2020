@@ -107,18 +107,19 @@ class Search extends React.Component {
                                     </Grid>
                                 </Box>
 
-                                <Box px={6} pt={4} className={styles.overWidth}>
-                                    <SectionHeader headerText={SearchResultContent.tag3 + this.props.app.state.searchInput + SearchResultContent.endComa} />
-                                    {this.props.app.state.searchReviews.map(
-                                        (rv, index) => <Review key={index} src={this.findBookCoverById(rv.bookId)} title={rv.title} author={rv.userName} rating={(rv.rating)} reviewItem={rv} page={this.props.app} />
-                                    )}
-                                </Box></React.Fragment>)}
+                                    <Box px={6} pt={4} className={styles.overWidth}>
+                                        <SectionHeader headerText={SearchResultContent.tag3 + this.props.app.state.searchInput + SearchResultContent.endComa} />
+                                        {this.props.app.state.searchReviews.map(
+                                            (rv, index) => <Review key={index} src={this.findBookCoverById(rv.bookId)} title={rv.title} author={rv.userName} rating={(rv.rating)} reviewItem={rv} page={this.props.app} />
+                                        )}
+                                    </Box></React.Fragment>)}
                             </Grid>
                             <Grid item xs={12} md={4}>
                                 <SideBar tags={this.props.app.state.popularTags} trending={this.props.app.state.trending} page={this.props.app} />
                             </Grid></Grid>
                     </Container>
                 </Box>
+                <Footer />
             </Container>
         )
     }

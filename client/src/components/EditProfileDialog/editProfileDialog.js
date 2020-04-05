@@ -1,18 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Dialog from '@material-ui/core/Dialog';
-import Box from "@material-ui/core/Box";
-import Edit from '@material-ui/icons/Edit';
-import { Input, StylesProvider } from '@material-ui/core';
 import Grid from '../../containers/mui/grid';
 import EditProfileDialogContent from '../../contents/editProfileDialog';
 import Typography from '@material-ui/core/Typography'
 import styles from './editProfileDialog.module.css';
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import ProfileForm from './profileForm';
 
 const informations = ['Name', 'Password', 'Signiture'];
@@ -31,7 +24,7 @@ function SimpleDialog(props) {
           If you don't want to change any of these, leave it blank
         </Typography>
       </Grid>
-      <ProfileForm user={user}/>
+      <ProfileForm user={user} />
     </Dialog>
   );
 }
@@ -45,7 +38,7 @@ SimpleDialog.propTypes = {
 export default function SimpleDialogDemo(props) {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(informations[1]);
-  const {user} = props
+  const { user } = props
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -57,11 +50,11 @@ export default function SimpleDialogDemo(props) {
 
   return (
     <div>
-      <br/>
+      <br />
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         {EditProfileDialogContent.edit}
       </Button>
-      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} user={user}/>
+      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} user={user} />
     </div>
   );
 }

@@ -12,76 +12,36 @@ import Review from '../Review/review';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ReveiwDialog from '../EditReviewDialog/editReviewDialog';
-import {loadReviews} from '../../actions/review';
+import { loadReviews } from '../../actions/review';
 class BookReview extends React.Component {
     constructor(props) {
         super(props)
-        // console.log(this.props.state.login_status)
         this.state = {
-            // allUser: this.props.state.user,
-            // targetBook: this.props.state.book.filter(b => b.brefTitle === this.props.state.selectedReview.book)[0],
-            //targetUser: this.props.state.user.filter(u => u.email === this.props.state.selectedReview.email),
             targetReview: this.props.app.state.targetReview,
             reviewId: this.props.app.state.targetReview._id,
-            // allReview: this.props.state.review,
-            click: this.checkLike(this.props.app.state.currentUser, this.props.app.state.targetReview._id),
+            click: this.props.app.state.currentUser === null ? false : this.props.app.state.targetReview.fanList.includes(this.props.app.state.currentUser._id),
             nextLoadingReviews: [],
             media: this.props.app.state.targetBook.cover_url,
             title: this.props.app.state.targetBook.title,
             author: this.props.app.state.targetBook.author,
             book: this.props.app.state.targetBook,
-            targetBook:this.props.app.state.targetBook,
+            targetBook: this.props.app.state.targetBook,
             published: this.props.app.state.targetBook.published,
             popularity: this.props.app.state.targetReview.popularity,
             offset: 0
-            // counter: this.props.state.selectedReview.popularity
         }
-        //console.log(JSON.parse(this.state.nextLoadingReviews))
-        // console.log(this.props.state.selectedReview.email)
-        // this.findBookCoverById = this.findBookCoverById.bind(this)
-        // this.findBookAuthorById = this.findBookAuthorById.bind(this)
-        // this.findBookPublishedById = this.findBookPublishedById.bind(this)
-        // this.findBookTitleById = this.findBookTitleById.bind(this)
         this.checkLike = this.checkLike.bind(this)
         this.getPopularity = this.getPopularity.bind(this)
-        // this.findBookById = this.findBookById.bind(this)
         loadReviews(this)
 
     }
 
-    createThumbUpButton() {
-        if (this.state.click) {
-            return (
-                <FavoriteIcon fontSize='small' color='primary' />
-            )
-        } else {
-            return (
-                <FavoriteIcon fontSize='small' />
-            )
-        }
-    }
-
-    // clickhandler() {
-    //     const clicked = this.state.click ? false : true;
-    //     if (clicked) {
-    //         this.setState({
-    //             "click": clicked,
-    //             "counter": this.state.counter + 1
-    //         })
-    //     } else {
-    //         this.setState({
-    //             "click": clicked,
-    //             "counter": this.state.counter - 1
-    //         })
-    //     }
-    // }
-    
-    handleLikeReview(page){
+    handleLikeReview(page) {
 
         const url = "/review/like";
-    
+
         const review = page.state
-    
+
         const request = new Request(url, {
             method: "PATCH",
             body: JSON.stringify(review),
@@ -90,36 +50,36 @@ class BookReview extends React.Component {
                 "Content-Type": "application/json"
             }
         });
-    
+
         fetch(request)
             .then((res) => {
                 if (res.status === 200) {
                     return res.json();
                 } else {
-                    alert( "Like/Unlike review Failed.")
+                    alert("Like/Unlike review Failed.")
                     return
                 }
-            })   
-            .then(json => {
-                page.setState({ click: json.status, popularity: json.result.popularity });
+            })
+            .then(async json => {
+                await page.setState({ click: json.status, popularity: json.result.popularity });
             })
             .catch(error => {
                 console.log(error);
             });
     };
 
-    checkLike(user, reviewId){
-        const url = "/review/byId/"+reviewId;
-        if(!user){
+    checkLike(user, reviewId) {
+        const url = "/review/byId/" + reviewId;
+        if (!user) {
             return false
         }
         fetch(url)
             .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                console.log("Could not get review by id");
-            }
+                if (res.status === 200) {
+                    return res.json();
+                } else {
+                    console.log("Could not get review by id");
+                }
             })
             .then(json => {
                 return json.fanList.includes(user._id);
@@ -128,17 +88,17 @@ class BookReview extends React.Component {
                 console.log(error);
             });
     }
-    
-    getPopularity(reviewId){
-        const url = "/review/byId/"+reviewId;
+
+    getPopularity(reviewId) {
+        const url = "/review/byId/" + reviewId;
 
         fetch(url)
             .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                console.log("Could not get review by id");
-            }
+                if (res.status === 200) {
+                    return res.json();
+                } else {
+                    console.log("Could not get review by id");
+                }
             })
             .then(json => {
                 return json.popularity;
@@ -147,86 +107,6 @@ class BookReview extends React.Component {
                 console.log(error);
             });
     }
-
-    // findBookCoverById(bookId){
-    //     const url = "/book/searchById/"+bookId;
-    
-    //     fetch(url)
-    //         .then(res => {
-    //             if (res.status === 200) {
-    //                 return res.json().cover_url;
-    //             } else {
-    //                 console.log("Could not get book cover url by id");
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // };
-
-    // findBookAuthorById(bookId){
-    //     const url = "/book/searchById/"+bookId;
-    
-    //     fetch(url)
-    //         .then(res => {
-    //             if (res.status === 200) {
-    //                 return res.json().author;
-    //             } else {
-    //                 console.log("Could not get book cover url by id");
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // };
-
-    // findBookPublishedById(bookId){
-    //     const url = "/book/searchById/"+bookId;
-    
-    //     fetch(url)
-    //         .then(res => {
-    //             if (res.status === 200) {
-    //                 return res.json().published;
-    //             } else {
-    //                 console.log("Could not get book cover url by id");
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // };
-
-    // findBookById(bookId){
-    //     const url = "/book/searchById/"+bookId;
-    
-    //     fetch(url)
-    //         .then(res => {
-    //             if (res.status === 200) {
-    //                 return res.json();
-    //             } else {
-    //                 console.log("Could not get book cover url by id");
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // };
-
-    // findBookTitleById(bookId){
-    //     const url = "/book/searchById/"+bookId;
-    
-    //     fetch(url)
-    //         .then(res => {
-    //             if (res.status === 200) {
-    //                 return res.json().title;
-    //             } else {
-    //                 console.log("Could not get book cover url by id");
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // };
 
     render() {
         // console.log(this.props.match);
@@ -256,8 +136,8 @@ class BookReview extends React.Component {
                                     {this.props.app.state.targetReview.contents}
                                 </Box>
                                 <Box pt={1} display='flex' alignItems='center' justifyContent='flex-end'>
-                                    <IconButton edge='start' onClick={()=>this.handleLikeReview(this)} disabled={!this.props.app.state.currentUser}>
-                                        {this.createThumbUpButton()}
+                                    <IconButton edge='start' onClick={() => this.handleLikeReview(this)} disabled={!this.props.app.state.currentUser}>
+                                        <FavoriteIcon fontSize='small' color={this.state.click ? "primary" : "secondary"} />
                                     </IconButton>
                                     <span className={styles.likeCount} >{this.state.popularity}</span>
                                 </Box>
@@ -265,7 +145,7 @@ class BookReview extends React.Component {
                                     <SectionHeader headerText="You may also like" />
                                     {this.state.nextLoadingReviews.map(
                                         (rv, index) => (
-                                            <Review key={index} bookId={rv.bookId} title={rv.title} author={rv.author} rating={(rv.rating)} reviewItem={rv} page={this.props.app}/>
+                                            <Review key={index} bookId={rv.bookId} title={rv.title} author={rv.author} rating={(rv.rating)} reviewItem={rv} page={this.props.app} />
                                         )
                                     )}
                                 </Box>

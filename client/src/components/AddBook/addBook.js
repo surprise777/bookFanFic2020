@@ -2,12 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import Grid from '../../containers/mui/grid';
-import Box from "@material-ui/core/Box";
-import TextField from '@material-ui/core/TextField';
-import { Typography } from '@material-ui/core';
-import styles from './addBook.module.css';
-import Container from '../../containers/mui/container';
 import BookForm from './bookForm';
 
 const informations = ['Title', 'Rating', 'Content'];
@@ -23,8 +17,8 @@ function SimpleDialog(props) {
     return (
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} fullWidth maxWidth="md">
 
-        <BookForm handleClose={handleClose}/>
-        
+            <BookForm handleClose={handleClose} />
+
         </Dialog>
     );
 }

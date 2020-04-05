@@ -8,7 +8,7 @@ import Container from '../../containers/mui/container';
 import Rating from '@material-ui/lab/Rating';
 import { TextField } from '@material-ui/core';
 import CommentSectionContent from '../../contents/commentSection';
-import {loadComments, addComment, loadTopComment} from "../../actions/comment";
+import { loadComments, addComment, loadTopComment } from "../../actions/comment";
 
 function ClickRating({ rating_handler, rating }) {
     const [value, setValue] = React.useState(0);
@@ -45,37 +45,37 @@ class CommentSection extends React.Component {
         loadComments(this)
     }
 
-    loginWarning(){
+    loginWarning() {
         window.alert("Please log in first!");
     }
 
-    fillInWarning(){
+    fillInWarning() {
         window.alert("Comment can not be empty/Rating can not be 0");
     }
 
     loadUserIcon(user) {
-        if (user){
+        if (user) {
             return (<img src={user.icon_url} className={styles.icon} alt='' />)
-        }else{
+        } else {
             return (<img src={CommentSectionContent.icon} className={styles.icon} alt='' />)
         }
     }
 
     show_top_comment() {
-        if (!this.state.top_comment || this.state.top_comment.length === 0){
+        if (!this.state.top_comment || this.state.top_comment.length === 0) {
             return;
-        }else{
+        } else {
             const comment = this.state.top_comment[0];
             return (<Comment
                 currentUser={this.state.currentUser}
-                id = {comment._id}
+                id={comment._id}
                 fanList={comment.fanList}
                 userId={comment.userId}
                 content={comment.content}
                 rating={comment.rating}
                 counter={comment.likes}
                 date={comment.date}
-                />);
+            />);
         }
     }
 
@@ -128,7 +128,7 @@ class CommentSection extends React.Component {
                                             onClick={this.cancelhandler.bind(this)}
                                         >{CommentSectionContent.cancel}
                                         </Button>
-                                        <Button color='primary' onClick={() => {addComment(this)}}>{CommentSectionContent.comment}</Button>
+                                        <Button color='primary' onClick={() => { addComment(this) }}>{CommentSectionContent.comment}</Button>
                                     </Box>
                                 </Box>
                             </Grid>
@@ -139,13 +139,13 @@ class CommentSection extends React.Component {
                     <Box>
                         <div className={styles.hottest}>Top comment</div>
                         {this.show_top_comment()}
-                        <hr className={styles.bottom_padding}/>
+                        <hr className={styles.bottom_padding} />
                     </Box>
                     {this.state.comments.map((comment, index) =>
 
                         (<Comment
                             currentUser={this.state.currentUser}
-                            id = {comment._id}
+                            id={comment._id}
                             fanList={comment.fanList}
                             userId={comment.userId}
                             content={comment.content}
@@ -153,10 +153,10 @@ class CommentSection extends React.Component {
                             key={index}
                             counter={comment.likes}
                             date={comment.date}
-                            />)
+                        />)
 
                     )}
-                    <Box display='flex' justifyContent='flex-end'><Button color='secondary' onClick={() => {loadComments(this)}}>show more</Button></Box> 
+                    <Box display='flex' justifyContent='flex-end'><Button color='secondary' onClick={() => { loadComments(this) }}>show more</Button></Box>
                 </Box>
             </Box>
         )

@@ -1,6 +1,4 @@
 
-
-
 export const handleSignup = (signupPage) => {
 
     const url = "/user/signup";
@@ -21,7 +19,7 @@ export const handleSignup = (signupPage) => {
             if (res.status === 200) {
                 console.log("Singup Successfully.")
             } else {
-                alert( "Signup Failed.")
+                alert("Signup Failed.")
             }
         })
         .catch(error => {
@@ -38,7 +36,7 @@ export const getAllUsers = (page) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                console.log( "Error: Could not get Users.")
+                console.log("Error: Could not get Users.")
             }
         })
         .then(json => {
@@ -50,7 +48,7 @@ export const getAllUsers = (page) => {
 };
 
 export const getUserById = (userId, page) => {
-    const url = "/user/"+userId;
+    const url = "/user/" + userId;
 
     fetch(url)
         .then(res => {
@@ -69,7 +67,7 @@ export const getUserById = (userId, page) => {
 };
 
 export const searchUsersByName = (userName, page) => {
-    const url = "/user/byName/"+userName;
+    const url = "/user/byName/" + userName;
 
     fetch(url)
         .then(res => {
@@ -107,7 +105,7 @@ export const handleUpdateSigniture = (page) => {
             if (res.status === 200) {
                 console.log("update signiture Successfully.")
             } else {
-                alert( "Signiture update Failed.")
+                alert("Signiture update Failed.")
             }
         })
         .catch(error => {
@@ -135,7 +133,7 @@ export const handleUpdateUserName = (page) => {
             if (res.status === 200) {
                 console.log("update userName Successfully.")
             } else {
-                alert( "UserName update Failed.")
+                alert("UserName update Failed.")
             }
         })
         .catch(error => {
@@ -164,7 +162,7 @@ export const handleUpdatePassword = (page) => {
             if (res.status === 200) {
                 console.log("update password Successfully.")
             } else {
-                alert( "Password update Failed.")
+                alert("Password update Failed.")
             }
         })
         .catch(error => {
@@ -190,7 +188,7 @@ export const handleUpdateImage = (image, page) => {
             if (res.status === 200) {
                 console.log("update icon Successfully.")
             } else {
-                alert( "Icon update Failed.")
+                alert("Icon update Failed.")
             }
         })
         .catch(error => {
@@ -219,7 +217,7 @@ export const handleMakeAdmin = (page) => {
             if (res.status === 200) {
                 console.log("update accountType Successfully.")
             } else {
-                alert( "accountType update Failed.")
+                alert("accountType update Failed.")
             }
         })
         .catch(error => {
@@ -230,12 +228,12 @@ export const handleMakeAdmin = (page) => {
 export const findUserInfo = (app, id) => {
     const url = `user/${id}`;
     fetch(url).then(res => {
-        if (res.status == 200){
+        if (res.status == 200) {
             return res.json()
         }
     }).then(json => {
-        if (json){
-            app.setState({userName: json.userName, icon_url: json.icon_url})
+        if (json) {
+            app.setState({ userName: json.userName, icon_url: json.icon_url })
         }
     }).catch(error => {
         console.log(error)

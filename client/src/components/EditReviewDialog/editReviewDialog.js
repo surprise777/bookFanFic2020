@@ -2,11 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import Rating from '@material-ui/lab/Rating';
-import Grid from '../../containers/mui/grid';
-import TextField from '@material-ui/core/TextField';
-import { Typography } from '@material-ui/core';
-import styles from './editReviewDialog.module.css';
 import ReviewForm from './reviewForm';
 const informations = ['Title', 'Rating', 'Content'];
 
@@ -21,7 +16,7 @@ function SimpleDialog(props) {
 
     return (
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} fullWidth maxWidth="md">
-           <ReviewForm book={book}/>
+            <ReviewForm book={book} />
         </Dialog>
     );
 }
@@ -33,7 +28,7 @@ SimpleDialog.propTypes = {
 };
 
 export default function SimpleDialogDemo(props) {
-    const {book} = props
+    const { book } = props
     const [open, setOpen] = React.useState(false);
     const [selectedValue, setSelectedValue] = React.useState(informations[1]);
 
