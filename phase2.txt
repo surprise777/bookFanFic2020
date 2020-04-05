@@ -1,8 +1,8 @@
-Project name: Readers Club
+Project name: book-club-pika
 
 1. Setup and run the program
     > git clone https://github.com/csc309-winter-2020/team19.git
-    > npm run Setup
+    > npm run setup
     > npm run build-run
 
 2. Existing Accounts
@@ -22,17 +22,25 @@ Project name: Readers Club
     - Search Result
     - Profile Page(for both user and admin)
 
-4. Postman
-    There are multiple routes set up in ./routes, including /user/login, /book/addBook etc. They are successfully connected into our project but can be used to test functionalities except:
-        PATCH http://localhost:5000/user/makeAdmin
-            body(JSON): {
-                "userId": 
-            }
-        since users are not supposed to see this in our project.
-    We recommend to use postman for testing, say if there is a bad request when writing a review into our system.
+    The website we built is a book reviewing website that recommend good books to users.
     
+    Our application allows guest visit, but no interactions can be made unless the guest logins.
+    When a guest enters our website, they may signup for an account or login into an existing from right top parts of our application.
+    The home page displays the monthly recommended book, the book trendings, some popular tags, and some popular reviews.
+    The top of the website has a search bar, any user/guest can use it to search for a book, a user or a review by name.
+    Searrching by genres is also possible by clicking on one of the genres listed on the sidebar in homepage.
+    When a user click on a book cover in home page, they will be redirected to the specific pages that contains the book information,
+    the comments & reviews that are related to this book. Clicking on a review will further take the user to the review page. User can comment, review and rates
+    the book on this page, however if only they are logged in. A guest is not able to perform any of the interaction listed above.
+    Once logged in, a user can go to his/her own profile from right top of the website and updates the personal information, for example upload new icons,
+    update a new signature, and manages his/her comments & review posted before. Deleting own comments & reviews happens here.
 
-5. Database schemas
+    An admin will login as a user, and also can perform all the user interactions like a normal user.
+    But in addition, an admin will gain the access to the adminTab from right top of the website, and manages all book deletion,
+    adding books, deleting comment & reviews operation inside the admin panel. The operation is intuitive enough for admin to use.
+    The operation might not be syncrhonus, so some refresh maybe needed. 
+
+4. Database schemas
     Our team used 4 schemas in this project: "book", "comment", "review", "user". More details(restrictions and default values) can be found in ./models.
 
     "book": {
@@ -80,4 +88,14 @@ Project name: Readers Club
         icon_url,
         signature
     }
+
+5. Postman
+    There are multiple routes set up in ./routes, including /user/login, /book/addBook etc. The detail specification for each route is described in router_overview.txt.
+    They have successfully connected into our project, except:
+        PATCH /user/makeAdmin
+            body(JSON): {
+                "userId": 
+            }
+        since users are not supposed to see this and use this anywhere in the website. This is used to promote a user to domain secretly.
+    We recommend to use postman for testing pure backend route purpose.
 
