@@ -85,7 +85,7 @@ export const searchUsersByName = (userName, page) => {
         });
 };
 
-export const handleUpdateSigniture = (page) => {
+export const handleUpdateSignature = (page) => {
 
     const url = "/user/updateSignature";
 
@@ -103,9 +103,9 @@ export const handleUpdateSigniture = (page) => {
     fetch(request)
         .then(function (res) {
             if (res.status === 200) {
-                console.log("update signiture Successfully.")
+                console.log("update signature Successfully.")
             } else {
-                alert("Signiture update Failed.")
+                alert("Signature update Failed.")
             }
         })
         .catch(error => {

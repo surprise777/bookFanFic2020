@@ -16,7 +16,7 @@ class ProfileForm extends React.Component {
         this.handleSubmitIcon = this.handleSubmitIcon.bind(this);
         this.handleSubmitUserName = this.handleSubmitUserName.bind(this);
         this.handleSubmitPassword = this.handleSubmitPassword.bind(this);
-        this.handleSubmitSigniture = this.handleSubmitSigniture.bind(this);
+        this.handleSubmitSignature = this.handleSubmitSignature.bind(this);
         this.state = {
             checked: false
         }
@@ -110,13 +110,13 @@ class ProfileForm extends React.Component {
             });
     }
     
-    handleSubmitSigniture(event, app) {
+    handleSubmitSignature(event, app) {
         event.preventDefault();
-        const url = "/user/updateSigniture";
+        const url = "/user/updateSignature";
         const data = new FormData(event.target);
         const jsonRaw = {
              "userId": data.get("userId"),
-            "signiture": data.get("signiture"),
+            "signature": data.get("signature"),
         }
         const request = new Request(url, {
             method: "PATCH",
@@ -130,9 +130,9 @@ class ProfileForm extends React.Component {
         fetch(request)
             .then(function (res) {
                 if (res.status === 200) {
-                    console.log("Add signiture Successfully.")
+                    console.log("Add signature Successfully.")
                 } else {
-                    alert("Signiture  add Failed.")
+                    alert("Signature  add Failed.")
                 }
             })
             .catch(error => {
@@ -191,14 +191,14 @@ class ProfileForm extends React.Component {
                                 </ListItem>
                                 <ListItem>
                                     <ListItemText justify="flex-end" />
-                                    <form id="update-signiture" onSubmit={(e)=>this.handleSubmitSigniture(e, this.props.user)}>
+                                    <form id="update-signature" onSubmit={(e)=>this.handleSubmitSignature(e, this.props.user)}>
                                     <Grid item xs={12} md={3}>
                                         <Typography variant="body1">Signature: </Typography>
                                     </Grid>
                                     <Grid xs={12} md={9}>
                                         <input type="hidden" name="userId" value={this.props.user.state.currentUser._id}/>
-                                        <input name="signiture" placeholder={this.props.user.state.currentUser.signiture} className={styles.inputSize}/>
-                                        <button type="submit" form="update-signiture"><Edit/></button>
+                                        <input name="signature" placeholder={this.props.user.state.currentUser.signature} className={styles.inputSize}/>
+                                        <button type="submit" form="update-signature"><Edit/></button>
                                     </Grid>
                                     </form>
                                 </ListItem>

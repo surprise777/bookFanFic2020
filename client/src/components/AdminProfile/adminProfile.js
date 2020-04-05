@@ -43,7 +43,7 @@ class AdminProfile extends React.Component {
                             </Grid>
                             <Grid container item xs={3} >
                                 <Grid item xs={12}> <Typography variant="h6">{this.props.app.state.currentUser.userName}</Typography></Grid>
-                                <Grid item xs={12}> <Typography variant="body1" color="primary">{this.props.app.state.currentUser.signiture}</Typography></Grid>
+                                <Grid item xs={12}> <Typography variant="body1" color="primary">{this.props.app.state.currentUser.signature}</Typography></Grid>
                             </Grid>
                             <Grid container item xs={3}>
                                 <AddBook page={this.props.app} />
