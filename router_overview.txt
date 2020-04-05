@@ -1,0 +1,272 @@
+Overview:
+We have set up 4 routers, user, comment, book, review, which corresponds to 4 schema
+data type we have defined. The route will be grouped under these 4 routers for modularity purpose.
+Note the code snippet under server.js:
+
+// Link the router (This is the api routes)
+app.use("/user", user)
+app.use("/comment", comment)
+app.use("/review", review)
+app.use("/book", book)
+
+So every api will have */ as prefix depend on which router group they belong.
+for convenient, I've already included this prefix under the following sections.
+
+
+User router:
+
+/user/signup:
+    method: post
+    parameter: email, password, userName
+    requires email, password and userName inside request body, used to signup for an account
+    return the user created
+
+/user/login:
+    method: post
+    parameter: email, password
+    requires email and password inside request body, used to login,
+    return the user that is logged in
+
+/user/logout:
+    method: post
+    parameter: none
+    no parameters needed, destroy the session and log out the user
+    return nothing
+
+/user/check-session:
+    method: get
+    parameter: none
+    check if a user is logged in
+    returns a status indicating whether a user is logged in
+
+/user/all:
+    method: get
+    parameter: none
+    return all users currently in the database
+
+/user/:id:
+    method: get
+    parameter: id in url
+    requires a parameter id that is the ObjectId of some user
+    return the user information for this specific user id
+
+/user/byName/:name
+    method: get
+    parameter: name in url
+    returns all users that have parts of all of their username match with "name"
+    used for the search User functionality, the matching is case insensitive
+
+/user/updateSignature
+    method: patch
+    pre-condition: a user is logged in currently
+    parameter: signature
+    need the new signature inside request body, update the signature for the 
+    current user
+
+/user/updateUserName
+    method: patch
+    pre-condition: a user is logged in
+    parameter: newUserName
+    Update logged in user's userName to newUserName
+
+/user/updatePassword
+    method: patch
+    pre-condition: a user is logged in
+    parameter: id, password
+    update user with userid of id's password to new password,
+    a user must be logged in and the operation is only successful if either user is 
+    updating his own account, or an admin is logged in
+
+/user/updateIcons
+    method: patch
+    pre-condition: a user is logged in
+    parameter: upload a image in form data with key "image"
+    upload user's icon
+
+/user/makeAdmin
+    method: patch
+    parameter: userId
+    promote a user to admin, this is hidden route and is not connected to frontend
+    anywhere, can only call inside postman
+
+
+Book router:
+
+/book/addBook
+    method: post
+    pre-condition: a user is logged in and is admin
+    parameter: brefTitle, title, author, genres(an array of strings), published(A string representation of date),
+    monRec(boolean), description, an image in form data with key "image"
+    add a book to the database
+
+/book/deleteBook
+    method: delete
+    pre-condition: a user is logged in and is admin
+    parameter: bookId
+    Remove the book with bookId, and all its comments & reviews from the database, only admin
+    has access to this route
+
+/book/all
+    method: get
+    parameter: none
+    return all books currently in the database
+
+/book/searchById/:id
+    method: get
+    paramter: id in the url
+    return book's information given the book id which is an ObjectId
+
+/book/searchByName/:title
+    method: get
+    parameter: title in the url
+    return books with title that match partially or all to "title", note that
+    the matching is case incensitive
+    used to find books in search bar
+
+/book/searchByGenres/:genres
+    method: get
+    parameter: genres in url, should be of form genre1&genre2&genre3 for example
+    return books that are labeled with one or more of the genres.
+    Used for tag searching
+
+/book/relevant/:bookId
+    method: get
+    paramter: bookId in url
+    returns the relevant books of the given BookId, the relevantness is based on
+    the genres. Used for sidebar suggestion in book detail page
+
+/book/trending
+    method: get
+    parameter: none
+    returns top10 most popular books that are based on rating, used for trending
+    in home page
+
+/book/monthRecommendation
+    method: get
+    parameter: none
+    returns the monthly recommendation books, used for month recommendation in home
+    page
+
+/book/popularGenres
+    method: get
+    parameter: none
+    returns all genres of popular books as a list, used to populate the popular tags
+    in home sections
+
+/book/makeRec
+    method: patch
+    pre-condition: a user is logged in as admin
+    parameter: bookId, status
+    return nothing, used to make a book a monthly recommendation
+
+
+Review router:
+
+/review/addReview
+    method: post
+    pre-condition: a user is logged in currently
+    parameter: bookId, title, rating, contents(a list of strings, each string represent a paragraph)
+    The logged in user will post a new review to the website
+
+/review/removeReview/:id
+    method: delete
+    pre-condition: a user is logged in currently
+    parameter: id in the url
+    remove the review with review id, either the author or the admin can remove
+
+/review/all
+    method: get
+    parameter: none
+    retrieve all reviews from the current database
+
+/review/byId/:id
+    method: get
+    parameter: id in url
+    retrieve a specific review information from database
+
+/review/searchByName/:title
+    method: get
+    parameter: title in url
+    finds all reviews with title match partially or all with "title", the matching
+    is case insensitive,used for searching functionality
+
+/review/byUser/:id
+    method: get
+    parameter: id in url
+    finds all reviews posted by a specific user. Used for user profile
+
+/review/loadReviews/:id/:index
+    method: get
+    parameter: id and index in url
+    find all reviews of a book, sorted by time, and returns 5 of them starting at index
+    offset. Used to load reviews in book detail page
+
+/review/top/:id
+    method: get
+    parameter: id in url
+    finds the most popular review of a specific book, used for top review in book detail
+
+/review/mostPopular
+    method: get
+    parameter: none
+    Return the most popular review, used for recommendation in home page
+
+/review/like
+    method: patch
+    pre-condition: a user must be logged in
+    parameter: reviewId
+    Like/dislike a review, user has to be logged in first in order to
+    like a review, return the result review in order for frontend to properly
+    apply the update
+
+
+Comment router:
+
+/comment/addComment
+    method: post
+    pre-condition: a user must be logged in
+    parameter: bookId, rating, content
+    user post a comment for a book with bookId of rating and content.
+    returns the comment created as data in database, update book's total rating
+    and number of ratings as appropiate
+
+/comment/removeComment/:id
+    method: post
+    pre-condition: a user must be logged in
+    parameter: id in url
+    remove the comment with id, and adjust the book rating accordingly.
+    Only the user who posted this comment or an admin may remove it.
+
+/comment/all
+    method: get
+    parameter: none
+    retrive all comments currently stored in the database
+
+/byBook/:id
+    method: get
+    parameter: id in url
+    finds all comments of a book given id.
+
+/loadComments/:id/:index
+    method: get
+    parameter: id and index in url
+    find all comments of a book, sorted by time, and returns 5 of them starting at index
+    offset. Used to load comments in book detail page
+
+/top/:id
+    method: get
+    parameter: id in url
+    find the top comment of a book given id sorted by likes, 
+    used to load top comment in book detail page
+
+/byUser/:id
+    method: get
+    parameter: id in url
+    find and return all comments of a user
+
+/like
+    method: patch
+    pre-condition: a user must be logged in
+    parameter: commentId
+    like/dislike a comment given commentId, and returns the modified comment data
+    for frontend to make any necessary update
