@@ -1,0 +1,83 @@
+Project name: Readers Club
+
+1. Setup and run the program
+    > git clone https://github.com/csc309-winter-2020/team19.git
+    > npm run Setup
+    > npm run build-run
+
+2. Existing Accounts
+	Regular user: 
+		email: user
+		password: user
+	Admin:
+		email: admin
+		password: admin
+
+3. Brief Walkthrough(existing pages)
+    - Home
+    - Login
+    - Signup
+    - Book Detail
+    - Review Detail
+    - Search Result
+    - Profile Page(for both user and admin)
+
+4. Postman
+    There are multiple routes set up in ./routes, including /user/login, /book/addBook etc. They are successfully connected into our project but can be used to test functionalities except:
+        PATCH http://localhost:5000/user/makeAdmin
+            body(JSON): {
+                "userId": 
+            }
+        since users are not supposed to see this in our project.
+    We recommend to use postman for testing, say if there is a bad request when writing a review into our system.
+    
+
+5. Database schemas
+    Our team used 4 schemas in this project: "book", "comment", "review", "user". More details(restrictions and default values) can be found in ./models.
+
+    "book": {
+        brefTitle,
+        title,
+        author,
+        genres,
+        published,
+        rating,
+        numRating,
+        monthRec,
+        description,
+        cover_id,
+        cover_url
+    }
+
+    "comment": {
+        userId,
+        userName,
+        bookId,
+        content,
+        likes,
+        fanList,
+        rating,
+        date
+    }
+
+    "review": {
+        userId,
+        userName,
+        bookId,
+        title,
+        rating,
+        popularity,
+        fanList,
+        contents
+    }
+
+    "user": {
+        email,
+        userName,
+        password,
+        acctType,
+        icon_id,
+        icon_url,
+        signature
+    }
+
