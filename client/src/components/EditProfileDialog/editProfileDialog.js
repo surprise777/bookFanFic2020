@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import styles from './editProfileDialog.module.css';
 import ProfileForm from './profileForm';
 
-const informations = ['Name', 'Password', 'Signiture'];
+const informations = ['Name', 'Password', 'Signature'];
 
 function SimpleDialog(props) {
   const { onClose, selectedValue, open, user } = props;
