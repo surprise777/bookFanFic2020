@@ -1,5 +1,7 @@
 Project name: book-club-pika
 
+Web URL: https://book-club-pika.herokuapp.com
+
 1. Setup and run the program
     > git clone https://github.com/csc309-winter-2020/team19.git
     > npm run setup
