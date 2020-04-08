@@ -9,10 +9,10 @@ Web URL: https://book-club-pika.herokuapp.com
 
 2. Existing Accounts
 	Regular user: 
-		email: user
+		email: user@user.ca
 		password: user
 	Admin:
-		email: admin
+		email: admin@admin.ca
 		password: admin
 
 3. Brief Walkthrough(existing pages)
