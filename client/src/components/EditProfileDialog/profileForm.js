@@ -109,13 +109,13 @@ class ProfileForm extends React.Component {
                 console.log(error);
             });
     }
-    
+
     handleSubmitSignature(event, app) {
         event.preventDefault();
         const url = "/user/updateSignature";
         const data = new FormData(event.target);
         const jsonRaw = {
-             "userId": data.get("userId"),
+            "userId": data.get("userId"),
             "signature": data.get("signature"),
         }
         const request = new Request(url, {
@@ -148,16 +148,19 @@ class ProfileForm extends React.Component {
                         <Box display="flex" justifyContent="center" alignItems="center">
                             <Box display="flex-center" className={styles.paddingTop}>
                                 <Typography variant="body2" align="center"> Upload image</Typography>
-                                <Button >
-                                    <input
-                                        accept="image/*"
-                                        id="contained-button-file"
-                                        name="image"
-                                        multiple
-                                        type="file"
-                                        className={styles.uploadButton}
-                                    />
-                                </Button>
+                                <form id="update-user-icon" onSubmit={(e) => this.handleSubmitIcon(e, this.props.user)}>
+                                    <Button >
+                                        <input
+                                            accept="image/*"
+                                            id="contained-button-file"
+                                            name="image"
+                                            multiple
+                                            type="file"
+                                            className={styles.uploadButton}
+                                        />
+                                    </Button>
+                                    <button type="submit" form="update-user-icon"><Edit /></button>
+                                </form>
                             </Box>
                         </Box>
                     </Grid>
@@ -166,40 +169,40 @@ class ProfileForm extends React.Component {
                             <Box pt={2}>
                                 <ListItem>
                                     <ListItemText justify="flex-end" />
-                                    <form id="update-user-name" onSubmit={(e)=>this.handleSubmitUserName(e,this.props.user)}>
-                                    <Grid item xs={12} md={3}>
-                                        <Typography variant="body1">UserName: </Typography>
+                                    <form id="update-user-name" onSubmit={(e) => this.handleSubmitUserName(e, this.props.user)}>
+                                        <Grid item xs={12} md={3}>
+                                            <Typography variant="body1">UserName: </Typography>
                                         </Grid>
                                         <Grid xs={12} md={9}>
-                                        <input name="userName" className={styles.inputSize} placeholder={this.props.user.state.currentUser.userName}/>
-                                        <button type="submit" form="update-user-name"><Edit/></button>
-                                    </Grid>
+                                            <input name="userName" className={styles.inputSize} placeholder={this.props.user.state.currentUser.userName} />
+                                            <button type="submit" form="update-user-name"><Edit /></button>
+                                        </Grid>
                                     </form>
                                 </ListItem>
                                 <ListItem>
                                     <ListItemText justify="flex-end" />
-                                    <form id="update-password" onSubmit={(e)=>this.handleSubmitPassword(e, this.props.user)}>
-                                    <Grid item xs={12} md={3}>
-                                        <Typography variant="body1">Password: </Typography>
-                                    </Grid>
-                                    <Grid xs={12} md={9}>
-                                        <input type="hidden" name="id" value={this.props.user.state.currentUser._id}/>
-                                        <input name="password" className={styles.inputSize}/>
-                                        <button type="submit" form="update-password"><Edit /></button>
-                                    </Grid>
+                                    <form id="update-password" onSubmit={(e) => this.handleSubmitPassword(e, this.props.user)}>
+                                        <Grid item xs={12} md={3}>
+                                            <Typography variant="body1">Password: </Typography>
+                                        </Grid>
+                                        <Grid xs={12} md={9}>
+                                            <input type="hidden" name="id" value={this.props.user.state.currentUser._id} />
+                                            <input name="password" className={styles.inputSize} />
+                                            <button type="submit" form="update-password"><Edit /></button>
+                                        </Grid>
                                     </form>
                                 </ListItem>
                                 <ListItem>
                                     <ListItemText justify="flex-end" />
-                                    <form id="update-signature" onSubmit={(e)=>this.handleSubmitSignature(e, this.props.user)}>
-                                    <Grid item xs={12} md={3}>
-                                        <Typography variant="body1">Signature: </Typography>
-                                    </Grid>
-                                    <Grid xs={12} md={9}>
-                                        <input type="hidden" name="userId" value={this.props.user.state.currentUser._id}/>
-                                        <input name="signature" placeholder={this.props.user.state.currentUser.signature} className={styles.inputSize}/>
-                                        <button type="submit" form="update-signature"><Edit/></button>
-                                    </Grid>
+                                    <form id="update-signature" onSubmit={(e) => this.handleSubmitSignature(e, this.props.user)}>
+                                        <Grid item xs={12} md={3}>
+                                            <Typography variant="body1">Signature: </Typography>
+                                        </Grid>
+                                        <Grid xs={12} md={9}>
+                                            <input type="hidden" name="userId" value={this.props.user.state.currentUser._id} />
+                                            <input name="signature" placeholder={this.props.user.state.currentUser.signature} className={styles.inputSize} />
+                                            <button type="submit" form="update-signature"><Edit /></button>
+                                        </Grid>
                                     </form>
                                 </ListItem>
                             </Box>
